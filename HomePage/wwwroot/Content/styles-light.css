@@ -1,0 +1,116 @@
+﻿body {
+    background-color: #f0f0f0; /* Light background color */
+    font-family: Verdana, sans-serif;
+    font-size: 20px;
+    color: #333; /* Dark text color */
+}
+
+h1, h2, h3, h4 {
+    color: #333; /* Dark text color */
+}
+
+td {
+    color: #333; /* Dark text color */
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+    color: #333; /* Dark text color */
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+button {
+    background-color: #4CAF50;
+    width: 150px;
+    color: white;
+    padding: 10px;
+    margin: 10px 0px;
+    border: none;
+    cursor: pointer;
+}
+
+.images, .about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #f0f0f0; /* Light background color */
+    border-bottom: 2px solid #4CAF50; /* Add a border to the bottom of the navbar */
+    padding: 10px 0; /* Add padding to the top and bottom */
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+    color: #333 !important; /* Dark text color */
+    transition: color 0.3s ease; /* Smooth transition for text color change */
+    padding: 10px 15px; /* Add padding to the links */
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    text-decoration: none; /* Remove underline by default */
+}
+
+    /* Navbar link hover effect */
+    .navbar-nav .nav-link:hover {
+        background-color: #4CAF50;
+        color: white !important; /* White text color */
+        text-decoration: none; /* Remove underline on hover */
+    }
+
+/* Active navigation item style */
+.navbar-nav .nav-item.active .nav-link {
+    background-color: #4CAF50;
+}
+
+/* Optional: Add some margin to the right of the navbar items */
+.navbar-nav .nav-item:not(:last-child) {
+    margin-right: 20px;
+}
+
+/* Dropdown styles (if you have dropdown menus) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0; /* Light background color */
+    min-width: 160px;
+    z-index: 1;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Additional styles for other elements */
+
+.server-info {
+    margin-bottom: 20px;
+}
+
+    .server-info p {
+        margin: 10px 0;
+    }
+
+.links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.links li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #4CAF50 !important;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }

@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+
+<style>
+    a.navbar-brand {
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+    }
+
+    a {
+        color: #4CAF50 !important;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #1b6ec2;
+        border-color: #1861ac;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: #fff;
+        background-color: #1b6ec2;
+        border-color: #1861ac;
+    }
+
+    .border-top {
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .border-bottom {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .box-shadow {
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    }
+
+    button.accept-policy {
+        font-size: 1rem;
+        line-height: inherit;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        white-space: nowrap;
+        line-height: 60px;
+    }
+
+    #navbar.sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+
+  
+
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Romit's Home Page</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HomePage.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link id="theme-style" rel="stylesheet" href="~/Content/styles-dark.css" />
+
+   @*  <link rel="apple-touch-icon" sizes="180x180" href="/Content/Images/Icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Content/Images/Icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Content/Images/Icon/favicon-16x16.png"> *@
+
+</head>
+
+
+
+<body>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><p>Menu</p></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup" style="margin-right: 20px; margin-left: 20px">
+            <ul class="navbar-nav mr-auto text-primary">
+                <li class="nav-item mr-2 @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <a class="nav-link" href="~/">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item mr-2 @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownProjects" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i aria-hidden="true"></i>
+                        Projects
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownProjects">
+                        <a class="dropdown-item" href="~/Projects">Overview</a>
+                        <a class="dropdown-item" href="~/Projects/HomeServer">Home TrueNAS Server</a>
+                        <a class="dropdown-item" href="~/Projects/Facegen">Artiface FaceGen</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link" href="https://github.com/NinePiece2/" target="_blank">
+                        <i class="fa" aria-hidden="true"></i>
+                        GitHub
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="https://www.linkedin.com/in/romit-sagu/" target="_blank">
+                        <i class="fa" aria-hidden="true"></i>
+                        LinkedIn
+                    </a>
+                </li>
+            </ul>
+            <!-- Dark Mode Switch Container -->
+            <div class="form-check form-switch ml-auto">
+                <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - HomePage - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap and jQuery scripts for dropdown and toggling -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your other JavaScript scripts -->
+    <script>
+        // Set initial dark mode based on user's system preferences or stored preference
+        var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var storedDarkMode = localStorage.getItem('darkMode');
+        if (storedDarkMode !== null) {
+            prefersDarkMode = JSON.parse(storedDarkMode);
+        }
+        var darkModeSwitch = document.getElementById('darkModeSwitch');
+        darkModeSwitch.checked = prefersDarkMode;
+        toggleDarkMode(prefersDarkMode); // Set initial mode
+
+        // Toggle dark mode
+        darkModeSwitch.addEventListener('change', function () {
+            toggleDarkMode(this.checked);
+            // Store user preference in localStorage
+            localStorage.setItem('darkMode', this.checked);
+        });
+
+        // Function to toggle dark mode styles
+        function toggleDarkMode(isDarkMode) {
+            var link = document.getElementById('theme-style');
+            if (isDarkMode) {
+                link.setAttribute('href', '/Content/styles-dark.css');
+            } else {
+                link.setAttribute('href', '/Content/styles-light.css');
+            }
+        }
+
+        if (window.location.pathname === '/' || window.location.pathname === '/Home/Index') {
+            window.onscroll = function () {
+                stickyNavbar();
+            };
+
+            window.onload = function () {
+                stickyNavbar();
+            };
+            
+            var navbar = document.getElementById("navbar");
+            var sticky = navbar.offsetTop;
+
+            function stickyNavbar() {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky");
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
+
+        }
+
+
+    </script>
+
+    <script>
+        console.log("Hello Fellow Developer.")
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

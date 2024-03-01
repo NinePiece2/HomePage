@@ -1,0 +1,100 @@
+﻿@media (min-width: 768px) {
+    section {
+        padding: 150px 0; 
+    }
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    header .intro-text .intro-heading {
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 75px;
+        line-height: 75px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    header .intro-text {
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+}
+
+/* Apply styles when the width is smaller than 768px */
+@media (max-width: 767px) {
+    section {
+        padding: 100px 0; /* Adjust padding for smaller screens */
+    }
+
+    header .intro-text .intro-heading {
+        font-size: 36px; /* Adjust font size for smaller screens */
+        line-height: 40px; /* Adjust line height for smaller screens */
+        margin-bottom: 30px; /* Adjust margin for smaller screens */
+    }
+
+    header .intro-text {
+        padding-top: 100px; /* Adjust top padding for smaller screens */
+        padding-bottom: 100px; /* Adjust bottom padding for smaller screens */
+    }
+}
+
+
+div {
+    display: block;
+}
+
+header {
+    background-image: url(./../../Content/Images/header.jpg);
+    background-repeat: no-repeat;
+    background-position: center top; /* Center the background image horizontally and align it to the top */
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+    width: 100vw; /* Set the header width to 100% */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Hide horizontal overflow to prevent scrolling */
+    height: 100%; /* Set the header height to 100% of the viewport height */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.circle-colour {
+    color: #4CAF50 !important;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+header {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)); /* Darken the background image */
+}
+
+.header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
