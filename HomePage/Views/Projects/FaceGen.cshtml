@@ -3,8 +3,45 @@
     ViewData["Title"] = "FaceGen";
 }
 
-<h1>FaceGen</h1>
+<style>
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px; /* Adjust padding as needed */
+    }
+
+    .left-link,
+    .right-link {
+        text-decoration: none;
+    }
+
+    /* Adjust the styles for the left and right links as needed */
+    .left-link {
+        margin-right: auto; /* Pushes the link to the left */
+    }
+
+    .right-link {
+        margin-left: auto; /* Pushes the link to the right */
+    }
+
+</style>
+
+@* <h1>FaceGen</h1>
+ *@
+<div class="header-container">
+    <a href="https://github.com/Siddhant0701/ArtiFace" class="left-link" target="_blank">GitHub</a>
+    <h1>FaceGen</h1>
+    <a href="https://facegen.romitsagu.com/" class="right-link" target="_blank">Site Link</a>
+</div>
+
 
 <div class="container">
+    <p>
+        ArtiFace Face Gen is a deep learning project that uses Generative Adversarial Networks (GANs) to generate human faces based on celebrity images. The project uses the CelebFaces Attributes Dataset (CelebA) to train the GANs. The project is implemented in Python using the Keras API and Tensorflow Backend.
+    </p>
 
+    <p>
+        The end goal for the project is to create realistic human faces that can be used for synthetic data generation and other applications.
+    </p>
 </div>
