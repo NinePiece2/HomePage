@@ -127,3 +127,10 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.navbar-toggler {
+    background-color: #333333 !important; /* Dark background */
+    border: 1px solid #666666 !important; /* Medium gray border */
+    color: #ffffff !important; /* White text color */
+}
+
