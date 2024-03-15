@@ -50,7 +50,6 @@ div {
 }
 
 header {
-    background-image: url(./../../Content/Images/header.jpg);
     background-repeat: no-repeat;
     background-position: center top; /* Center the background image horizontally and align it to the top */
     background-size: cover;
@@ -98,3 +97,19 @@ header {
     text-align: center;
 }
 
+.section-heading {
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-family: 'Poppins', Verdana, sans-serif;
+    font-weight: 700;
+}
+
+.section-subheading {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 75px;
+    text-transform: none;
+    font-family: 'Poppins', Verdana, sans-serif;
+}

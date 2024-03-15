@@ -19,6 +19,8 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link href="~/Content/IndexStyleSheet.css" rel='stylesheet' type='text/css'>
     <link href="~/css/StyleSheet.css" rel='stylesheet' type='text/css'>
+    <script src="~/js/particles.min.js"></script>
+
 s
     <style>
         /* Custom styles for the navbar */
@@ -48,8 +50,25 @@ s
             background-color: #555;
         }
 
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+        /* ---- particles.js container ---- */
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            background-image: url("");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+        }
+
     </style>
-    
+
 </head>
 <body id="page-top" class="index">
     <!-- Navigation -->
@@ -66,7 +85,8 @@ s
 
     <!-- Header -->
     <header>
-        <div class="header-overlay"></div>
+        <div id="particles-js"></div>
+
         <div class="header-content">
             <div class="container-fluid">
                 <div class="row">
@@ -170,14 +190,15 @@ s
     <!-- Contact Section -->
     <section id="contact">
         <!-- Contact content --> 
-        <div></br></div>
+        <div><br></br></div>
         <div class="max-w-md mx-auto bg-gray-900 rounded-lg p-6 shadow-md">
             <h1 class="text-2xl font-bold mb-4 text-white">Send Email</h1>
             <form>
                 <div class="mb-4">
                     <label for="name" class="block text-gray-300 font-bold mb-2">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your Name"
-                           class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white">
+                           class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white"
+                           style="text-transform: capitalize;">
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-gray-300 font-bold mb-2">Email</label>
@@ -188,15 +209,15 @@ s
                     <label class="block text-gray-300 font-bold mb-2">Topics</label>
                     <div>
                         <label for="project" class="inline-flex items-center mr-4">
-                            <input type="radio" id="project" name="topic" value="project"
+                            <input type="radio" id="project" name="topic" value="Project"
                                    class="form-radio h-5 w-5 text-blue-600"><span class="ml-2 text-white">Project</span>
                         </label>
                         <label for="software" class="inline-flex items-center mr-4">
-                            <input type="radio" id="software" name="topic" value="software"
+                            <input type="radio" id="software" name="topic" value="Software"
                                    class="form-radio h-5 w-5 text-blue-600"><span class="ml-2 text-white">Software Engineering</span>
                         </label>
                         <label for="other" class="inline-flex items-center">
-                            <input type="radio" id="other" name="topic" value="other"
+                            <input type="radio" id="other" name="topic" value="Other"
                                    class="form-radio h-5 w-5 text-blue-600"><span class="ml-2 text-white">Other</span>
                         </label>
                         <input type="text" id="otherTopic" name="otherTopic" placeholder="Specify Other Topic"
@@ -224,7 +245,120 @@ s
     <!-- JavaScript/jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // particles.js configuration
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#4caf50"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
         $(document).ready(function () {
+
             // Smooth scrolling when clicking on navbar links
             $('a[href^="#"]').on('click', function (event) {
                 var target = $(this.getAttribute('href'));
@@ -232,7 +366,7 @@ s
                     event.preventDefault();
                     $('html, body').stop().animate({
                         scrollTop: target.offset().top
-                    }, 400);
+                    }, 100);
                 }
             });
 
@@ -271,6 +405,11 @@ s
                 var email = $('#email').val();
                 var name = $('#name').val();
                 var topic = $('input[name="topic"]:checked').val();
+
+                if (topic == 'Other') {
+                    topic = $('#otherTopic').val();
+                }
+
                 var message = $('#message').val();
 
                 // AJAX request
@@ -284,16 +423,26 @@ s
                         topic: topic
                     },
                     success: function (response) {
-                        // Handle success response
-                        console.log('Email sent successfully!');
-                        // Clear form fields
-                        $('#email').val('');
-                        $('#name').val('');
-                        $('input[name="topic"]').prop('checked', false);
-                        $('#message').val('');
+                        if (response.success) {
+                            // Handle success response
+                            console.log('Email sent successfully! ' +  response.message);
+
+                            // Clear form fields
+                            $('#email').val('');
+                            $('#name').val('');
+                            $('input[name="topic"]').prop('checked', false);
+                            if (topic == 'Other') {
+                                $('#otherTopic').val('');
+                            }
+                            $('#message').val('');
+                        } else {
+                            // Handle error response
+                            alert('Error sending email: ' + response.message + ' Please contact me at romit@romitsagu.com')
+                        }
                     },
                     error: function (xhr, status, error) {
                         // Handle error response
+                        alert('Error sending email: ' + error + ' Please contact me at romit@romitsagu.com');
                         console.error('Error sending email:', error);
                     }
                 });
