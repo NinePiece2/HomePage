@@ -25,6 +25,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Add custom error handling for 404 Not Found
+app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

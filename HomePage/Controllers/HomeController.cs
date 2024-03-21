@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using System.Diagnostics;
+using System.Globalization;
 using System.Reflection.Metadata;
 
 
@@ -27,19 +28,29 @@ namespace HomePage.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(int? statusCode = null)
         {
+            if (statusCode == 404)
+            {
+                return View("Error404");
+            }
+
+            // Handle other status codes or return a generic error view
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         public ActionResult SendEmail(string name, string email, string message, string topic)
         {
+
+            name = CapitalizeWords(name);
 
             var bodyHtml = EmailBody(name, email, message, topic);
 
             EmailServiceContext emailServiceContext = new EmailServiceContext();
-            var result = emailServiceContext.EnqueueIncomingMessagesRun("romit@romitsagu.com", "Contact Request - " + name, null, null, null, bodyHtml, null, true, null, null);
+            //var result = emailServiceContext.EnqueueIncomingMessagesRun("romit@romitsagu.com", "Contact Request - " + name, null, null, null, bodyHtml, null, true, null, null);
             emailServiceContext.SaveChanges();
+
+            var result = 1;
 
             if (result == 1)
             {
@@ -122,6 +133,23 @@ namespace HomePage.Controllers
 
             return bodyHtml;
 
+        }
+
+        public ActionResult RenderPopUpModel()
+        {
+            Models.PopUpModel modal = new Models.PopUpModel { ID = "PopUpModel", textArea = false, cancelBtnMessage = "Cancel", confirmBtnMessage = "Confirm", reminderText = "Are you sure you want to Submit?" };
+            return PartialView("~/Views/Shared/PopUpModel.cshtml", modal);
+        }
+
+        public static string CapitalizeWords(string input)
+        {
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            string[] words = input.Split(' ');
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = textInfo.ToTitleCase(words[i]);
+            }
+            return string.Join(" ", words);
         }
     }
 }

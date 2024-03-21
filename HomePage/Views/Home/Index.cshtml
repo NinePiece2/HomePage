@@ -11,7 +11,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Include Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="~/css/tailwind.min.css" rel="stylesheet">
+@*     <script src="~/js/tailwind.js"></script>
+ *@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
@@ -65,6 +67,10 @@ s
             background-repeat: no-repeat;
             background-size: cover;
             background-position: 50% 50%;
+        }
+
+        :where(.focus\:bg-gray-100:focus) {
+            background-color: #121212 !important;
         }
 
     </style>
@@ -186,62 +192,109 @@ s
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
             </div>
+
         </div>
     </section>
     <!-- Contact Section -->
     <section id="contact">
         <!-- Contact content --> 
-        <div><br></br></div>
-        <div class="max-w-md mx-auto bg-gray-900 rounded-lg p-6 shadow-md">
-            <h1 class="text-2xl font-bold mb-4 text-white">Send Email</h1>
-            <form>
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-300 font-bold mb-2">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name"
-                           class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white"
-                           style="text-transform: capitalize;">
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-300 font-bold mb-2">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email"
-                           class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-300 font-bold mb-2">Topics</label>
-                    <div>
-                        <label for="project" class="inline-flex items-center mr-4">
-                            <input type="radio" id="project" name="topic" value="Project"
-                                   class="form-radio h-5 w-5 text-blue-600"><span class="ml-2 text-white">Project</span>
-                        </label>
-                        <label for="software" class="inline-flex items-center mr-4">
-                            <input type="radio" id="software" name="topic" value="Software"
-                                   class="form-radio h-5 w-5 text-blue-600"><span class="ml-2 text-white">Software Engineering</span>
-                        </label>
-                        <label for="other" class="inline-flex items-center">
-                            <input type="radio" id="other" name="topic" value="Other"
-                                   class="form-radio h-5 w-5 text-blue-600"><span class="ml-2 text-white">Other</span>
-                        </label>
-                        <input type="text" id="otherTopic" name="otherTopic" placeholder="Specify Other Topic"
-                               class="ml-2 px-3 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white">
+        @* <div><br></br></div> *@
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Contact Me</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Use the form below to contact me about a variety of topics.</p>
+            </div>
+            <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                <form class="flex flex-wrap -m-2">
+                    <div class="p-2 w-1/2">
+                        <div class="relative">
+                            <label for="name" class="leading-7 text-sm text-gray-400">Name</label>
+                            <input required type="text" id="name" name="name" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-green-500 focus:bg-gray-100 focus:ring-4 focus:ring-green-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" style="text-transform: capitalize;">
+                            <span id="nameError" class="text-red-500 text-xs hidden">Please enter your name.</span>
+                            <span id="nameLengthError" class="text-red-500 text-xs hidden">Your name should be less than 100 characters.</span>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <label for="message" class="block text-gray-300 font-bold mb-2">Message</label>
-                    <textarea id="message" name="message" placeholder="Your Message"
-                              class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white"></textarea>
-                </div>
-                <div class="flex justify-end">
-                    <button id="sendButton"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Send
-                    </button>
-                </div>
-            </form>
+                    <div class="p-2 w-1/2">
+                        <div class="relative">
+                            <label for="email" class="leading-7 text-sm text-gray-400">Email</label>
+                            <input required type="email" id="email" name="email" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-green-500 focus:bg-gray-100 focus:ring-4 focus:ring-green-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <span id="emailError" class="text-red-500 text-xs hidden">Please enter your email.</span>
+                            <span id="emailLengthError" class="text-red-500 text-xs hidden">Your email should be less than 100 characters.</span>
+                            <span id="emailValueError" class="text-red-500 text-xs hidden">Please enter a valid email</span>
+                        </div>
+                    </div>
+                    <div class="p-2 w-full">
+                        <label class="block leading-7 text-sm text-gray-400 mb-2">Topics</label>
+                        <div class="flex flex-wrap items-center -mx-2">
+                            <!-- Radio Button: Project -->
+                            <div class="px-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" id="project" name="topic" value="Project" class="form-radio h-5 w-5 text-green-600">
+                                    <span class="ml-2 text-gray-400">Project</span>
+                                </label>
+                            </div>
+                            <!-- Radio Button: Software Engineering -->
+                            <div class="px-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" id="software" name="topic" value="Software" class="form-radio h-5 w-5 text-green-600">
+                                    <span class="ml-2 text-gray-400">Software Engineering</span>
+                                </label>
+                            </div>
+                            <!-- Radio Button: Other -->
+                            <div class="px-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" id="other" name="topic" value="Other" class="form-radio h-5 w-5 text-green-600">
+                                    <span class="ml-2 text-gray-400">Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        <span id="topicError" class="text-red-500 text-xs hidden">Please select a topic</span>
+
+                    </div>
+
+                    <!-- Other Topic Input Field (disabled by default) -->
+                    <div class="p-2 w-full" id="otherTopicField">
+                        <input disabled type="text" id="otherTopic" name="otherTopic" placeholder="Specify Other Topic" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-green-500 focus:bg-gray-100 focus:ring-4 focus:ring-green-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <span id="otherTopicError" class="text-red-500 text-xs hidden">Please specify the other topic.</span>
+                        <span id="otherTopicLengthError" class="text-red-500 text-xs hidden">Your name should be less than 250 characters.</span>
+                    </div>
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                            <label for="message" class="leading-7 text-sm text-gray-400">Message</label>
+                            <textarea id="message" name="message" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-green-500 focus:bg-gray-100 focus:ring-4 focus:ring-green-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                            <span id="messageError" class="text-red-500 text-xs hidden">Please enter a message.</span>
+                            <span id="messageLengthError" class="text-red-500 text-xs hidden">Your message should be less than 500 characters.</span>
+                        </div>
+                    </div>
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                            <label hidden class="inline-flex items-center">
+                                <input hidden type="radio"  id="honeyPot1" name="honeyPot" class="form-radio h-5 w-5 text-green-600" value="XDX">
+                                <span hidden class="ml-2 text-gray-400">hidden</span>
+
+                            </label>
+                        </div>
+                        <div class="relative">
+                            <label hidden class="inline-flex items-center">
+                                <input hidden type="radio" id="honeyPot2" name="honeyPot" class="form-radio h-5 w-5 text-green-600" value="XDD">
+                                <span hidden class="ml-2 text-gray-400">hidden</span>
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="p-2 w-full">
+                        <button style="background-color: #4CAF50;" id="sendButton" class="flex justify-center mx-auto text-white bg-fuchsia-600 px-4 py-1 text-white font-medium rounded-lg hover:scale-1050 cursor-pointer">Send</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
 
 
+
     </section>
+
+    <div id="PopUpModelSection"></div>
 
     <!-- JavaScript/jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -398,10 +451,165 @@ s
                 }
             });
 
+            $('input[type="radio"][name="topic"]').change(function () {
+                // If "Other" is selected
+                validateTopic();
+                if ($('#other').is(':checked')) {
+                    $('#otherTopic').prop('disabled', false);
+                } else {
+                    $('#otherTopic').prop('disabled', true);
+                }
+            });
+
+            // Validate the name field
+            $('#name').change(validateName);
+
+            // Validate the email field
+            $('#email').change(validateEmail);
+
+            // Validate the message field
+            $('#message').change(validateMessage);
+
+            $('#otherTopic').change(validateTopic);
+
+            $('#name').on('input', validateName);
+            $('#email').on('input', validateEmail);
+            $('#message').on('input', validateMessage);
+            $('#otherTopic').on('input', validateTopic);
+
+
+            function validateName() {
+                var name = $('#name').val();
+                if (name === '') {
+                    $('#nameError').show();
+                    return false;
+                }
+
+                $('#nameError').hide();
+
+                if (name.length > 0 && name.length <=100) {
+                    $('#nameLengthError').hide();
+                    return true;
+                } else{
+                    $('#nameLengthError').show();
+                    return false;
+                }
+
+            }
+
+            function validateEmail() {
+                var email = $('#email').val();
+                var valid = true;
+                if (email === '') {
+                    $('#emailError').show();
+                    $('#emailValueError').hide();
+                    return false;
+                }
+
+                if (!isEmail(email)) {
+                    $('#emailValueError').show();
+                    $('#emailError').hide();
+                    return false;
+                } else {
+                    $('#emailValueError').hide();
+                }
+
+                $('#emailError').hide();
+
+                if (email.length > 0 && email.length <= 100) {
+                    $('#emailLengthError').hide();
+                    return true;
+                } else {
+                    $('#emailLengthError').show();
+                    return false;
+                }
+            }
+
+            function validateTopic() {
+                var topic = $('input[name="topic"]:checked').val();
+                var otherTopic = $('#otherTopic').val();
+
+                if (typeof topic === 'undefined') {
+                    $('#topicError').show();
+                    return false;
+                }
+
+                $('#topicError').hide();
+
+                if (topic === 'Other' && otherTopic === '') {
+                    $('#otherTopicError').show();
+                    return false;
+                } else if (topic !== 'Other') {
+                    $('#otherTopicError').hide();
+                    return true;
+                }
+
+                $('#otherTopicError').hide();
+
+                if (otherTopic.length > 0 && otherTopic.length <= 250) {
+                    $('#otherTopicLengthError').hide();
+                    return true;
+                } else {
+                    $('#otherTopicLengthError').show();
+                    return false;
+                }
+            }
+
+            function validateMessage() {
+                var message = $('#message').val();
+                if (message === '') {
+                    $('#messageError').show();
+                    return false;
+                }
+
+                $('#messageError').hide();
+
+                if (message.length > 0 && message.length <= 500) {
+                    $('#messageLengthError').hide();
+                    return true;
+                } else {
+                    $('#messageLengthError').show();
+                    return false;
+                }
+            }
 
             $('#sendButton').click(function (e) {
                 e.preventDefault(); // Prevent form submission
 
+                var isValid = true;
+
+                var isNameValid = validateName(); 
+                var isEmailValid = validateEmail(); 
+                var isTopicValid = validateTopic(); 
+                var isMessageValid = validateMessage(); 
+
+                var honeyPot = $('input[name="honeyPot"]:checked').val();
+
+                console.log(honeyPot);
+
+                if (!(typeof honeyPot === 'undefined')) {
+                    alert("Your request could not be Authenticated")
+                    return;
+                }
+
+                // Combine the results using logical AND
+                isValid = isNameValid && isEmailValid && isTopicValid && isMessageValid;
+
+
+                if (!isValid) {
+                    return; // Stop processing if the form is invalid
+                }
+
+                $("#PopUpModelSection").load('@Url.Action("RenderPopUpModel", "Home")', function () {
+                    $('#PopUpModelBtn').click(function () {
+                        SendEmail();
+                        $('#PopUpModel').modal('hide');
+                    });
+                    $('#PopUpModel').modal('show'); // Show the modal
+                });
+            });
+
+            function SendEmail() {
                 // Get form data
                 var email = $('#email').val();
                 var name = $('#name').val();
@@ -411,7 +619,7 @@ s
                     topic = $('#otherTopic').val();
                 }
 
-                var message = $('#message').val();
+                var message = $('#message').val();    
 
                 // AJAX request
                 $.ajax({
@@ -426,7 +634,8 @@ s
                     success: function (response) {
                         if (response.success) {
                             // Handle success response
-                            console.log('Email sent successfully! ' +  response.message);
+                            console.log('Email sent successfully! ' + response.message);
+
 
                             // Clear form fields
                             $('#email').val('');
@@ -447,8 +656,7 @@ s
                         console.error('Error sending email:', error);
                     }
                 });
-            });
-
+            }
         });
     </script>
 </body>

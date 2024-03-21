@@ -1,0 +1,85 @@
+﻿@model HomePage.Models.PopUpModelWithComments
+
+@{
+    string notes = "";
+    var textAreaLength = 200 - notes.Length;
+}
+
+<style>
+    .modal-content {
+        background-color: #121212;
+        font-family: 'Poppins', Verdana, sans-serif;
+        font-size: 20px;
+        color: white;
+    }
+
+    #exclamationMark {
+        color: #ff0000;
+        font-size: 90px;
+    }
+
+    .left {
+        right: 16% !important;
+    }
+
+    .warnBtn {
+        color: white;
+        background-color: #ff0000;
+        border: none;
+    }
+
+    .clearOrCancel {
+        color: white;
+        background-color: #ff0000;
+        border: none;
+    }
+
+</style>
+
+<div class="modal fade" id="@Model.ID" tabindex="-1" role="dialog" aria-labelledby="Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content p-3" style="border: 2px solid #7ac142;">
+            <div class="modal-header">
+                <p class="modal-title font-weight-bold" id="Title"> @Model.modelHeader </p>
+                <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #7ac142;">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @{
+                    if (Model.textArea)
+                    {
+                        <textarea cols="20" rows="8" placeholder="Type your notes here..." onkeyup="countWords(this.value)" maxlength="200" id="InputContent">@notes</textarea>
+                        <p id="count"> @textAreaLength characters left </p>
+                    }
+                }
+            </div>
+            <div class="modal-footer">
+                @{
+                    if (Model.saveAndCancelBtns)
+                    {
+                        <button type="button" class="btn filterButton clearOrCancel mr-3" data-dismiss="modal" id="CancelBtn">Cancel</button>
+                        <button type="button" class="btn filterButton confirm" data-dismiss="modal" id="SaveBtn">Save</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function countWords(value) {
+        var remainingLength = 200 - value.length;
+        document.getElementById('count').innerHTML = remainingLength + " characters left";
+    }
+
+    $('#CancelBtn').click(function () {
+        $('#@Model.ID').modal('hide');
+
+    }); 
+    $('#close').click(function () {
+        $('#@Model.ID').modal('hide');
+
+    });
+</script>

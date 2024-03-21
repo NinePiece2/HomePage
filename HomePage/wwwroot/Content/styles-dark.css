@@ -136,3 +136,10 @@ a:hover {
     color: #ffffff !important; /* White text color */
 }
 
+input:disabled {
+    background-color: #555; /* Darker background to indicate it's disabled */
+    cursor: not-allowed; /* Shows a 'not-allowed' cursor on hover */
+    opacity: 0.7; /* Light transparency effect to indicate disabled state */
+}
+
+
