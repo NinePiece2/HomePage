@@ -47,10 +47,10 @@ namespace HomePage.Controllers
             var bodyHtml = EmailBody(name, email, message, topic);
 
             EmailServiceContext emailServiceContext = new EmailServiceContext();
-            //var result = emailServiceContext.EnqueueIncomingMessagesRun("romit@romitsagu.com", "Contact Request - " + name, null, null, null, bodyHtml, null, true, null, null);
+            var result = emailServiceContext.EnqueueIncomingMessagesRun("romit@romitsagu.com", "Contact Request - " + name, null, null, null, bodyHtml, null, true, null, null);
             emailServiceContext.SaveChanges();
 
-            var result = 1;
+            //var result = 1;
 
             if (result == 1)
             {
