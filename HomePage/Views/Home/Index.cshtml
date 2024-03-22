@@ -661,14 +661,17 @@ s
             // Fade in header content on page load
             $('.header-content').addClass('fade-in');
 
-            // Fade in sections on scroll
             $(window).scroll(function () {
+                checkSectionsInView();
+            });
+
+            function checkSectionsInView() {
                 $('.section').each(function () {
-                    if ($(this).offset().top < $(window).scrollTop() + $(window).height() - 100) {
+                    if ($(this).offset().top < $(window).scrollTop() + $(window).height()) {
                         $(this).addClass('fadeIn-other');
                     }
                 });
-            });
+            }
         });
     </script>
 </body>
