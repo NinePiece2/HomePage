@@ -1,7 +1,92 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Projects";
+
+    int currentPage = ViewBag.CurrentPage;
+    int totalPages = ViewBag.TotalPages;
 }
+
+<style>
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: #343a40; /* Dark background */
+        color: #f8f9fa; /* Light text */
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #454d55; /* Darker border */
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #454d55; /* Darker border */
+        font-weight: bold;
+        background-color: #23272b; /* Darker header background */
+    }
+
+    .table tbody + tbody {
+        border-top: 2px solid #454d55; /* Darker border */
+    }
+
+    .table .table-row-hover tbody tr:hover {
+        background-color: rgba(255,255,255,.1); /* Lighter hover effect */
+    }
+
+    @@media (max-width: 768px) {
+        .table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    }
+
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .page-link {
+        margin: 0 0.25rem;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #454d55; /* Darker border */
+        border-radius: 0.25rem;
+        text-decoration: none;
+        color: #f8f9fa; /* Light text */
+        background-color: #343a40; /* Dark background */
+    }
+
+        .page-link:hover {
+            border-color: #f8f9fa; /* Lighter border on hover */
+            background-color: #23272b; /* Darker background on hover */
+            color: #f8f9fa; /* Light text */
+        }
+
+        .page-link:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(255,255,255,.25); /* Lighter focus ring */
+        }
+
+        .page-link.active {
+            background-color: #007bff; /* Blue background for active page */
+            color: #fff;
+            border-color: #007bff; /* Blue border for active page */
+        }
+
+        .page-link.disabled {
+            color: #6c757d; /* Gray text for disabled link */
+            pointer-events: none;
+            background-color: #343a40; /* Dark background */
+            border-color: #454d55; /* Darker border */
+        }
+
+</style>
 
 <h1>Projects</h1>
 
@@ -9,3 +94,46 @@
     <p>This section of the website is designed to elaborate on some of the bigger project’s I’ve worked on. </p>
 
 </div>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>UID</th>
+            <th>Name</th>
+            <th>Application Link</th>
+            <th>GitHub Link</th>
+            <th>HomePage Link</th>
+            <!-- Other columns -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.DataList)
+        {
+            <tr>
+                <td>@item.Uid</td>
+                <td>@item.Name</td>
+                <td>@item.ApplicationLink</td>
+                <td>@item.GitHubLink</td>
+                <td>@item.HomePageLink</td>
+                <!-- Other data cells -->
+            </tr>
+        }
+    </tbody>
+</table>
+
+@* 
+<div class="pagination">
+    <!-- Previous Page Link -->
+    <a asp-action="Index" asp-route-page="@(currentPage - 1)" class="page-link" @(currentPage == 1 ? "disabled" : "")>&laquo;</a>
+
+    <!-- Page Number Links -->
+    @for (int i = 1; i <= totalPages; i++)
+    {
+        <a asp-action="Index" asp-route-page="@i" class="page-link @(i == currentPage ? "active" : "")">@i</a>
+    }
+
+    <!-- Next Page Link -->
+    <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="page-link" @(currentPage == totalPages ? "disabled" : "")>&raquo;</a>
+</div> *@
