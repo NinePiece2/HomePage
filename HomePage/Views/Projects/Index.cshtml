@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Syncfusion.EJ2
+@using Syncfusion.EJ2.Grids
+@{
     ViewData["Title"] = "Projects";
 
     int currentPage = ViewBag.CurrentPage;
@@ -97,7 +99,7 @@
 
 <br />
 
-<table class="table">
+@* <table class="table">
     <thead>
         <tr>
             <th>UID</th>
@@ -120,7 +122,7 @@
                 <!-- Other data cells -->
             </tr>
         }
-    </tbody>
+    </tbody> *@
 </table>
 
 @* 
@@ -137,3 +139,39 @@
     <!-- Next Page Link -->
     <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="page-link" @(currentPage == totalPages ? "disabled" : "")>&raquo;</a>
 </div> *@
+
+<div class="grid-container">
+
+    @(Html.EJS().Grid("Grid").DataSource((IEnumerable<Application>)ViewBag.DataList).AllowSorting().Columns(col =>
+        {
+            col.Field("Uid").HeaderText("UID").Width("120").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Right).Add();
+            col.Field("Name").HeaderText("Name").Width("170").Add();
+            col.Template("#githubLinkTemplate").HeaderText("GitHub Link").Width("150").Add();
+            col.Template("#appLinkTemplate").HeaderText("Application Link").Width("150").Add();
+            col.Template("#homePageLinkTemplate").HeaderText("Home Page Link").Width("150").Add();
+        }).AllowPaging().PageSettings(page => page.PageCount(5)).Render()
+    )
+</div>
+
+<script id="appLinkTemplate" type="text/x-jsrender">
+    ${ if(ApplicationLink != null)}
+        <a href="${ApplicationLink}" target="_blank">App Link</a>
+    ${else}
+       <p> N/A </p>
+    ${/if}
+</script>
+
+<script id="githubLinkTemplate" type="text/x-jsrender">
+    ${ if(GitHubLink != null)}
+        <a href="${GitHubLink}" target="_blank">GitHub</a>
+    ${else}
+       <p> N/A </p>
+    ${/if}
+</script>
+<script id="homePageLinkTemplate" type="text/x-jsrender">
+    ${ if(HomePageLink != null)}
+        <a href="${HomePageLink}" target="_blank">Home Page Link</a>
+    ${else}
+       <p> N/A </p>
+    ${/if}
+</script>

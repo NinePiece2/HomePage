@@ -10,6 +10,7 @@ body {
 h1 {
     color: white;
     text-align: center;
+    font-size: 2rem !important ;
 }
 
 h2 {
@@ -142,4 +143,47 @@ input:disabled {
     opacity: 0.7; /* Light transparency effect to indicate disabled state */
 }
 
+/* Dark Mode styles */
+.e-grid .e-headercell,
+.e-grid .e-cell,
+.e-grid .e-summarycell,
+.e-grid .e-headercontent,
+.e-rowcell,
+.e-gridpager,
+.e-icons {
+    background-color: #121212 !important; /* Set background color to #121212 */
+    color: #ffffff !important; /* Set text color to white */
+}
 
+.e-pager .e-firstpagedisabled, .e-pager .e-prevpagedisabled, .e-pager .e-nextpagedisabled, .e-pager .e-lastpagedisabled {
+    opacity: 1 !important;
+}
+
+.e-pager .e-currentitem, .e-pager .e-currentitem:hover {
+    background: #4CAF50 !important;
+    color: #FFFFFF !important;
+}
+
+.e-sortfilterdiv .e-icons{
+    color: #FFFFFF !important;
+}
+/* Additional styles for Syncfusion Grid container */
+.e-grid {
+    background-color: #121212 !important; /* Set background color to #121212 */
+    border-radius: 5px; /* Add rounded corners */
+    overflow: hidden; /* Ensure overflow content is hidden within rounded corners */
+    border-radius: 15px !important; /* Add rounded corners */
+    border-width: 1.5px !important;
+}
+
+.e-gridheader {
+    overflow: hidden; /* Ensure overflow content is hidden within rounded corners */
+    border-top-width: 1.5px !important; /* Add rounded corners */
+    border-top-right-radius: 15px !important; /* Add rounded corners */
+    border-top-left-radius: 15px !important;
+}
+
+.grid-container{
+    padding-left: 10%;
+    padding-right: 10%;
+}

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+@using Syncfusion.EJ2
+<!DOCTYPE html>
 
 <style>
     a.navbar-brand {
@@ -89,6 +90,8 @@
 
  
 
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/25.1.37/bootstrap4.css" />
+    <script src="https://cdn.syncfusion.com/ej2/25.1.37/dist/ej2.min.js"></script>
 </head>
 
 
@@ -286,6 +289,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @Html.EJS().ScriptManager()
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
