@@ -634,6 +634,15 @@ s
 
                 var message = $('#message').val();    
 
+                // Clear form fields
+                $('#email').val('');
+                $('#name').val('');
+                $('input[name="topic"]').prop('checked', false);
+                if (topic == 'Other') {
+                    $('#otherTopic').val('');
+                }
+                $('#message').val('');
+
                 // AJAX request
                 $.ajax({
                     url: 'Home/SendEmail', // Replace with your backend endpoint
@@ -649,15 +658,6 @@ s
                             // Handle success response
                             console.log('Email sent successfully! ' + response.message);
 
-
-                            // Clear form fields
-                            $('#email').val('');
-                            $('#name').val('');
-                            $('input[name="topic"]').prop('checked', false);
-                            if (topic == 'Other') {
-                                $('#otherTopic').val('');
-                            }
-                            $('#message').val('');
                         } else {
                             // Handle error response
                             alert('Error sending email: ' + response.message + ' Please contact me at romit@romitsagu.com')
@@ -667,6 +667,10 @@ s
                         // Handle error response
                         alert('Error sending email: ' + error + ' Please contact me at romit@romitsagu.com');
                         console.error('Error sending email:', error);
+
+                        $('#email').val(email);
+                        $('#name').val(name);
+                        $('#message').val(message);
                     }
                 });
             }
