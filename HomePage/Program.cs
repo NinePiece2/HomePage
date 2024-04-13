@@ -1,12 +1,25 @@
+using dotenv.net;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Load environment variables from .env file in development environment
+if (builder.Environment.IsDevelopment())
+{
+    DotEnv.Load();
+}
+else
+{
+    builder.Configuration.AddEnvironmentVariables();
+}
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Syncfusion License
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx0WmFZfVpgcl9EaFZVR2Y/P1ZhSXxXdkZhX35WcnxRRWlfU0M=");
+// Syncfusion License Registration
+var syncfusionLicense = Environment.GetEnvironmentVariable("SyncfusionLicense");
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(syncfusionLicense);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -15,17 +28,10 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-else
-{
-    // Add configuration
-    builder.Configuration.AddJsonFile("appsettings.json");
-}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
 // Add custom error handling for 404 Not Found
