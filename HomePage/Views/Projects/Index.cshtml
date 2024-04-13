@@ -47,7 +47,6 @@
         }
     }
 
-
     .pagination {
         display: flex;
         justify-content: center;
@@ -142,22 +141,22 @@
 
 <div class="grid-container">
 
-    @(Html.EJS().Grid("Grid").DataSource((IEnumerable<Application>)ViewBag.DataList).AllowSorting().Columns(col =>
-        {
-            col.Field("Uid").HeaderText("UID").Width("120").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Right).Add();
-            col.Field("Name").HeaderText("Name").Width("170").Add();
-            col.Template("#githubLinkTemplate").HeaderText("GitHub Link").Width("150").Add();
-            col.Template("#appLinkTemplate").HeaderText("Application Link").Width("150").Add();
-            col.Template("#homePageLinkTemplate").HeaderText("Home Page Link").Width("150").Add();
-        }).AllowPaging().PageSettings(page => page.PageCount(5)).Render()
-    )
+    @(
+        Html.EJS().Grid("Grid").DataSource((IEnumerable<Application>)ViewBag.DataList).AllowSorting().Columns(col =>
+            {
+                col.Field("Name").HeaderText("Name").Width("170").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                col.Template("#githubLinkTemplate").HeaderText("GitHub Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                col.Template("#appLinkTemplate").HeaderText("Application Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                col.Template("#homePageLinkTemplate").HeaderText("Home Page Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+            }).AllowPaging().PageSettings(page => { page.PageSize(10); page.PageCount(5); }).Render()
+        )
 </div>
 
 <script id="appLinkTemplate" type="text/x-jsrender">
     ${ if(ApplicationLink != null)}
         <a href="${ApplicationLink}" target="_blank">App Link</a>
     ${else}
-       <p> N/A </p>
+       <p style="font-size:14px;"> N/A </p>
     ${/if}
 </script>
 
@@ -165,13 +164,13 @@
     ${ if(GitHubLink != null)}
         <a href="${GitHubLink}" target="_blank">GitHub</a>
     ${else}
-       <p> N/A </p>
+       <p style="font-size:14px;"> N/A </p>
     ${/if}
 </script>
 <script id="homePageLinkTemplate" type="text/x-jsrender">
     ${ if(HomePageLink != null)}
         <a href="${HomePageLink}" target="_blank">Home Page Link</a>
     ${else}
-       <p> N/A </p>
+       <p style="font-size:14px;"> N/A </p>
     ${/if}
 </script>
