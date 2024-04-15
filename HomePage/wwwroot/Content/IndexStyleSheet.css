@@ -149,3 +149,11 @@ header {
     opacity: 0;
     animation: fadeIn-o 1.5s ease-in-out forwards;
 }
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}

@@ -98,47 +98,6 @@
 
 <br />
 
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>UID</th>
-            <th>Name</th>
-            <th>Application Link</th>
-            <th>GitHub Link</th>
-            <th>HomePage Link</th>
-            <!-- Other columns -->
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewBag.DataList)
-        {
-            <tr>
-                <td>@item.Uid</td>
-                <td>@item.Name</td>
-                <td>@item.ApplicationLink</td>
-                <td>@item.GitHubLink</td>
-                <td>@item.HomePageLink</td>
-                <!-- Other data cells -->
-            </tr>
-        }
-    </tbody> *@
-</table>
-
-@* 
-<div class="pagination">
-    <!-- Previous Page Link -->
-    <a asp-action="Index" asp-route-page="@(currentPage - 1)" class="page-link" @(currentPage == 1 ? "disabled" : "")>&laquo;</a>
-
-    <!-- Page Number Links -->
-    @for (int i = 1; i <= totalPages; i++)
-    {
-        <a asp-action="Index" asp-route-page="@i" class="page-link @(i == currentPage ? "active" : "")">@i</a>
-    }
-
-    <!-- Next Page Link -->
-    <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="page-link" @(currentPage == totalPages ? "disabled" : "")>&raquo;</a>
-</div> *@
-
 <div class="grid-container">
 
     @(

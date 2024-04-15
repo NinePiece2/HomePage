@@ -8,7 +8,7 @@
         public string ID { get; set; }
         public bool textArea { get; set; }
         public string confirmBtnMessage { get; set; }
-        public string hintMessage { get; set; } = "This will send romit@romitsagu.com an email.";
+        public string hintMessage { get; set; }
         public string cancelBtnMessage { get; set; }
         public string reminderText { get; set; }
     }
