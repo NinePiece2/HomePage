@@ -27,25 +27,45 @@
             left: 0;
             transform: translateY(-50%);
             z-index: 1000;
-            background-color: #222;
+            background-color: rgba(34, 34, 34, 0.8) !important; /* Slightly transparent black */
             padding-top: 20px;
+            /*border-right: 2px solid rgba(255, 255, 255, 0.1); /* Subtle edge to the right */
+            width: 140px; /* Ensuring consistent width */
+            transition: width 0.3s ease-in-out, height 0.3s ease-in-out; /* Add transition for width and height */
         }
 
-        #mainNav .navbar-nav {
-            width: 100px; /* Adjust as needed */
-        }
+            #mainNav .navbar-nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center align the nav items */
+                width: 100%; /* Use full width of the sidebar */
+                transition: width 0.3s ease-in-out, height 0.3s ease-in-out; /* Add transition for width and height */
+            }
 
-        #mainNav .navbar-nav > li > a {
-            padding: 10px 20px;
-            color: #fff;
-            font-size: 16px;
-            text-align: center;
-        }
+                #mainNav .navbar-nav > li {
+                    width: 100%; /* Full width to the links for easier click */
+                }
 
-        #mainNav .navbar-nav > li > a:hover,
-        #mainNav .navbar-nav > li.active-nav-item > a {
-            background-color: #555;
-        }
+                    #mainNav .navbar-nav > li > a {
+                        display: block; /* Make the links take up full space of li */
+                        padding: 12px 15px; /* Slightly larger padding for a better touch area */
+                        color: #fff;
+                        font-size: 16px;
+                        text-align: center;
+                        text-decoration: none; /* Remove underline from links */
+                        transition: background-color 0.3s; /* Smooth transition for hover */
+                    }
+
+                        #mainNav .navbar-nav > li > a:hover,
+                        #mainNav .navbar-nav > li.active-nav-item > a {
+                            background-color: #555;
+                            color: #ddd; /* Slightly lighter text on hover for better readability */
+                        }
+
+                    #mainNav .navbar-nav > li:not(:last-child) {
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add a subtle separator */
+                    }
+
 
         canvas {
             display: block;
@@ -68,6 +88,26 @@
             background-color: #121212 !important;
         }
 
+        .hamburger-menu {
+            display: none; /* Hide by default and will be displayed via media query on smaller screens */
+            position: relative; /* Relative position to keep it in view */
+            width: 100%; /* Full width to span the entire nav */
+            background: none;
+            border: none;
+            color: white; /* Adjust color based on your theme */
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1100; /* Make sure it's above other content */
+        }
+
+        @@media (max-width: 768px) {
+            .hamburger-menu {
+                display: block; /* Show only on small screens */
+            }
+        }
+
+
+
     </style>
 
 </head>
@@ -75,6 +115,7 @@
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom">
         <div class="container-fluid">
+            <button class="hamburger-menu" onclick="toggleNav()">☰</button>
             <ul class="nav navbar-nav">
                 <li><a href="#statement">Statement</a></li>
                 <li><a href="#services">Skills</a></li>
@@ -474,7 +515,23 @@
             "retina_detect": true
         });
 
+        function toggleNav() {
+            var nav = document.querySelector('#mainNav .navbar-nav');
+            var nav2 = document.querySelector('#mainNav');
+            if (nav.style.display === 'block') {
+                nav.style.display = 'none';
+                nav2.style.width = '50px';
+
+            } else {
+                nav.style.display = 'block';
+                nav2.style.width = '140px';
+
+            }
+        }
+
+
         $(document).ready(function () {
+
 
             // Smooth scrolling when clicking on navbar links
             $('a[href^="#"]').on('click', function (event) {
@@ -739,6 +796,8 @@
                     }
                 });
             }
+
+
         });
     </script>
 </body>
