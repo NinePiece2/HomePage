@@ -518,7 +518,7 @@
         function toggleNav() {
             var nav = document.querySelector('#mainNav .navbar-nav');
             var nav2 = document.querySelector('#mainNav');
-            if (nav.style.display === 'block') {
+            if (nav.style.display === 'block' || nav.style.display === '') {
                 nav.style.display = 'none';
                 nav2.style.width = '50px';
 
