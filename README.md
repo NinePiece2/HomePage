@@ -1,4 +1,3 @@
-**
 # Home Page Application
 
 ## Table of Contents
