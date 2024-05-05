@@ -69,6 +69,12 @@
         padding-bottom: 10px !important; 
     }
 
+    @@media (max-width: 990px) {
+        .navbar-collapse{
+            margin-top: 20px;
+        }
+    }
+
 </style>
 
 <html lang="en">
@@ -102,7 +108,7 @@
             <span class="fa fa-bars"> </span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup" style="margin-right: 20px; margin-left: 20px; margin-top: 20px;">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup" style="margin-right: 20px; margin-left: 20px;">
             <ul class="navbar-nav mr-auto text-primary">
                 <li class="nav-item mr-2 @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")">
                     <a class="nav-link" href="~/">
