@@ -4,35 +4,27 @@
 }
 
 <style>
-    .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px; /* Adjust padding as needed */
-    }
-
-    .left-link,
     .right-link {
-        text-decoration: none;
+        text-align: right; /* Aligns the link to the right of its column */
     }
 
-    /* Adjust the styles for the left and right links as needed */
-    .left-link {
-        margin-right: auto; /* Pushes the link to the left */
+    .container {
+        margin-top: 30px;
     }
-
-    .right-link {
-        margin-left: auto; /* Pushes the link to the right */
-    }
-
 </style>
 
-@* <h1>FaceGen</h1>
- *@
-<div class="header-container">
-    <a href="https://github.com/Siddhant0701/ArtiFace" class="left-link" target="_blank">GitHub</a>
-    <h1>FaceGen</h1>
-    <a href="https://facegen.romitsagu.com/" class="right-link" target="_blank">Site Link</a>
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-2">
+            <a href="https://github.com/Siddhant0701/ArtiFace" target="_blank">GitHub</a>
+        </div>
+        <div class="col-8 text-center">
+            <h1>FaceGen</h1>
+        </div>
+        <div class="col-2 right-link">
+            <a href="https://facegen.romitsagu.com/" target="_blank">Site Link</a>
+        </div>
+    </div>
 </div>
 
 

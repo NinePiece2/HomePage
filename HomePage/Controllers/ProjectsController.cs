@@ -8,26 +8,15 @@ namespace HomePage.Controllers
 {
     public class ProjectsController : Controller
     {
-        public IActionResult Index(int page = 1, int pageSize = 10)
+        public IActionResult Index()
         {
             HomePageContext homePageContext = new HomePageContext();
 
-            // Get the total number of items
-            int totalItems = homePageContext.Applications.Count();
-
-            // Calculate the total number of pages
-            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
-            // Get the paginated data
-            List<Application> DataList = homePageContext.Applications
-            .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            // Get the data
+            List<Application> DataList = homePageContext.Applications.ToList();
 
             // Pass the data to the view
             ViewBag.DataList = DataList;
-            ViewBag.CurrentPage = page;
-            ViewBag.TotalPages = totalPages;
             return View();
         }
 
@@ -37,6 +26,11 @@ namespace HomePage.Controllers
         }
         
         public IActionResult FaceGen()
+        {
+            return View();
+        }
+        
+        public IActionResult SocialNetwork()
         {
             return View();
         }

@@ -2,9 +2,6 @@
 @using Syncfusion.EJ2.Grids
 @{
     ViewData["Title"] = "Projects";
-
-    int currentPage = ViewBag.CurrentPage;
-    int totalPages = ViewBag.TotalPages;
 }
 
 <style>
@@ -100,15 +97,14 @@
 
 <div class="grid-container">
 
-    @(
-        Html.EJS().Grid("Grid").DataSource((IEnumerable<Application>)ViewBag.DataList).AllowSorting().Columns(col =>
+    @(Html.EJS().Grid("Grid").DataSource((IEnumerable<Application>)ViewBag.DataList).AllowSorting().Columns(col =>
             {
                 col.Field("Name").HeaderText("Name").Width("170").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
                 col.Template("#githubLinkTemplate").HeaderText("GitHub Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
                 col.Template("#appLinkTemplate").HeaderText("Application Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
                 col.Template("#homePageLinkTemplate").HeaderText("Home Page Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
             }).AllowPaging().PageSettings(page => { page.PageSize(10); page.PageCount(5); }).Render()
-        )
+    )
 </div>
 
 <script id="appLinkTemplate" type="text/x-jsrender">

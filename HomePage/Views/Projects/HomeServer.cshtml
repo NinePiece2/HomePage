@@ -1,40 +1,74 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "HomeServer";
 }
 
 <style>
-    .header-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 20px; /* Adjust padding as needed */
+    .right-link {
+        text-align: right; /* Aligns the link to the right of its column */
     }
 
-    .left-link {
-        text-decoration: none;
-        font-weight: bold;
-        margin-right: auto; /* Aligns the link to the left */
+    .container{
+        margin-top: 30px;
     }
 
-    .center-header {
-        text-align: center; /* Center-align the header */
+    .appList ul {
+        font-family: 'Poppins', Verdana, sans-serif;
+        font-size: 20px;
+        list-style-type: none; /* Remove default bullets */
+        text-align: left; /* Align text to the left, not center */
+        margin-left: 0; /* Remove default margin */
+        padding-left: 0; /* Remove default padding for accurate positioning */
     }
+
+        .appList ul li {
+            position: relative; /* Position relative for absolute positioning of pseudo-element */
+            padding-left: 30px; /* Space for bullet */
+        }
+
+            .appList ul li::before {
+                content: "•"; /* Unicode character for bullet */
+                color: #ccc; /* Light color for standard mode */
+                position: absolute; /* Absolute positioning of the bullet */
+                left: 0; /* Position at the start of the item */
+                top: 0; /* Align with the top of the line */
+                font-size: 20px; /* Ensures the bullet is the same size as the text */
+            }
 </style>
 
-<div class="header-container">
-    <div class="left-link">
-        <a href="https://github.com/NinePiece2/TrueNASHomeServer" target="_blank">GitHub</a>
-    </div>
-    <div class="center-header">
-        <h1>Home Server</h1>
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-2">
+            <a href="https://github.com/NinePiece2/TrueNASHomeServer" target="_blank" class="d-block">GitHub</a>
+        </div>
+        <div class="col-8 text-center">
+            <h1>Home Server</h1>
+        </div>
+        <div class="col-2 right-link">
+            <!-- Empty column to maintain center alignment -->
+        </div>
     </div>
 </div>
 
 
-
-
-
 <div class="container">
-    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa a aaaaaaaaaaaaaaaaaaaaaaa</p>
+    <p>This project details the TrueNAS Home server I developed, marking my entry into home labbing. Building this server has enabled me to host a variety of additional projects independently, enhancing my hands-on experience and technical expertise in managing and deploying server-based applications including:</p>
+    <br />
+    <div class="row " style="margin-left: 20%;">
+        <div class="col-auto">
+            <div class="appList">
+                <ul class="list-unstyled">
+                    <li>Microsoft SQL Server</li>
+                    <li>Kemp Load Balancer</li>
+                    <li>Kubernetes</li>
+                    <li>Proxmox</li>
+                    <li>Home Assistant</li>
+                    <li>Pi-Hole</li>
+                    <li>Wireguard VPS</li>
+                    <li>Internet Information Services Host</li>
+                    <li>GitHub Self-Hosted Runners</li>
+                    <li>Plex Media Server</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
