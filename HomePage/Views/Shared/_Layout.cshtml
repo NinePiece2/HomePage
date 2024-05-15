@@ -250,6 +250,11 @@
 
         }
 
+        $(document).ready(function () {
+            var footerHeight = $('.footer').height(); // Get the height of the footer
+            $('.container').css('padding-bottom', footerHeight); // Set the padding-bottom of the container
+        });
+
 
     </script>
 

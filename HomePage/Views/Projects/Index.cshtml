@@ -91,20 +91,19 @@
 <div class="container">
     <p>This section of the website is designed to elaborate on some of the bigger project’s I’ve worked on. </p>
 
-</div>
+    <br />
 
-<br />
+    <div class="grid-container">
 
-<div class="grid-container">
-
-    @(Html.EJS().Grid("Grid").DataSource((IEnumerable<Application>)ViewBag.DataList).AllowSorting().Columns(col =>
-            {
-                col.Field("Name").HeaderText("Name").Width("170").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
-                col.Template("#githubLinkTemplate").HeaderText("GitHub Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
-                col.Template("#appLinkTemplate").HeaderText("Application Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
-                col.Template("#homePageLinkTemplate").HeaderText("Home Page Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
-            }).AllowPaging().PageSettings(page => { page.PageSize(10); page.PageCount(5); }).Render()
-    )
+        @(Html.EJS().Grid("Grid").DataSource((IEnumerable<Application>)ViewBag.DataList).AllowSorting().Columns(col =>
+                {
+                    col.Field("Name").HeaderText("Name").Width("170").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                    col.Template("#githubLinkTemplate").HeaderText("GitHub Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                    col.Template("#appLinkTemplate").HeaderText("Application Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                    col.Template("#homePageLinkTemplate").HeaderText("Home Page Link").Width("150").HeaderTextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                }).AllowPaging().PageSettings(page => { page.PageSize(10); page.PageCount(5); }).Render()
+        )
+    </div>
 </div>
 
 <script id="appLinkTemplate" type="text/x-jsrender">
