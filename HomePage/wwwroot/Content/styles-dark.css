@@ -188,3 +188,25 @@ input:disabled {
     padding-left: 10%;
     padding-right: 10%;
 }
+
+.custom-textbox {
+    color: #e6e6e6 !important; 
+    background-color: #333333;
+}
+
+    .custom-textbox:focus {
+        border: 2px solid #4CAF50 !important;
+        background-color: #555555; 
+    }
+
+    .custom-textbox::placeholder {
+        color: white !important; 
+    }
+
+    .custom-textbox:disabled {
+        background-color: #666666;
+    }
+
+.custom-label {
+    color: #e6e6e6 !important; 
+}

@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: #f0f0f0; /* Light background color */
+    background-color: #f7f7f7; /* Light background color */
     font-family: Verdana, sans-serif;
     font-size: 20px;
     color: #333; /* Dark text color */
@@ -40,7 +40,7 @@ button {
 
 /* Navbar styles */
 .navbar {
-    background-color: #f0f0f0; /* Light background color */
+    background-color: #f7f7f7; /* Light background color */
     border-bottom: 2px solid #4CAF50; /* Add a border to the bottom of the navbar */
     padding: 10px 0; /* Add padding to the top and bottom */
 }
@@ -114,3 +114,26 @@ a {
     a:hover {
         text-decoration: underline;
     }
+
+.custom-textbox{
+    color: #333333 !important;
+    background-color: #e6e6e6;
+}
+
+    .custom-textbox:focus{
+        border: 2px solid #4CAF50 !important;
+        background-color: #3333;
+
+    }
+
+    .custom-textbox::placeholder{
+        color: #333333 !important;
+    }
+
+    .custom-textbox:disabled{
+        background-color: lightgray;
+    }
+
+.custom-label{
+    color: #333333 !important;
+}
