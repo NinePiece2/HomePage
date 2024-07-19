@@ -9,6 +9,11 @@ h1, h2, h3, h4 {
     color: #333; /* Dark text color */
 }
 
+h1 {
+    text-align: center;
+    font-size: 2rem !important;
+}
+
 td {
     color: #333; /* Dark text color */
 }
@@ -114,6 +119,51 @@ a {
     a:hover {
         text-decoration: underline;
     }
+
+.e-grid .e-headercell,
+.e-grid .e-cell,
+.e-grid .e-summarycell,
+.e-grid .e-headercontent,
+.e-rowcell,
+.e-gridpager,
+.e-icons {
+    background-color: #ffffff !important; /* Set background color to white */
+    color: #000000 !important; /* Set text color to black */
+}
+
+.e-pager .e-firstpagedisabled, .e-pager .e-prevpagedisabled, .e-pager .e-nextpagedisabled, .e-pager .e-lastpagedisabled {
+    opacity: 1 !important;
+}
+
+.e-pager .e-currentitem, .e-pager .e-currentitem:hover {
+    background: #4CAF50 !important;
+    color: #FFFFFF !important;
+}
+
+.e-sortfilterdiv .e-icons {
+    color: #000000 !important; /* Set icon color to black */
+}
+
+.e-grid {
+    background-color: #ffffff !important; /* Set background color to white */
+    border-radius: 5px; /* Add rounded corners */
+    overflow: hidden; /* Ensure overflow content is hidden within rounded corners */
+    border-radius: 15px !important; /* Add rounded corners */
+    border-width: 1.5px !important;
+}
+
+.e-gridheader {
+    overflow: hidden; /* Ensure overflow content is hidden within rounded corners */
+    border-top-width: 1.5px !important; /* Add rounded corners */
+    border-top-right-radius: 15px !important; /* Add rounded corners */
+    border-top-left-radius: 15px !important;
+}
+
+.grid-container {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
 
 .custom-textbox{
     color: #333333 !important;
