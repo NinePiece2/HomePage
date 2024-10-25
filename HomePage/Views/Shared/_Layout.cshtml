@@ -118,16 +118,26 @@
                         Home
                     </a>
                 </li>
-                <li class="nav-item mr-2 @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")">
+                <li class="nav-item mr-2 @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" ? "active" : "")">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdownProjects" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i aria-hidden="true"></i>
                         Projects
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownProjects">
-                        <a class="dropdown-item" href="~/Projects">Overview</a>
-                        <a class="dropdown-item" href="~/Projects/HomeServer">Home TrueNAS Server</a>
-                        <a class="dropdown-item" href="~/Projects/Facegen">Artiface FaceGen</a>
-                        <a class="dropdown-item" href="~/Projects/SocialNetwork">Social Network</a>
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index"? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects">Overview</a>
+                        </div>
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "HomeServer"? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects/HomeServer">Home Cloud Server</a>
+                        </div>
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "FaceGen"? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects/Facegen">Artiface FaceGen</a>
+                        </div>
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "SocialNetwork"? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects/SocialNetwork">Social Network</a>
+                        </div>
+                        
+                       
                     </div>
                 </li>
                 <li>

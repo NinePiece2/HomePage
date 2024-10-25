@@ -210,3 +210,27 @@ input:disabled {
 .custom-label {
     color: #e6e6e6 !important; 
 }
+
+.active-dropdown {
+    background-color: #4CAF50;
+}
+
+.inactive-dropdown {
+    background-color: #2A2A2A;
+}
+
+.dropdown-menu {
+    background-color: #2A2A2A !important;
+}
+
+.inactive-dropdown a:hover {
+    background-color: #121212 !important;
+}
+
+.active-dropdown a:hover {
+    background-color: #121212 !important;
+}
+
+.active-dropdown a{
+    color: white !important;
+}

@@ -187,3 +187,27 @@ a {
 .custom-label{
     color: #333333 !important;
 }
+
+.active-dropdown {
+    background-color: #4CAF50;
+}
+
+.inactive-dropdown {
+    background-color: #f7f7f7;
+}
+
+.dropdown-menu {
+    background-color: #f7f7f7 !important;
+}
+
+.inactive-dropdown a:hover {
+    background-color: #4CAF50 !important;
+}
+
+.active-dropdown a:hover {
+    background-color: #4CAF50 !important;
+}
+
+.active-dropdown a {
+    color: black !important;
+}
