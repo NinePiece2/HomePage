@@ -17,20 +17,20 @@ public partial class HomePageContext : DbContext
 
     public virtual DbSet<Application> Applications { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    if (!optionsBuilder.IsConfigured)
+    //    {
+    //        var builder = new ConfigurationBuilder()
+    //            .SetBasePath(Directory.GetCurrentDirectory())
+    //            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-            IConfigurationRoot configuration = builder.Build();
-            string connectionString = configuration.GetConnectionString("HomePageEntities");
+    //        IConfigurationRoot configuration = builder.Build();
+    //        string connectionString = configuration.GetConnectionString("HomePageEntities");
 
-            optionsBuilder.UseSqlServer(connectionString);
-        }
-    }
+    //        optionsBuilder.UseSqlServer(connectionString);
+    //    }
+    //}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Application>(entity =>

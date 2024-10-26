@@ -20,4 +20,13 @@
         public bool textArea { get; set; } = true;
         public bool saveAndCancelBtns { get; set; } = true;
     }
+
+    public class ProjectsViewModel
+    {
+        public string ProjectName { get; set; }
+        public string ProjectDescription { get; set; }
+        public string ProjectGithubLink { get; set; }
+        public string ProjectApplicationLink { get; set; }
+        public string ProjectReadmeContent { get; set; }
+    }   
 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomePage.Models.ProjectsViewModel
+@{
     ViewData["Title"] = "HomeServer";
 }
 
@@ -33,12 +34,29 @@
                 top: 0; /* Align with the top of the line */
                 font-size: 20px; /* Ensures the bullet is the same size as the text */
             }
+
+
+    .markdown-container {
+        /* Add your desired styles here */
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+        .markdown-container h1,
+        .markdown-container h2,
+        .markdown-container h3 {
+            color: white;
+        }
+        .markdown-container p {
+            font-size: 16px !important;
+        }
+
 </style>
 
 <div class="container-fluid">
     <div class="row align-items-center">
         <div class="col-2">
-            <a href="https://github.com/NinePiece2/TrueNASHomeServer" target="_blank" class="d-block">GitHub</a>
+            <a href="@Model.ProjectGithubLink" target="_blank" class="d-block">GitHub</a>
         </div>
         <div class="col-8 text-center">
             <h1>Home Server</h1>
@@ -51,7 +69,7 @@
 
 
 <div class="container">
-    <p>This project details the TrueNAS Home server I developed, marking my entry into home labbing. Building this server has enabled me to host a variety of additional projects independently, enhancing my hands-on experience and technical expertise in managing and deploying server-based applications including:</p>
+   @*  <p>This project details the TrueNAS Home server I developed, marking my entry into home labbing. Building this server has enabled me to host a variety of additional projects independently, enhancing my hands-on experience and technical expertise in managing and deploying server-based applications including:</p>
     <br />
     <div class="row " style="margin-left: 20%;">
         <div class="col-auto">
@@ -70,5 +88,9 @@
                 </ul>
             </div>
         </div>
+    </div> *@
+
+    <div class="markdown-container">
+        @Html.Raw(Model.ProjectReadmeContent)
     </div>
 </div>
