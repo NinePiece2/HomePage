@@ -1,4 +1,4 @@
-﻿
+﻿@model HomePage.Models.ProjectsViewModel
 @{
     ViewData["Title"] = "FaceGen";
 }
@@ -16,24 +16,27 @@
 <div class="container-fluid">
     <div class="row align-items-center">
         <div class="col-2">
-            <a href="https://github.com/Siddhant0701/ArtiFace" target="_blank">GitHub</a>
+            <a href="@Model.ProjectGithubLink" target="_blank">GitHub</a>
         </div>
         <div class="col-8 text-center">
             <h1>FaceGen</h1>
         </div>
         <div class="col-2 right-link">
-            <a href="https://facegen.romitsagu.com/" target="_blank">Site Link</a>
+            <a href="@Model.ProjectApplicationLink" target="_blank">Site Link</a>
         </div>
     </div>
 </div>
 
 
 <div class="container">
-    <p>
+    @* <p>
         ArtiFace Face Gen is a deep learning project that uses Generative Adversarial Networks (GANs) to generate human faces based on celebrity images. The project uses the CelebFaces Attributes Dataset (CelebA) to train the GANs. The project is implemented in Python using the Keras API and Tensorflow Backend.
     </p>
     <br />
     <p>
         The end goal for the project is to create realistic human faces that can be used for synthetic data generation and other applications.
-    </p>
+    </p> *@
+    <div class="markdown-container">
+        @Html.Raw(Model.ProjectReadmeContent)
+    </div>
 </div>

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using Markdig;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HomePage.Controllers
 {
@@ -27,27 +28,20 @@ namespace HomePage.Controllers
 
         public async Task<IActionResult> HomeServer()
         {
-            // Get the README URL
-            string readmeURL = homePageContext.Applications.Where(x => x.Name == "TrueNAS Home Server").
-                                    Select(x => x.GitHubReadMeLink).FirstOrDefault();
-
-            string imagesURL = homePageContext.Applications.Where(x => x.Name == "TrueNAS Home Server").
-                                    Select(x => x.GitHubReadMeImagesLink).FirstOrDefault();
-
             var projectInfo = homePageContext.Applications.Where(x => x.Name == "TrueNAS Home Server").FirstOrDefault();
 
             string markdownContent = string.Empty;
 
             // Check if the URL is not null or empty
-            if (!string.IsNullOrEmpty(readmeURL))
+            if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
                 using (HttpClient client = new HttpClient())
                 {
                     // Fetch the markdown content from the URL
-                    markdownContent = await client.GetStringAsync(readmeURL);
+                    markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
                 }
 
-                markdownContent = markdownContent.Replace("images/", imagesURL );
+                markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
             else
             {
@@ -71,7 +65,40 @@ namespace HomePage.Controllers
         
         public async Task<IActionResult> FaceGen()
         {
-            return View();
+
+            var projectInfo = homePageContext.Applications.Where(x => x.Name == "Artiface: Facial Art Synthesizer").FirstOrDefault();
+
+            string markdownContent = string.Empty;
+
+            // Check if the URL is not null or empty
+            if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Fetch the markdown content from the URL
+                    markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
+                }
+
+                markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
+            }
+            else
+            {
+                // Handle the case where the URL is missing
+                markdownContent = "No README URL found.";
+                throw new Exception(markdownContent);
+            }
+
+            var mkd = Markdown.ToHtml(markdownContent);
+
+            var model = new ProjectsViewModel
+            {
+                ProjectName = projectInfo.Name,
+                ProjectApplicationLink = projectInfo.ApplicationLink,
+                ProjectGithubLink = projectInfo.GitHubLink,
+                ProjectReadmeContent = mkd
+            };
+
+            return View(model);
         }
         
         public async Task<IActionResult> SocialNetwork()
