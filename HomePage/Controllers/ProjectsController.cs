@@ -73,7 +73,13 @@ namespace HomePage.Controllers
             // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
-                using (HttpClient client = new HttpClient())
+                var handler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+                };
+
+
+                using (HttpClient client = new HttpClient(handler))
                 {
                     // Fetch the markdown content from the URL
                     markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
