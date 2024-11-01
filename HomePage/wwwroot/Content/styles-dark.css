@@ -234,3 +234,98 @@ input:disabled {
 .active-dropdown a{
     color: white !important;
 }
+
+/*Markdown CSS*/
+.markdown-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #f0f0f0;
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.markdown-container p {
+    padding: 0;
+}
+
+.markdown-container h1, .markdown-container h2, .markdown-container h3 {
+    color: #4CAF50;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #4a4a4a;
+    padding-bottom: 5px;
+}
+
+.markdown-container h1 {
+    font-size: 2em;
+}
+
+.markdown-container h2 {
+    font-size: 1.75em;
+}
+
+.markdown-container h3 {
+    font-size: 1.5em;
+}
+
+.markdown-container p {
+    font-size: 16px;
+    margin: 1em 0;
+}
+
+.markdown-container a {
+    color: #61dafb;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.markdown-container a:hover {
+    text-decoration: underline;
+}
+
+.markdown-container img {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #4a4a4a;
+    border-radius: 4px;
+}
+
+.markdown-container ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.markdown-container ol {
+    list-style: decimal;
+    margin-left: 20px;
+}
+
+.markdown-container code {
+    background-color: #333;
+    color: #ffcc00;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.markdown-container pre {
+    background-color: #333;
+    color: #ffcc00;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 16px;
+}
+
+.markdown-container blockquote {
+    border-left: 4px solid #ffcc00;
+    margin-left: 0;
+    padding-left: 10px;
+    color: #cccccc;
+    font-style: italic;
+}

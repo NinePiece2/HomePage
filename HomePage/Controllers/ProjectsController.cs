@@ -31,6 +31,9 @@ namespace HomePage.Controllers
             string readmeURL = homePageContext.Applications.Where(x => x.Name == "TrueNAS Home Server").
                                     Select(x => x.GitHubReadMeLink).FirstOrDefault();
 
+            string imagesURL = homePageContext.Applications.Where(x => x.Name == "TrueNAS Home Server").
+                                    Select(x => x.GitHubReadMeImagesLink).FirstOrDefault();
+
             var projectInfo = homePageContext.Applications.Where(x => x.Name == "TrueNAS Home Server").FirstOrDefault();
 
             string markdownContent = string.Empty;
@@ -44,7 +47,7 @@ namespace HomePage.Controllers
                     markdownContent = await client.GetStringAsync(readmeURL);
                 }
 
-                markdownContent = markdownContent.Replace("images/", "https://raw.githubusercontent.com/NinePiece2/TrueNASHomeServer/refs/heads/main/images/");
+                markdownContent = markdownContent.Replace("images/", imagesURL );
             }
             else
             {

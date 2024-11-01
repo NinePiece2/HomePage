@@ -16,4 +16,5 @@ public partial class Application
     public string? HomePageLink { get; set; }
     
     public string? GitHubReadMeLink { get; set; }
+    public string? GitHubReadMeImagesLink { get; set; }
 }
