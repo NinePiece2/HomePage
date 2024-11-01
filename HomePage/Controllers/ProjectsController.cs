@@ -11,9 +11,17 @@ namespace HomePage.Controllers
     public class ProjectsController : Controller
     {
         private readonly HomePageContext homePageContext;
+        private readonly HttpClient client;
         public ProjectsController(HomePageContext _homePageContext)
         {
             homePageContext = _homePageContext;
+
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            client = new HttpClient(handler);
         }
 
         public async Task<IActionResult> Index()
@@ -35,11 +43,7 @@ namespace HomePage.Controllers
             // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    // Fetch the markdown content from the URL
-                    markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-                }
+                markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
 
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
@@ -73,17 +77,7 @@ namespace HomePage.Controllers
             // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
-                var handler = new HttpClientHandler
-                {
-                    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-                };
-
-
-                using (HttpClient client = new HttpClient(handler))
-                {
-                    // Fetch the markdown content from the URL
-                    markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-                }
+                markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
 
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
