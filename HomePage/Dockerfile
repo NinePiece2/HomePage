@@ -4,6 +4,11 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8443
 
+USER root
+RUN apt-get update && apt-get install -y ca-certificates
+
+USER app
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
