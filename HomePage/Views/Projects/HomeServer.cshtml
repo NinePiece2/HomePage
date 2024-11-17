@@ -12,29 +12,7 @@
         margin-top: 30px;
     }
 
-    .appList ul {
-        font-family: 'Poppins', Verdana, sans-serif;
-        font-size: 20px;
-        list-style-type: none; /* Remove default bullets */
-        text-align: left; /* Align text to the left, not center */
-        margin-left: 0; /* Remove default margin */
-        padding-left: 0; /* Remove default padding for accurate positioning */
-    }
-
-        .appList ul li {
-            position: relative; /* Position relative for absolute positioning of pseudo-element */
-            padding-left: 30px; /* Space for bullet */
-        }
-
-            .appList ul li::before {
-                content: "•"; /* Unicode character for bullet */
-                color: #ccc; /* Light color for standard mode */
-                position: absolute; /* Absolute positioning of the bullet */
-                left: 0; /* Position at the start of the item */
-                top: 0; /* Align with the top of the line */
-                font-size: 20px; /* Ensures the bullet is the same size as the text */
-            }
-
+    
 </style>
 
 <div class="container-fluid">
@@ -43,7 +21,7 @@
             <a href="@Model.ProjectGithubLink" target="_blank" class="d-block">GitHub</a>
         </div>
         <div class="col-8 text-center">
-            <h1>Home Cloud Server</h1>
+            @* <h1>Home Cloud Server</h1> *@
         </div>
         <div class="col-2 right-link">
             <!-- Empty column to maintain center alignment -->
