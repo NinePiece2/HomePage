@@ -93,7 +93,6 @@ button {
 }
 
 /* Additional styles for other elements */
-
 .server-info {
     margin-bottom: 20px;
 }
@@ -111,7 +110,7 @@ button {
     margin-bottom: 10px;
 }
 
-a {
+.container a {
     color: #4CAF50 !important;
     text-decoration: none;
 }
@@ -202,10 +201,12 @@ a {
 
 .inactive-dropdown a:hover {
     background-color: #4CAF50 !important;
+    color: white !important;
 }
 
 .active-dropdown a:hover {
     background-color: #4CAF50 !important;
+    color: white !important;
 }
 
 .active-dropdown a {
@@ -268,8 +269,8 @@ a {
     margin: 10px auto;
     max-width: 100%;
     height: auto;
-    border: 1px solid #4a4a4a;
     border-radius: 4px;
+    background-color: #121212;
 }
 
 .markdown-container ul {

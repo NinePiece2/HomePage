@@ -80,6 +80,7 @@ namespace HomePage.Controllers
                 markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
 
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
+                markdownContent = markdownContent.Replace("test_samples/", "https://raw.githubusercontent.com/Siddhant0701/ArtiFace/refs/heads/master/test_samples/");
             }
             else
             {
@@ -101,9 +102,37 @@ namespace HomePage.Controllers
             return View(model);
         }
         
-        public async Task<IActionResult> SocialNetwork()
+        public async Task<IActionResult> CacheController()
         {
-            return View();
+            var projectInfo = homePageContext.Applications.Where(x => x.Name == "Cache Controller").FirstOrDefault();
+
+            string markdownContent = string.Empty;
+
+            // Check if the URL is not null or empty
+            if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
+            {
+                markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
+
+                markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
+            }
+            else
+            {
+                // Handle the case where the URL is missing
+                markdownContent = "No README URL found.";
+                throw new Exception(markdownContent);
+            }
+
+            var mkd = Markdown.ToHtml(markdownContent);
+
+            var model = new ProjectsViewModel
+            {
+                ProjectName = projectInfo.Name,
+                ProjectApplicationLink = projectInfo.ApplicationLink,
+                ProjectGithubLink = projectInfo.GitHubLink,
+                ProjectReadmeContent = mkd
+            };
+
+            return View(model);
         }
     }
 }
