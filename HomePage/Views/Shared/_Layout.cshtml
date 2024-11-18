@@ -133,11 +133,15 @@
                         <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "FaceGen"? "active-dropdown" : "inactive-dropdown")">
                             <a class="dropdown-item" href="~/Projects/Facegen">Artiface FaceGen</a>
                         </div>
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "CDN"? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects/CDN">CDN</a>
+                        </div>
                         <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "CacheController"? "active-dropdown" : "inactive-dropdown")">
                             <a class="dropdown-item" href="~/Projects/CacheController">Cache Controller</a>
                         </div>
-                        
-                       
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "VGAController"? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects/VGAController">VGA Controller</a>
+                        </div>                       
                     </div>
                 </li>
                 <li>
