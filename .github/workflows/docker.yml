@@ -30,6 +30,6 @@ jobs:
 
       - name: Update Kubernetes Deployment
         run: |
-          kubectl set image deployment/homepage homepage=${{ secrets.DOCKER_USERNAME }}/homepage:latest --record -n homepage
+          kubectl set image deployment/homepage homepage=${{ secrets.DOCKER_USERNAME }}/homepage:latest -n homepage
           kubectl annotate deployment homepage kubernetes.io/change-cause="Updated image to ${{ secrets.DOCKER_USERNAME }}/homepage:latest" --overwrite -n homepage
           kubectl rollout status deployment/homepage -n homepage
