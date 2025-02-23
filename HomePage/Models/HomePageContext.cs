@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 
 namespace HomePage.Models;
 
-public partial class HomePageContext : DbContext
+public partial class HomePageContext : DbContext, IDataProtectionKeyContext
 {
     public HomePageContext()
     {
@@ -16,6 +17,8 @@ public partial class HomePageContext : DbContext
     }
 
     public virtual DbSet<Application> Applications { get; set; }
+    public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;
+
 
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //{

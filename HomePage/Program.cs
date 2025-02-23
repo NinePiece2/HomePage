@@ -1,6 +1,7 @@
 using dotenv.net;
 using HomePage.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,9 @@ else
 var connectionString = builder.Configuration.GetConnectionString("HomePageEntities");
 builder.Services.AddDbContext<HomePageContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddDataProtection()
+    .PersistKeysToDbContext<HomePageContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
