@@ -142,6 +142,9 @@
                         <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "VGAController"? "active-dropdown" : "inactive-dropdown")">
                             <a class="dropdown-item" href="~/Projects/VGAController">VGA Controller</a>
                         </div>
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "LanCacheUI"? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects/LanCacheUI">LanCache UI</a>
+                        </div>
                         <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "MRIBrainTumorDetection"? "active-dropdown" : "inactive-dropdown")">
                             <a class="dropdown-item" href="~/Projects/MRIBrainTumorDetection">MRI Brain Tumor Detection</a>
                         </div>

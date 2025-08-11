@@ -66,7 +66,7 @@ namespace HomePage.Controllers
 
             return View(model);
         }
-        
+
         public async Task<IActionResult> FaceGen()
         {
 
@@ -101,7 +101,7 @@ namespace HomePage.Controllers
 
             return View(model);
         }
-        
+
         public async Task<IActionResult> CacheController()
         {
             var projectInfo = homePageContext.Applications.Where(x => x.Name == "Cache Controller").FirstOrDefault();
@@ -233,5 +233,44 @@ namespace HomePage.Controllers
 
             return View(model);
         }
+        
+        public async Task<IActionResult> LanCacheUI()
+        {
+            var projectInfo = homePageContext.Applications
+                .FirstOrDefault(x => x.Name == "Nine LanCache UI");
+
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
+
+            string markdownContent = string.Empty;
+
+            if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
+            {
+                markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
+                markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
+            }
+            else
+            {
+                throw new Exception("No README URL found.");
+            }
+
+            // Build pipeline with GitHub-style extensions including tables
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions() // includes tables, footnotes, task lists, etc.
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
+
+            var model = new ProjectsViewModel
+            {
+                ProjectName = projectInfo.Name,
+                ProjectApplicationLink = projectInfo.ApplicationLink,
+                ProjectGithubLink = projectInfo.GitHubLink,
+                ProjectReadmeContent = mkd
+            };
+
+            return View(model);
+        }
+
     }
 }
