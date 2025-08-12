@@ -284,6 +284,11 @@ input:disabled {
     font-size: 16px;
 }
 
+.markdown-container li {
+    font-family: 'Poppins';
+    font-size: 16px;
+}
+
 .markdown-container a:hover {
     text-decoration: underline;
 }
@@ -337,7 +342,6 @@ input:disabled {
   border-spacing: 0 !important;
   width: 100% !important;
   margin: 1em 0 !important;
-  background-color: #1e1e1e !important;
   color: #f0f0f0 !important;
   display: block;
   overflow-x: auto;

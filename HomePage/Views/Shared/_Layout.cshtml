@@ -148,6 +148,9 @@
                         <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "MRIBrainTumorDetection"? "active-dropdown" : "inactive-dropdown")">
                             <a class="dropdown-item" href="~/Projects/MRIBrainTumorDetection">MRI Brain Tumor Detection</a>
                         </div>
+                        <div class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projects" && ViewContext.RouteData.Values["Action"]?.ToString() == "SmartTrafficControlSystem" ? "active-dropdown" : "inactive-dropdown")">
+                            <a class="dropdown-item" href="~/Projects/SmartTrafficControlSystem">Smart Traffic Control System</a>
+                        </div>
                     </div>
                 </li>
                 <li>

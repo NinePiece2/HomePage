@@ -1,10 +1,11 @@
 ﻿using HomePage.Models;
+using Markdig;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 using System.Drawing.Printing;
-using Markdig;
-using Microsoft.IdentityModel.Tokens;
+using System.Text.RegularExpressions;
 
 namespace HomePage.Controllers
 {
@@ -280,6 +281,50 @@ namespace HomePage.Controllers
             // Build pipeline with GitHub-style extensions including tables
             var pipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions() // includes tables, footnotes, task lists, etc.
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
+
+            var model = new ProjectsViewModel
+            {
+                ProjectName = projectInfo.Name,
+                ProjectApplicationLink = projectInfo.ApplicationLink,
+                ProjectGithubLink = projectInfo.GitHubLink,
+                ProjectReadmeContent = mkd
+            };
+
+            return View(model);
+        }
+        public async Task<IActionResult> SmartTrafficControlSystem()
+        {
+            var projectInfo = homePageContext.Applications
+                .FirstOrDefault(x => x.Name == "Smart Traffic Control System");
+
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
+
+            string markdownContent = string.Empty;
+
+            string videoHTML = "<video src=\"https://github.com/NinePiece2/Traffic-Control-System/raw/refs/heads/master/images/Dual_Traffic_Light_Variant_2_Assembly_Render_v3_Animation_2.mp4\" autoplay muted loop playsinline width=\"800\"></video>";
+
+            if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
+            {
+                markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
+                markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
+
+                var startIndex = markdownContent.IndexOf("Click to download the video:");
+                var snippet = markdownContent.Substring(startIndex, 476); // 476 chars from that point
+
+                markdownContent = markdownContent.Replace(snippet, videoHTML);
+            }
+
+            else
+            {
+                throw new Exception("No README URL found.");
+            }
+
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
                 .Build();
 
             var mkd = Markdown.ToHtml(markdownContent, pipeline);

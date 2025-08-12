@@ -262,6 +262,11 @@ button {
     font-size: 16px;
 }
 
+.markdown-container li {
+    font-family: 'Poppins';
+    font-size: 16px;
+}
+
 .markdown-container a:hover {
     text-decoration: underline;
 }
@@ -316,7 +321,6 @@ button {
   border-spacing: 0 !important;
   width: 100% !important;
   margin: 1em 0 !important;
-  background-color: #ffffff !important;
   color: #333333 !important;
   display: block;
   overflow-x: auto;
