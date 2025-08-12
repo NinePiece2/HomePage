@@ -36,25 +36,29 @@ namespace HomePage.Controllers
 
         public async Task<IActionResult> HomeServer()
         {
-            var projectInfo = homePageContext.Applications.Where(x => x.Name == "TrueNAS Home Server").FirstOrDefault();
+            var projectInfo = homePageContext.Applications
+               .FirstOrDefault(x => x.Name == "TrueNAS Home Server");
+
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
 
             string markdownContent = string.Empty;
 
-            // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
                 markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
             else
             {
-                // Handle the case where the URL is missing
-                markdownContent = "No README URL found.";
-                throw new Exception(markdownContent);
+                throw new Exception("No README URL found.");
             }
 
-            var mkd = Markdown.ToHtml(markdownContent);
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
 
             var model = new ProjectsViewModel
             {
@@ -69,27 +73,30 @@ namespace HomePage.Controllers
 
         public async Task<IActionResult> FaceGen()
         {
+            var projectInfo = homePageContext.Applications
+               .FirstOrDefault(x => x.Name == "Artiface: Facial Art Synthesizer");
 
-            var projectInfo = homePageContext.Applications.Where(x => x.Name == "Artiface: Facial Art Synthesizer").FirstOrDefault();
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
 
             string markdownContent = string.Empty;
 
-            // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
                 markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
                 markdownContent = markdownContent.Replace("test_samples/", "https://raw.githubusercontent.com/Siddhant0701/ArtiFace/refs/heads/master/test_samples/");
             }
             else
             {
-                // Handle the case where the URL is missing
-                markdownContent = "No README URL found.";
-                throw new Exception(markdownContent);
+                throw new Exception("No README URL found.");
             }
 
-            var mkd = Markdown.ToHtml(markdownContent);
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
 
             var model = new ProjectsViewModel
             {
@@ -104,25 +111,29 @@ namespace HomePage.Controllers
 
         public async Task<IActionResult> CacheController()
         {
-            var projectInfo = homePageContext.Applications.Where(x => x.Name == "Cache Controller").FirstOrDefault();
+            var projectInfo = homePageContext.Applications
+               .FirstOrDefault(x => x.Name == "Cache Controller");
+
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
 
             string markdownContent = string.Empty;
 
-            // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
                 markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
             else
             {
-                // Handle the case where the URL is missing
-                markdownContent = "No README URL found.";
-                throw new Exception(markdownContent);
+                throw new Exception("No README URL found.");
             }
 
-            var mkd = Markdown.ToHtml(markdownContent);
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
 
             var model = new ProjectsViewModel
             {
@@ -137,25 +148,29 @@ namespace HomePage.Controllers
 
         public async Task<IActionResult> VGAController()
         {
-            var projectInfo = homePageContext.Applications.Where(x => x.Name == "VGA Controller").FirstOrDefault();
+            var projectInfo = homePageContext.Applications
+               .FirstOrDefault(x => x.Name == "VGA Controller");
+
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
 
             string markdownContent = string.Empty;
 
-            // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
                 markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
             else
             {
-                // Handle the case where the URL is missing
-                markdownContent = "No README URL found.";
-                throw new Exception(markdownContent);
+                throw new Exception("No README URL found.");
             }
 
-            var mkd = Markdown.ToHtml(markdownContent);
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
 
             var model = new ProjectsViewModel
             {
@@ -170,25 +185,29 @@ namespace HomePage.Controllers
 
         public async Task<IActionResult> CDN()
         {
-            var projectInfo = homePageContext.Applications.Where(x => x.Name == "Content Delivery Network (CDN)").FirstOrDefault();
+            var projectInfo = homePageContext.Applications
+                .FirstOrDefault(x => x.Name == "Content Delivery Network (CDN)");
+
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
 
             string markdownContent = string.Empty;
 
-            // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
                 markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
             else
             {
-                // Handle the case where the URL is missing
-                markdownContent = "No README URL found.";
-                throw new Exception(markdownContent);
+                throw new Exception("No README URL found.");
             }
 
-            var mkd = Markdown.ToHtml(markdownContent);
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
 
             var model = new ProjectsViewModel
             {
@@ -203,25 +222,29 @@ namespace HomePage.Controllers
 
         public async Task<IActionResult> MRIBrainTumorDetection()
         {
-            var projectInfo = homePageContext.Applications.Where(x => x.Name == "MRI Brain Tumor Detection").FirstOrDefault();
+            var projectInfo = homePageContext.Applications
+                .FirstOrDefault(x => x.Name == "MRI Brain Tumor Detection");
+
+            if (projectInfo == null)
+                throw new Exception("Project info not found.");
 
             string markdownContent = string.Empty;
 
-            // Check if the URL is not null or empty
             if (!string.IsNullOrEmpty(projectInfo.GitHubReadMeLink))
             {
                 markdownContent = await client.GetStringAsync(projectInfo.GitHubReadMeLink);
-
                 markdownContent = markdownContent.Replace("images/", projectInfo.GitHubReadMeImagesLink);
             }
             else
             {
-                // Handle the case where the URL is missing
-                markdownContent = "No README URL found.";
-                throw new Exception(markdownContent);
+                throw new Exception("No README URL found.");
             }
 
-            var mkd = Markdown.ToHtml(markdownContent);
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+
+            var mkd = Markdown.ToHtml(markdownContent, pipeline);
 
             var model = new ProjectsViewModel
             {
