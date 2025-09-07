@@ -7,10 +7,9 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-COPY HomePage-API/HomePage-API.csproj HomePage-API/
-RUN dotnet restore "HomePage-API/HomePage-API.csproj"
+COPY HomePage-API.csproj .
+RUN dotnet restore "HomePage-API.csproj"
 COPY . .
-WORKDIR "/src/HomePage-API"
 RUN dotnet build "HomePage-API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
