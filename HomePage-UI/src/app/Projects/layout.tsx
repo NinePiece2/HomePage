@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,8 +14,25 @@ export default function Layout({
 }>) {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
-
   const pathname = usePathname();
+
+  const projectsDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+        if (
+        projectsDropdownRef.current &&
+        !projectsDropdownRef.current.contains(event.target as Node)
+        ) {
+        setIsProjectsDropdownOpen(false);
+        }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const projectLinks = [
     { name: "Overview", link: "/Projects" },
@@ -53,6 +70,7 @@ export default function Layout({
               
               {isProjectsDropdownOpen && (
                 <motion.div
+                  ref={projectsDropdownRef}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
