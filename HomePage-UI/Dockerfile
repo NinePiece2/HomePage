@@ -4,6 +4,12 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
+# Syncfusion License Activation
+ARG SYNCFUSION_LICENSE
+ENV SYNCFUSION_LICENSE=${SYNCFUSION_LICENSE}
+RUN npx syncfusion-license activate
+RUN export SYNCFUSION_LICENSE=""
+
 COPY . .
 RUN npm run build
 
