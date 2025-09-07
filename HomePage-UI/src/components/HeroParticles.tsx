@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import type { Container, ISourceOptions } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
+// import type { Container } from "@tsparticles/engine";
+
 
 let particlesEngineInitialized = false;
 
