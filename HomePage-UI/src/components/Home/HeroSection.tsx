@@ -27,7 +27,7 @@ const HeroSection: React.FC = () => (
         transition={{ delay: 0.2 }}
         className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl"
       >
-        Final Year Computer Engineering Student specializing in building robust and scalable software solutions.
+        Computer Engineering Graduate specializing in building robust and scalable software solutions.
       </motion.p>
 
       <motion.div
