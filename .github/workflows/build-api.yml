@@ -3,7 +3,7 @@ name: Build API Docker CI
 on:
   push:
     branches:
-      - main
+      - master
       - HomePage-V2-beta
     paths:
       - HomePage-API/**
@@ -33,7 +33,7 @@ jobs:
             context: ./HomePage-API
             file: ./HomePage-API/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/homepage:beta-api
+            tags: ${{ secrets.DOCKER_USERNAME }}/homepage:api
         
         # - name: Trigger Deploy Workflow
         #   uses: peter-evans/repository-dispatch@v3

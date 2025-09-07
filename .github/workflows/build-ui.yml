@@ -3,7 +3,7 @@ name: Build UI Docker CI
 on:
   push:
     branches:
-      - main
+      - master
       - HomePage-V2-beta
     paths:
       - HomePage-UI/**
@@ -33,7 +33,7 @@ jobs:
             context: ./HomePage-UI
             file: ./HomePage-UI/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/homepage:beta-ui
+            tags: ${{ secrets.DOCKER_USERNAME }}/homepage:ui
             build-args: |
               SYNCFUSION_LICENSE=${{ secrets.SyncfusionLicense }}
 

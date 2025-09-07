@@ -43,9 +43,9 @@ const HeroParticlesComponent: React.FC = () => {
     }
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
-  };
+//   const particlesLoaded = async (container?: Container): Promise<void> => {
+//     console.log(container);
+//   };
 
   if (!engineInitialized) return null;
 
@@ -54,7 +54,7 @@ const HeroParticlesComponent: React.FC = () => {
       id="tsparticles"
       className="absolute inset-0 w-full h-full z-0"
       options={particlesOptions}
-      particlesLoaded={particlesLoaded}
+    //   particlesLoaded={particlesLoaded}
     />
   );
 };
