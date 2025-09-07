@@ -37,8 +37,8 @@ jobs:
             build-args: |
               SYNCFUSION_LICENSE=${{ secrets.SyncfusionLicense }}
 
-        # - name: Trigger Deploy Workflow
-        #   uses: peter-evans/repository-dispatch@v3
-        #   with:
-        #     token: ${{ secrets.GITHUB_TOKEN }}
-        #     event-type: build-completed
+        - name: Trigger Deploy Workflow
+          uses: peter-evans/repository-dispatch@v3
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            event-type: build-completed
