@@ -6,8 +6,8 @@ import "./globals.css";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Romit Sagu | Software Engineer",
-  description: "Portfolio of Romit Sagu, a Computer Engineering student specializing in full-stack development, cloud, and machine learning.",
+  title: "Romit Sagu | Software Engineering",
+  description: "Portfolio of Romit Sagu, a Computer Engineering graduate specializing in full-stack development, cloud, and machine learning.",
   keywords: "Romit Sagu, Software Engineer, Portfolio, Next.js, React, Web Development, Computer Engineering, .NET, Toronto, Brampton, Vancouver",
 };
 
