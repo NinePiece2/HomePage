@@ -6,7 +6,7 @@ on:
       - main
       - HomePage-V2-beta
     paths:
-      - HomePage-UI/**
+      - HomePage-API/**
   workflow_dispatch:
 
 jobs:
