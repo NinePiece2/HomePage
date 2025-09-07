@@ -1,0 +1,41 @@
+@import '../../node_modules/@syncfusion/ej2-base/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-buttons/styles/tailwind.css';  
+@import '../../node_modules/@syncfusion/ej2-calendars/styles/tailwind.css';  
+@import '../../node_modules/@syncfusion/ej2-dropdowns/styles/tailwind.css';  
+@import '../../node_modules/@syncfusion/ej2-inputs/styles/tailwind.css';  
+@import '../../node_modules/@syncfusion/ej2-navigations/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-popups/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-splitbuttons/styles/tailwind.css';
+@import "../../node_modules/@syncfusion/ej2-react-grids/styles/tailwind.css";
+@import '../../node_modules/@syncfusion/ej2-icons/styles/tailwind.css';
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+:root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Poppins', Arial, sans-serif;
+}

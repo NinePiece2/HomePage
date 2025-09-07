@@ -1,0 +1,117 @@
+.e-grid .e-headercell,
+.e-grid .e-cell,
+.e-grid .e-summarycell,
+.e-grid .e-headercontent,
+.e-rowcell,
+.e-gridpager,
+.e-icons {
+   font-family: 'Poppins', sans-serif !important;
+    background-color: #121212 !important; /* Set background color to #121212 */
+    color: #ffffff !important; /* Set text color to white */
+}
+
+.e-pager .e-firstpagedisabled, .e-pager .e-prevpagedisabled, .e-pager .e-nextpagedisabled, .e-pager .e-lastpagedisabled {
+    opacity: 1 !important;
+}
+
+.e-pager .e-currentitem, .e-pager .e-currentitem:hover {
+    background: #4CAF50 !important;
+    color: #FFFFFF !important;
+}
+
+.e-sortfilterdiv .e-icons{
+    color: #FFFFFF !important;
+}
+
+.e-grid {
+    background-color: #121212 !important;
+    border-radius: 5px;
+    overflow: hidden;
+    border-radius: 15px !important;
+    border-width: 1.5px !important;
+}
+
+.e-gridheader {
+    overflow: hidden;
+    border-top-width: 1.5px !important;
+    border-top-right-radius: 15px !important;
+    border-top-left-radius: 15px !important;
+}
+
+.e-pagercontainer{
+  background-color: #121212 !important;
+}
+
+.e-content{
+  background-color: var(--background) !important;
+}
+
+.e-link.e-numericitem.e-spacing.e-pager-default:hover{
+
+  background-color: #10B981 !important;
+  color: #FFFFFF !important;
+  border: 0;
+}
+
+.grid-container{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.gridLink{
+    color: #10B981;
+}
+
+.e-gridheader .e-headercell {
+  font-size: 1.1rem !important;
+  font-weight: 600;
+}
+
+.e-filtermenudiv.e-icons.e-icon-filter{
+  visibility: hidden !important;
+}
+
+.e-headertext{
+  color: white !important;
+  font-size: 0.85rem !important;
+  font-weight: 600;
+}
+
+.e-headercelldiv{
+  text-align: center !important;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.e-filterbarcell {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+.e-input-group.e-control-wrapper{
+  background-color: #121212 !important; 
+  color: #ffffff !important;
+}
+
+.e-icons,
+.e-icons::before {
+  font-family: "e-icons" !important;
+  
+}
+
+.e-control.e-pager.e-lib{
+  background-color: #121212 !important;
+  color: #ffffff !important;
+  /* border: 0; */
+}
+
+.e-rowcell.e-templatecell a{
+    color: #10B981 !important;
+}
+
+.e-link.e-numericitem.e-spacing.e-pager-default{
+    background-color: #121212 !important;
+    color: #FFFFFF !important;
+}
