@@ -3,7 +3,7 @@ FROM node:22-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
-
+# test
 # Syncfusion License Activation
 ARG SYNCFUSION_LICENSE
 ENV SYNCFUSION_LICENSE=${SYNCFUSION_LICENSE}
