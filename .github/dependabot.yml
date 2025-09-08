@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/HomePage-UI"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "deps(npm)"
+
+  - package-ecosystem: "nuget"
+    directory: "/HomePage-API"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "deps(nuget)"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "deps(actions)"
