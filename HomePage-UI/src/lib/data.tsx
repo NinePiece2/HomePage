@@ -91,7 +91,7 @@ export const education = {
 export const testimonials = [
   { name: "Siddhant Mahajan", 
     position: "SDE at AWS, Prev Apple", 
-    text: "Romit is a quick learner and a phenomenal problem-solver. His contributions were vital to the team's success.", 
+    text: "I have had the privilege of working with Romit, and his work ethic, creativity, and problem-solving skills are outstanding. He has a rare ability to take complex engineering challenges and break them down into clear, manageable components that are both practical and innovative.", 
     image: "/testimonialsPics/Sid.jpeg"
   },
   { name: "Alexander Samaroo", 
