@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,8 +14,9 @@ export default function Layout({
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
   const pathname = usePathname();
-
   const projectsDropdownRef = useRef<HTMLDivElement>(null);
+
+  const isProjectsActive = pathname.startsWith('/Projects');
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -27,7 +27,6 @@ export default function Layout({
         setIsProjectsDropdownOpen(false);
         }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
         document.removeEventListener("mousedown", handleClickOutside);
@@ -53,7 +52,6 @@ export default function Layout({
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-emerald-500 to-emerald-400 bg-clip-text text-transparent cursor-pointer">
             Romit Sagu
           </Link>
-
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="/" className="cursor-pointer transition-colors text-gray-400 hover:text-emerald-400">
@@ -61,11 +59,21 @@ export default function Layout({
             </Link>
             
             <div className="relative">
-              <button
+             <button
                 onClick={() => setIsProjectsDropdownOpen(!isProjectsDropdownOpen)}
-                className="flex items-center gap-1 cursor-pointer transition-colors text-gray-400 hover:text-emerald-400"
+                className={`
+                  flex items-center gap-1 cursor-pointer transition-colors px-3 py-1 rounded-full
+                  ${isProjectsActive 
+                    ? 'bg-emerald-500/20 text-emerald-400 font-bold' 
+                    : 'text-gray-400 hover:text-emerald-400 hover:bg-gray-700/50'
+                  }
+                `}
               >
-                Projects <ChevronDown size={16} className={`transform transition-transform ${isProjectsDropdownOpen ? "rotate-180" : "rotate-0"}`} />
+                Projects
+                <ChevronDown
+                  size={16}
+                  className={`transform transition-transform ${isProjectsDropdownOpen ? 'rotate-180' : 'rotate-0'}`}
+                />
               </button>
               
               {isProjectsDropdownOpen && (
@@ -96,11 +104,9 @@ export default function Layout({
                 </motion.div>
               )}
             </div>
-
             <Link href="/Contact" className="cursor-pointer transition-colors text-gray-400 hover:text-emerald-400">
               Contact
             </Link>
-
             <div className="flex items-center space-x-4">
               <a href="https://github.com/NinePiece2" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-emerald-400 transition-colors">
                 <GithubIcon className="w-6 h-6" />
@@ -110,7 +116,6 @@ export default function Layout({
               </a>
             </div>
           </nav>
-
           {/* Mobile Nav */}
           <div className="md:hidden flex items-center">
             <button onClick={() => setIsNavOpen(true)} className="p-2 text-gray-400">
@@ -119,7 +124,6 @@ export default function Layout({
           </div>
         </div>
       </header>
-
       {/* Mobile Menu */}
       <AnimatePresence>
         {isNavOpen && (
@@ -145,7 +149,11 @@ export default function Layout({
                 </Link>
               </li>
               <li>
-                <Link href="/Projects" onClick={() => setIsNavOpen(false)} className="text-2xl font-semibold text-gray-400 hover:text-emerald-400 transition-colors cursor-pointer">
+                <Link 
+                  href="/Projects" 
+                  onClick={() => setIsNavOpen(false)} 
+                  className={`text-2xl font-semibold transition-colors cursor-pointer ${isProjectsActive ? 'bg-emerald-400 font-bold' : 'text-gray-400 hover:text-emerald-400'}`}
+                >
                   Projects
                 </Link>
               </li>
@@ -184,11 +192,9 @@ export default function Layout({
           </motion.div>
         )}
       </AnimatePresence>
-
       <main className="pt-13">
         {children}
       </main>
-
       <footer className="py-8 text-center text-gray-500 dark:text-gray-500 bg-[#111111]">
         <p>&copy; {new Date().getFullYear()} Romit Sagu. All rights reserved.</p>
       </footer>
