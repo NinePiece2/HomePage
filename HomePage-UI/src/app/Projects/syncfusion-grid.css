@@ -115,3 +115,11 @@
     background-color: #121212 !important;
     color: #FFFFFF !important;
 }
+
+.e-rowcell {
+  border-style: none !important;
+}
+
+.e-grid .e-row:nth-child(even) .e-rowcell {
+  background-color: #1A1A1A !important;
+}
