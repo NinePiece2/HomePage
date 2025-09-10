@@ -6,8 +6,8 @@
 .e-gridpager,
 .e-icons {
    font-family: 'Poppins', sans-serif !important;
-    background-color: #121212 !important; /* Set background color to #121212 */
-    color: #ffffff !important; /* Set text color to white */
+    background-color: #121212 !important;
+    color: #ffffff !important;
 }
 
 .e-pager .e-firstpagedisabled, .e-pager .e-prevpagedisabled, .e-pager .e-nextpagedisabled, .e-pager .e-lastpagedisabled {
@@ -72,7 +72,7 @@
 }
 
 .e-headertext{
-  color: white !important;
+  color: #d1d5dc !important;
   font-size: 0.85rem !important;
   font-weight: 600;
 }
@@ -103,7 +103,7 @@
 
 .e-control.e-pager.e-lib{
   background-color: #121212 !important;
-  color: #ffffff !important;
+  color: #d1d5dc !important;
   /* border: 0; */
 }
 
@@ -122,4 +122,12 @@
 
 .e-grid .e-row:nth-child(even) .e-rowcell {
   background-color: #1A1A1A !important;
+}
+
+.e-control, .e-icons, .e-pagercontainer, .e-link.e-numericitem, .e-headercell, .e-gridheader.e-lib{
+  border-color: #d1d5dc !important;
+}
+
+.e-icons, .e-numericcontainer, .e-link.e-numericitem, .e-sortfilterdiv{
+  color: #d1d5dc !important;
 }
