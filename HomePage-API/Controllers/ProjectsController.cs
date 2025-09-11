@@ -32,7 +32,7 @@ namespace HomePage_API.Controllers
         public async Task<IActionResult> TableData()
         {
             // Get the data
-            List<Application> DataList = homePageContext.Applications.ToList();
+            List<Application> DataList = await homePageContext.Applications.ToListAsync();
 
             return Ok(DataList);
         }
@@ -41,7 +41,7 @@ namespace HomePage_API.Controllers
         public async Task<IActionResult> HomeServer()
         {
             var projectInfo = homePageContext.Applications
-               .FirstOrDefault(x => x.Name == "TrueNAS Home Server");
+               .FirstOrDefault(x => x.Name == "Home Cloud Server");
 
             if (projectInfo == null)
                 throw new Exception("Project info not found.");
