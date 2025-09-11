@@ -35,6 +35,8 @@ jobs:
             tags: ${{ secrets.DOCKER_USERNAME }}/homepage:ui
             build-args: |
               SYNCFUSION_LICENSE=${{ secrets.SyncfusionLicense }}
+            cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/homepage:ui-cache
+            cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/homepage:ui-cache,mode=max
 
         - name: Trigger Deploy Workflow
           uses: peter-evans/repository-dispatch@v3
