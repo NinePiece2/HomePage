@@ -6,6 +6,10 @@ updates:
       interval: "daily"
     commit-message:
       prefix: "deps(npm)"
+    groups:
+      frontend:
+        patterns:
+          - "*"
 
   - package-ecosystem: "nuget"
     directory: "/HomePage-API"
@@ -13,6 +17,10 @@ updates:
       interval: "daily"
     commit-message:
       prefix: "deps(nuget)"
+    groups:
+      backend:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
