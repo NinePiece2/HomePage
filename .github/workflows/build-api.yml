@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - HomePage-V2-beta
     paths:
       - HomePage-API/**
   workflow_dispatch:
