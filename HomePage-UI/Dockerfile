@@ -10,6 +10,9 @@ ENV SYNCFUSION_LICENSE=${SYNCFUSION_LICENSE}
 RUN npx syncfusion-license activate
 RUN export SYNCFUSION_LICENSE=""
 
+# Disable Next.js telemetry
+ENV NEXT_TELEMETRY_DISABLED=1
+
 COPY . .
 RUN npm run build
 RUN npm prune --omit=dev 
