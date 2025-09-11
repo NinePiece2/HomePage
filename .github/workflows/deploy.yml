@@ -62,6 +62,23 @@ jobs:
 
             console.log("All builds completed!");
 
+      - name: Create Deployment
+        id: deployment
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: production
+          description: "Deploy commit ${{ github.sha }} to Kubernetes"
+          transient-environment: false
+          production-environment: true
+      
+      - name: Mark Deployment as In Progress
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: in_progress
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+
       - name: Update Kubernetes Deployment
         run: |
           kubectl set image deployment/homepage homepage-ui=${{ secrets.DOCKER_USERNAME }}/homepage:ui homepage-api=${{ secrets.DOCKER_USERNAME }}/homepage:api -n homepage
@@ -69,3 +86,19 @@ jobs:
             kubernetes.io/change-cause="Deployed commit ${{ github.sha }} from branch ${{ github.ref_name }} via GitHub Actions run https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}. Updated images: UI=${{ secrets.DOCKER_USERNAME }}/homepage:ui, API=${{ secrets.DOCKER_USERNAME }}/homepage:api" \
             --overwrite -n homepage
           kubectl rollout restart deployment/homepage -n homepage
+      
+      - name: Mark Deployment as Successful
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: success
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Mark Deployment as Failed
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: failure
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
