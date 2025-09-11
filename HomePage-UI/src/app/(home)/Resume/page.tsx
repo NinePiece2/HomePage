@@ -9,7 +9,7 @@ const Resume = () => {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-[#151515] flex items-center justify-center p-4 font-sans">
+    <div className="min-h-[92vh] bg-[#151515] flex items-center justify-center p-4 font-sans">
         <nav className="absolute top-8 left-6 md:left-12 ">
           <motion.button
             onClick={() => router.push("/")}
