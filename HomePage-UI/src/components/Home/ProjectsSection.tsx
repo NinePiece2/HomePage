@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen } from "lucide-react";
+import Link from "next/link";
 import { GithubIcon } from "@/components/icons";
 import { projects } from "@/lib/data";
 
@@ -20,9 +21,9 @@ const ProjectsSection: React.FC = () => (
             viewport={{ once: true }}
           >
             <div className="p-6">
-              <a href={proj.projectLink} className="block">
+              <Link href={proj.projectLink} className="block">
                 <h3 className="text-xl font-bold mb-2 hover:underline">{proj.title}</h3>
-              </a>
+              </Link>
               <p className="text-gray-400 mb-4 text-sm leading-relaxed">{proj.desc}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {proj.tags.map(tag => (
@@ -41,14 +42,20 @@ const ProjectsSection: React.FC = () => (
                   </a>
                 )}
                 {proj.projectLink && (
-                  <a href={proj.projectLink} className="flex items-center gap-1 text-sm font-medium hover:text-emerald-400 transition-colors">
+                  <Link href={proj.projectLink} className="flex items-center gap-1 text-sm font-medium hover:text-emerald-400 transition-colors">
                     <BookOpen className="w-4 h-4" /> Learn More
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>
           </motion.div>
         ))}
+      </div>
+      <div className="text-center mt-12">
+        <Link href="/Projects" className="inline-flex items-center px-6 py-3 border border-emerald-500 text-emerald-500 rounded-full text-lg font-medium hover:bg-emerald-500 hover:text-white transition-colors duration-300">
+          More Projects
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </Link>
       </div>
     </div>
   </section>
