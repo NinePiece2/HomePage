@@ -89,7 +89,6 @@ const HeroSection: React.FC = () => (
         to="about"
         spy
         smooth
-        duration={500}
         className="p-3 bg-gray-800/50 border border-gray-700/50 text-gray-200 rounded-full hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center cursor-pointer animate-bounce"
       >
         <ArrowDown size={24} />
