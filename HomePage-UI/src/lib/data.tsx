@@ -25,44 +25,41 @@ import {
 
 import { Certificate } from "@/types/types";
 
-export const skills = [
-  // Frontend & modern web stack
-  { name: "TypeScript", icon: <SiTypescript className="w-12 h-12" /> },
-  { name: "React", icon: <SiReact className="w-12 h-12" /> },
-  { name: "Next.js", icon: <SiNextdotjs className="w-12 h-12" /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss className="w-12 h-12" /> },
-  
-  // Backend & server-side
-  { name: "Node.js", icon: <SiNodedotjs className="w-12 h-12" /> },
-  { name: "Python", icon: <SiPython className="w-12 h-12" /> },
-  { name: "Java", icon: <JavaIcon className="w-12 h-12" /> },
-  { name: "C#", icon: <CSharpIcon className="w-12 h-12" /> },
-  { name: ".NET", icon: <SiDotnet className="w-12 h-12" /> },
-  
-  // Databases
-  { name: "MySQL", icon: <SiMysql className="w-12 h-12" /> },
-  { name: "SQL Server", icon: <SQLServerIcon className="w-12 h-12" /> },
-  
-  // DevOps / Deployment / Collaboration
-  { name: "Git", icon: <SiGit className="w-12 h-12" /> },
-  { name: "Docker", icon: <SiDocker className="w-12 h-12" /> },
-  { name: "GitHub Actions", icon: <SiGithubactions className="w-12 h-12" /> },
-  { name: "Kubernetes", icon: <SiKubernetes className="w-12 h-12" /> },
-  { name: "Nginx", icon: <SiNginx className="w-12 h-12" /> },
-  { name: "Cloudflare", icon: <SiCloudflare className="w-12 h-12" /> },
-  { name: "Azure", icon: <AzureIcon className="w-12 h-12" /> },
-  { name: "Dependabot", icon: <SiDependabot className="w-12 h-12" /> },
-  
-  // Scripting / Tools
-  { name: "Markdown", icon: <SiMarkdown className="w-12 h-12" /> },
-  { name: "LeetCode", icon: <SiLeetcode className="w-12 h-12" /> },
-  
-  // Less common / niche / low-level
-  { name: "C", icon: <SiC className="w-12 h-12" /> },
-  { name: "Proxmox", icon: <SiProxmox className="w-12 h-12" /> },
-  { name: "TrueNAS", icon: <SiTruenas className="w-12 h-12" /> },
-  { name: "TensorFlow", icon: <SiTensorflow className="w-12 h-12" /> },
-];
+export const skills = {
+  "Frontend & Modern Web": [
+    { name: "TypeScript", icon: <SiTypescript className="w-12 h-12" /> },
+    { name: "React", icon: <SiReact className="w-12 h-12" /> },
+    { name: "Next.js", icon: <SiNextdotjs className="w-12 h-12" /> },
+    { name: "Tailwind CSS", icon: <SiTailwindcss className="w-12 h-12" /> },
+  ],
+  "Backend & Server-side": [
+    { name: "Node.js", icon: <SiNodedotjs className="w-12 h-12" /> },
+    { name: "Python", icon: <SiPython className="w-12 h-12" /> },
+    { name: "Java", icon: <JavaIcon className="w-12 h-12" /> },
+    { name: "C#", icon: <CSharpIcon className="w-12 h-12" /> },
+    { name: ".NET", icon: <SiDotnet className="w-12 h-12" /> },
+  ],
+  "DevOps & Collaboration": [
+    { name: "Git", icon: <SiGit className="w-12 h-12" /> },
+    { name: "Docker", icon: <SiDocker className="w-12 h-12" /> },
+    { name: "GitHub Actions", icon: <SiGithubactions className="w-12 h-12" /> },
+    { name: "Kubernetes", icon: <SiKubernetes className="w-12 h-12" /> },
+    { name: "Nginx", icon: <SiNginx className="w-12 h-12" /> },
+    { name: "Cloudflare", icon: <SiCloudflare className="w-12 h-12" /> },
+    { name: "Azure", icon: <AzureIcon className="w-12 h-12" /> },
+    { name: "Dependabot", icon: <SiDependabot className="w-12 h-12" /> },
+  ],
+  "Other": [
+    { name: "MySQL", icon: <SiMysql className="w-12 h-12" /> },
+    { name: "SQL Server", icon: <SQLServerIcon className="w-12 h-12" /> },
+    { name: "C", icon: <SiC className="w-12 h-12" /> },
+    { name: "Proxmox", icon: <SiProxmox className="w-12 h-12" /> },
+    { name: "TrueNAS", icon: <SiTruenas className="w-12 h-12" /> },
+    { name: "TensorFlow", icon: <SiTensorflow className="w-12 h-12" /> },
+    { name: "Markdown", icon: <SiMarkdown className="w-12 h-12" /> },
+    { name: "LeetCode", icon: <SiLeetcode className="w-12 h-12" /> },
+  ],
+};
 
 export const projects = [
   {
