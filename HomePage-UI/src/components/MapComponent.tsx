@@ -50,6 +50,7 @@ const isDarkMode = true;
         style={{ height: "100%", width: "100%" }}
         attributionControl={false}
         zoomControl={false}
+        className="z-1"
       >
         <TileLayer url={tileUrl} />
         <Marker position={position}>
