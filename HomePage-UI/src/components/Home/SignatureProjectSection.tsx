@@ -31,13 +31,13 @@ const SignatureProjectSection: React.FC = () => (
 
     <div className="flex flex-col lg:flex-row gap-12 items-center">
       <motion.div
-        className="lg:w-1/2"
+        className="w-full lg:w-1/2"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <div className="relative bg-neutral-950/50 rounded-xl w-full h-88 flex items-center justify-center shadow-lg overflow-hidden">
+        <div className="relative w-full aspect-[16/9] bg-neutral-950/50 rounded-xl shadow-lg overflow-hidden">
           <Image
             src={projectData.image}
             alt={projectData.imageAlt}
@@ -45,7 +45,6 @@ const SignatureProjectSection: React.FC = () => (
             className="object-cover rounded-xl"
           />
         </div>
-
       </motion.div>
 
       <motion.div
