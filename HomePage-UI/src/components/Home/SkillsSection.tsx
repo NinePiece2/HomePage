@@ -7,11 +7,11 @@ const SkillsSection: React.FC = () => (
   <section id="skills" className="py-24 bg-[#111111]">
     <div className="max-w-6xl mx-auto px-6">
       <h2 className="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"> 
         {skills.map((skill, index) => (
           <motion.div
             key={index}
-            className="flex flex-col items-center text-center gap-3 group"
+            className="flex flex-col items-center text-center gap-1 group"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.05 }}
