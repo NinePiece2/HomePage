@@ -1,8 +1,11 @@
+version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/HomePage-UI"
     schedule:
       interval: "daily"
+      time: "13:55"
+      timezone: "America/Toronto"
     commit-message:
       prefix: "deps(npm)"
     groups:
@@ -14,6 +17,8 @@ updates:
     directory: "/HomePage-API"
     schedule:
       interval: "daily"
+      time: "13:55"
+      timezone: "America/Toronto"
     commit-message:
       prefix: "deps(nuget)"
     groups:
@@ -25,5 +30,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+      time: "13:55"
+      timezone: "America/Toronto"
     commit-message:
       prefix: "deps(actions)"
