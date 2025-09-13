@@ -8,8 +8,9 @@ updates:
       timezone: "America/Toronto"
     commit-message:
       prefix: "deps(npm)"
+      include: "version-updates"
     groups:
-      frontend:
+      ui-dependencies:
         patterns:
           - "*"
 
@@ -21,8 +22,9 @@ updates:
       timezone: "America/Toronto"
     commit-message:
       prefix: "deps(nuget)"
+      include: "version-updates"
     groups:
-      backend:
+      api-dependencies:
         patterns:
           - "*"
 
@@ -34,3 +36,4 @@ updates:
       timezone: "America/Toronto"
     commit-message:
       prefix: "deps(actions)"
+      include: "version-updates"
