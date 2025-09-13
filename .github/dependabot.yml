@@ -3,6 +3,8 @@ updates:
     directory: "/HomePage-UI"
     schedule:
       interval: "daily"
+      time: "11:00"
+      timezone: "America/Toronto"
     commit-message:
       prefix: "deps(npm)"
     groups:
@@ -14,6 +16,8 @@ updates:
     directory: "/HomePage-API"
     schedule:
       interval: "daily"
+      time: "11:00"
+      timezone: "America/Toronto"
     commit-message:
       prefix: "deps(nuget)"
     groups:
@@ -25,5 +29,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+      time: "11:00"
+      timezone: "America/Toronto"
     commit-message:
       prefix: "deps(actions)"
