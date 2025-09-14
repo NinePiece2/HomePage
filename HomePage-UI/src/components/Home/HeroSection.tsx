@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => (
     className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 overflow-hidden"
   >
     <HeroParticles />
-    
+
     <div className="relative z-10 flex flex-col justify-center items-center text-center max-w-4xl w-full mx-auto">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
@@ -42,7 +42,11 @@ const HeroSection: React.FC = () => (
           href="/Projects"
           className="group px-7 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
         >
-          Explore Projects <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+          Explore Projects{" "}
+          <ArrowRight
+            size={20}
+            className="transition-transform group-hover:translate-x-1"
+          />
         </Link>
         <ScrollLink
           to="contact"
@@ -54,13 +58,12 @@ const HeroSection: React.FC = () => (
           Get in Touch
         </ScrollLink>
       </motion.div>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="flex gap-6 mt-12"
-      >
+        className=" flex gap-6  mt-8 sm:mt-12 mb-20 sm:mb-0">
         <a
           href="https://github.com/NinePiece2"
           target="_blank"
@@ -79,12 +82,16 @@ const HeroSection: React.FC = () => (
         </a>
       </motion.div>
     </div>
-    
+
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.5 }}
-      className="absolute bottom-12 flex flex-col items-center"
+      className="
+        absolute 
+        bottom-8 sm:bottom-12 md:bottom-6
+        flex flex-col items-center
+      "
     >
       <ScrollLink
         to="about"
@@ -111,7 +118,6 @@ const HeroSection: React.FC = () => (
             transition-all duration-1000 ease-out
           "
         />
-        
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{

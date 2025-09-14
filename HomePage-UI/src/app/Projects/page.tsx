@@ -106,47 +106,53 @@ export default function Projects() {
                 </motion.div>
             </div>
 
-            <div className="grid-container mt-6">
+            <div className="relative">
+              <p className="text-sm text-gray-400 mb-2 block sm:hidden text-center">
+                👉 Swipe to see the rest of the table
+              </p>
+
+              <div className="overflow-x-auto sm:overflow-x-visible">
                 <GridComponent
-                    dataSource={projectsData}
-                    allowSorting={true}
-                    allowPaging={true}
-                    pageSettings={{ pageSize: 12, pageCount: 5 }}
+                  dataSource={projectsData}
+                  allowSorting={true}
+                  allowPaging={true}
+                  pageSettings={{ pageSize: 12, pageCount: 5 }}
                 >
-                    <ColumnsDirective>
-                        <ColumnDirective
-                            field="name"
-                            headerText="Name"
-                            width="170"
-                            headerTextAlign="Center"
-                            textAlign="Center"
-                        />
-                        <ColumnDirective
-                            headerText="GitHub Link"
-                            width="150"
-                            headerTextAlign="Center"
-                            textAlign="Center"
-                            template={linkTemplate('gitHubLink')}
-                        />
-                        <ColumnDirective
-                            headerText="Application Link"
-                            width="150"
-                            headerTextAlign="Center"
-                            textAlign="Center"
-                            template={linkTemplate('applicationLink')}
-                        />
-                        <ColumnDirective
-                            headerText="Home Page Link"
-                            width="150"
-                            headerTextAlign="Center"
-                            textAlign="Center"
-                            template={linkTemplate('homePageLink')}
-                        />
-                    </ColumnsDirective>
-                    <Inject services={[Page, Sort]} />
+                  <ColumnsDirective>
+                    <ColumnDirective
+                      field="name"
+                      headerText="Name"
+                      width="170"
+                      headerTextAlign="Center"
+                      textAlign="Center"
+                    />
+                    <ColumnDirective
+                      headerText="GitHub Link"
+                      width="150"
+                      headerTextAlign="Center"
+                      textAlign="Center"
+                      template={linkTemplate("gitHubLink")}
+                    />
+                    <ColumnDirective
+                      headerText="Application Link"
+                      width="150"
+                      headerTextAlign="Center"
+                      textAlign="Center"
+                      template={linkTemplate("applicationLink")}
+                    />
+                    <ColumnDirective
+                      headerText="Home Page Link"
+                      width="150"
+                      headerTextAlign="Center"
+                      textAlign="Center"
+                      template={linkTemplate("homePageLink")}
+                    />
+                  </ColumnsDirective>
+                  <Inject services={[Page, Sort]} />
                 </GridComponent>
+              </div>
             </div>
-        </div>
+          </div>
         </div>
     );
 }
