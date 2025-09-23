@@ -86,6 +86,19 @@ jobs:
             kubernetes.io/change-cause="Deployed commit ${{ github.sha }} from branch ${{ github.ref_name }} via GitHub Actions run https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}. Updated images: UI=${{ secrets.DOCKER_USERNAME }}/homepage:ui, API=${{ secrets.DOCKER_USERNAME }}/homepage:api" \
             --overwrite -n homepage
           kubectl rollout restart deployment/homepage -n homepage
+
+      - name: Mark Deployment as Rolling Out
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: in_progress
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          description: "Rolling out to Kubernetes..."
+
+      - name: Wait for Rollout to Finish
+        run: |
+          echo "⏳ Waiting for rollout to finish..."
+          kubectl rollout status deployment/homepage -n homepage --timeout=5m
       
       - name: Mark Deployment as Successful
         if: success()
