@@ -81,11 +81,19 @@ jobs:
 
       - name: Update Kubernetes Deployment
         run: |
-          kubectl set image deployment/homepage homepage-ui=${{ secrets.DOCKER_USERNAME }}/homepage:ui homepage-api=${{ secrets.DOCKER_USERNAME }}/homepage:api -n homepage
-          kubectl annotate deployment homepage \
+          kubectl set image deployment/homepage-ui homepage-ui=${{ secrets.DOCKER_USERNAME }}/homepage:ui homepage-nginx=nginx:latest -n homepage
+          kubectl set image deployment/homepage-api homepage-api=${{ secrets.DOCKER_USERNAME }}/homepage:api -n homepage
+
+          kubectl annotate deployment homepage-ui \
             kubernetes.io/change-cause="Deployed commit ${{ github.sha }} from branch ${{ github.ref_name }} via GitHub Actions run https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}. Updated images: UI=${{ secrets.DOCKER_USERNAME }}/homepage:ui, API=${{ secrets.DOCKER_USERNAME }}/homepage:api" \
             --overwrite -n homepage
-          kubectl rollout restart deployment/homepage -n homepage
+
+          kubectl annotate deployment homepage-api \
+            kubernetes.io/change-cause="Deployed commit ${{ github.sha }} from branch ${{ github.ref_name }} via GitHub Actions run https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}. Updated images: UI=${{ secrets.DOCKER_USERNAME }}/homepage:ui, API=${{ secrets.DOCKER_USERNAME }}/homepage:api" \
+            --overwrite -n homepage
+          
+          kubectl rollout restart deployment/homepage-ui -n homepage
+          kubectl rollout restart deployment/homepage-api -n homepage
 
       - name: Mark Deployment as Rolling Out
         uses: chrnorm/deployment-status@v2
