@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-config
-  namespace: homepage
+  namespace: homepage-test
 data:
   nginx.conf: |
     events {
