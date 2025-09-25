@@ -14,18 +14,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: homepage
-  name: homepage
+    run: homepage-ui
+  name: homepage-ui
   namespace: homepage
 spec:
   replicas: 3
   selector:
     matchLabels:
-      run: homepage
+      run: homepage-ui
   template:
     metadata:
       labels:
-        run: homepage
+        run: homepage-ui
     spec:
       volumes:
         - name: ssl-cert-volume
@@ -35,17 +35,6 @@ spec:
           configMap:
             name: nginx-config
       containers:
-        - name: homepage-api
-          image: ninepiece2/homepage:api
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          env:
-            - name: ASPNETCORE_ENVIRONMENT
-              value: "Production"
-            - name: ASPNETCORE_URLS
-              value: "http://*:8080"
-
         - name: homepage-ui
           image: ninepiece2/homepage:ui
           imagePullPolicy: Always
@@ -55,7 +44,7 @@ spec:
             - name: NODE_ENV
               value: "production"
             - name: API_BASE_URL
-              value: "http://localhost:8080"
+              value: "http://homepage-api-service:8080"
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
 
@@ -74,14 +63,43 @@ spec:
 
 ---
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homepage-api
+  namespace: homepage
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: homepage-api
+  template:
+    metadata:
+      labels:
+        app: homepage-api
+    spec:
+      containers:
+        - name: homepage-api
+          image: ninepiece2/homepage:api
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: ASPNETCORE_URLS
+              value: "http://*:8080"
+
+---
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: homepage
+  name: homepage-ui-service
   namespace: homepage
 spec:
   selector:
-    run: homepage
+    run: homepage-ui
   ports:
     - name: https
       protocol: TCP
@@ -89,3 +107,18 @@ spec:
       targetPort: 443
       nodePort: 30001
   type: LoadBalancer
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: homepage-api-service
+  namespace: homepage
+spec:
+  selector:
+    app: homepage-api
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
