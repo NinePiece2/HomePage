@@ -106,9 +106,9 @@ jobs:
       - name: Wait for Rollout to Finish
         run: |
           echo "⏳ Waiting for rollout to finish..."
-          kubectl rollout status deployment/homepage-ui -n homepage --timeout=5m
-          kubectl rollout status deployment/homepage-api -n homepage --timeout=5m
-      
+          kubectl rollout status deployment/homepage-ui -n homepage --timeout=10m
+          kubectl rollout status deployment/homepage-api -n homepage --timeout=10m
+
       - name: Mark Deployment as Successful
         if: success()
         uses: chrnorm/deployment-status@v2
