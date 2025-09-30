@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -62,10 +63,36 @@ jobs:
 
       - name: Create Pull Request
         if: steps.verify-changed-files.outputs.changed == 'true'
+        id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           base: master
           branch: update-readme-badges-${{ github.run_id }}
-          title: "Update README badges with current versions"
-          body: "This PR updates the README badges with the latest versions."
-          commit-message: "Update README badges with current versions [skip ci]"
+          title: "🔄 Update README badges with current versions"
+          body: |
+            ## 📋 Automated README Badge Update
+            
+            This PR automatically updates the README badges with the latest package versions:
+            
+            - **Next.js**: Updated to latest version from `package.json`
+            - **TypeScript**: Updated to latest version from `package.json`
+            - **.NET**: Updated to latest version from `HomePage-API.csproj`
+            
+            ### 🤖 Automated Changes
+            - [ ] Next.js version badge
+            - [ ] TypeScript version badge  
+            - [ ] .NET version badge
+            
+            This PR was created automatically by the `update-readme.yml` workflow.
+          commit-message: "🔄 Update README badges with current versions [skip ci]"
+          delete-branch: true
+
+      - name: Fallback Direct Commit
+        if: steps.verify-changed-files.outputs.changed == 'true' && failure()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "🔄 Update README badges with current versions [skip ci]"
+          git push
