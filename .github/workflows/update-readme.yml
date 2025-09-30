@@ -62,9 +62,8 @@ jobs:
 
       - name: Create Pull Request
         if: steps.verify-changed-files.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           base: master
           branch: update-readme-badges-${{ github.run_id }}
           title: "Update README badges with current versions"
