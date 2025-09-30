@@ -70,5 +70,3 @@ jobs:
           title: "Update README badges with current versions"
           body: "This PR updates the README badges with the latest versions."
           commit-message: "Update README badges with current versions [skip ci]"
-          assignees: NinePiece2
-          reviewers: NinePiece2
