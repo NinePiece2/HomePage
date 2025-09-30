@@ -1,0 +1,70 @@
+name: Update README Badges
+
+on:
+  push:
+    paths:
+      - 'HomePage-UI/package.json'
+      - 'HomePage-API/HomePage-API.csproj'
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * *"
+
+jobs:
+  update-badges:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Extract versions and update README
+        run: |
+          # Extract Next.js version
+          NEXTJS_VERSION=$(node -p "require('./HomePage-UI/package.json').dependencies.next.replace(/[^0-9.]/g, '')")
+          
+          # Extract TypeScript version
+          TYPESCRIPT_VERSION=$(node -p "require('./HomePage-UI/package.json').devDependencies.typescript.replace(/[^0-9.]/g, '')")
+          
+          # Extract .NET version from csproj
+          DOTNET_VERSION=$(grep -o '<TargetFramework>net[0-9.]*</TargetFramework>' HomePage-API/HomePage-API.csproj | sed 's/<TargetFramework>net\([0-9.]*\)<\/TargetFramework>/\1/')
+          
+          echo "Current versions found:"
+          echo "Next.js: ${NEXTJS_VERSION}"
+          echo "TypeScript: ${TYPESCRIPT_VERSION}"
+          echo ".NET: ${DOTNET_VERSION}"
+          
+          # Update README badges
+          sed -i "s/Next\.js-[0-9.]*-/Next.js-${NEXTJS_VERSION}-/" README.md
+          sed -i "s/TypeScript-[0-9.]*-/TypeScript-${TYPESCRIPT_VERSION}-/" README.md
+          sed -i "s/\.NET-[0-9.]*-/.NET-${DOTNET_VERSION}-/" README.md
+          
+          echo "README badges updated successfully"
+
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected"
+            git diff
+          fi
+
+      - name: Commit changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Update README badges with current versions [skip ci]"
+          git push
