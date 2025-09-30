@@ -60,28 +60,15 @@ jobs:
             git diff
           fi
 
-      - name: Commit changes
-        if: steps.verify-changed-files.outputs.changed == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
-          branch="update-readme-badges-$(date +%s)"
-          git checkout -b "$branch"
-
-          git add README.md
-          git commit -m "Update README badges with current versions [skip ci]"
-          git push origin "$branch"
-
       - name: Create Pull Request
         if: steps.verify-changed-files.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }} # base branch (master in your case)
           base: master
+          branch: update-readme-badges-${{ github.run_id }}
           title: "Update README badges with current versions"
           body: "This PR updates the README badges with the latest versions."
-          reviewers: NinePiece2
+          commit-message: "Update README badges with current versions [skip ci]"
           assignees: NinePiece2
-
+          reviewers: NinePiece2
