@@ -11,13 +11,13 @@
     "dev-all": "concurrently -n web,api -c blue,green \"npm run dev\" \"npm run dev-api\""
   },
   "dependencies": {
-    "@syncfusion/ej2-react-grids": "^31.1.22",
+    "@syncfusion/ej2-react-grids": "^31.1.23",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "framer-motion": "^12.23.22",
     "html-to-image": "^1.11.13",
     "leaflet": "^1.9.4",
-    "lucide-react": "^0.544.0",
+    "lucide-react": "^0.545.0",
     "next": "^15.5.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
