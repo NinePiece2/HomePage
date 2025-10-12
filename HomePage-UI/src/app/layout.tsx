@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import UmamiAnalytics from "@/components/UmamiAnalytics";
 
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
@@ -18,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <UmamiAnalytics />
+      </head>
       <body className={`${poppins.className} antialiased`}>
         {children}
       </body>
