@@ -8,8 +8,8 @@ interface UmamiAnalyticsProps {
 }
 
 export default function UmamiAnalytics({
-  websiteId = "6ece8859-1100-434a-8b17-a7183239ac63",
-  src = "https://analytics.romitsagu.com/script.js",
+  websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
+  src = process.env.NEXT_PUBLIC_UMAMI_URL,
 }: UmamiAnalyticsProps) {
   if (!src || !websiteId) return null;
 
