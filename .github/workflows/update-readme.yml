@@ -2,6 +2,8 @@ name: Update README Badges
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'HomePage-UI/package.json'
       - 'HomePage-API/HomePage-API.csproj'
