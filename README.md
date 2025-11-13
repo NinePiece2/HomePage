@@ -130,9 +130,9 @@ The application follows a modern microservices architecture with:
 - **Build Tool**: Turbopack for fast development
 
 ### Backend (HomePage-API)
-- **Framework**: .NET 9.0 Web API
+- **Framework**: .NET 10.0 Web API
 - **Language**: C# with nullable reference types
-- **ORM**: Entity Framework Core 9.0
+- **ORM**: Entity Framework Core 10.0
 - **Database**: SQL Server with Entity Framework migrations
 - **Documentation**: Swagger/OpenAPI 3.0
 - **Email**: SMTP service for contact forms
@@ -241,7 +241,7 @@ HomePage/
 Ensure you have the following installed:
 
 - **Node.js** 22+ and npm 10+
-- **.NET 9.0 SDK** or later
+- **.NET 10.0 SDK** or later
 - **SQL Server** (LocalDB for development, full instance for production)
 - **Git** for version control
 - **Docker** (optional, for containerization)
