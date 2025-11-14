@@ -90,6 +90,15 @@ export const projects = [
 
 export const experience = [
   {
+    role: "Co-Founder & Founding Engineer",
+    company: "Three Dimensions",
+    duration: "Aug 2025 - Present",
+    description: [
+      "Creating a 3D Printing Manufacturing Platform for Hobbyists and Cosplayers, delivering a seamless PaaS (Printing as a Service).",
+      "Leading end to end technology operations from manufacturing workflows to customer facing systems and automations.",
+    ],
+  },
+  {
     role: "Avionics Specialist",
     company: "Toronto Metropolitan Aero Design (TMAD)",
     duration: "May 2024 - Sept 2025",
