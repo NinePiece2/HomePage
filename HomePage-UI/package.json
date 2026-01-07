@@ -14,7 +14,7 @@
     "@syncfusion/ej2-react-grids": "^32.1.22",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
-    "framer-motion": "^12.24.7",
+    "framer-motion": "^12.24.10",
     "html-to-image": "^1.11.13",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.562.0",
