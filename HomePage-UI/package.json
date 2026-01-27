@@ -11,16 +11,16 @@
     "dev-all": "concurrently -n web,api -c blue,green \"npm run dev\" \"npm run dev-api\""
   },
   "dependencies": {
-    "@syncfusion/ej2-react-grids": "^32.1.24",
+    "@syncfusion/ej2-react-grids": "^32.1.25",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "framer-motion": "^12.29.2",
     "html-to-image": "^1.11.13",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.563.0",
-    "next": "^16.1.4",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "next": "^16.1.5",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0",
     "react-scroll": "^1.9.3",
@@ -36,7 +36,7 @@
     "@types/react-scroll": "^1.8.10",
     "concurrently": "^9.2.1",
     "eslint": "^9",
-    "eslint-config-next": "16.1.4",
+    "eslint-config-next": "16.1.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
