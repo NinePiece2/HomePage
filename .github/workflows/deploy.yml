@@ -81,7 +81,7 @@ jobs:
 
       - name: Update Kubernetes Deployment
         run: |
-          kubectl set image deployment/homepage-ui homepage-ui=${{ secrets.DOCKER_USERNAME }}/homepage:ui homepage-nginx=nginx:latest -n homepage
+          kubectl set image deployment/homepage-ui homepage-ui=${{ secrets.DOCKER_USERNAME }}/homepage:ui -n homepage
           kubectl set image deployment/homepage-api homepage-api=${{ secrets.DOCKER_USERNAME }}/homepage:api -n homepage
 
           kubectl annotate deployment homepage-ui \
