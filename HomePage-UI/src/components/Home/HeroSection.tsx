@@ -70,6 +70,7 @@ const HeroSection: React.FC = () => (
           href="https://github.com/NinePiece2"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit my GitHub profile"
           className="text-gray-400 hover:text-emerald-400 transition-colors"
         >
           <GithubIcon className="w-8 h-8" />
@@ -78,6 +79,7 @@ const HeroSection: React.FC = () => (
           href="https://linkedin.com/in/romit-sagu"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit my LinkedIn profile"
           className="text-gray-400 hover:text-emerald-400 transition-colors"
         >
           <LinkedinIcon className="w-8 h-8" />
@@ -100,7 +102,6 @@ const HeroSection: React.FC = () => (
         spy
         smooth
         duration={500}
-        aria-label="Scroll to About section"
         className="
           relative flex items-center justify-center 
           w-14 h-14 sm:w-16 sm:h-16 
