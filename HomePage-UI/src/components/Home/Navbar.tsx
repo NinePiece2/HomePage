@@ -1,7 +1,8 @@
 "use client";
 
 import { Download } from "lucide-react";
-import { Link } from "react-scroll";
+import { Link, scroller } from "react-scroll";
+import { Button } from "@/components/ui/button";
 
 interface NavLink {
   name: string;
@@ -28,20 +29,20 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, navLinks }) => (
       </Link>
       <div className="hidden md:flex items-center space-x-6">
         {navLinks.map((link) => (
-          <Link
+          <Button
             key={link.id}
-            to={link.to}
-            spy
-            smooth
-            duration={500}
-            className={`cursor-pointer transition-colors ${
+            onClick={() =>
+              scroller.scrollTo(link.to, { smooth: true, duration: 500 })
+            }
+            variant="link"
+            className={`cursor-pointer transition-colors h-auto p-0 text-base ${
               activeSection === link.id
-                ? "text-emerald-500 font-semibold"
+                ? "text-emerald-500 font-semibold hover:text-emerald-400"
                 : "text-gray-400 hover:text-emerald-400"
             }`}
           >
             {link.name}
-          </Link>
+          </Button>
         ))}
         <a
           href="/Resume"

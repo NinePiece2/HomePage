@@ -23,7 +23,7 @@ interface TimelineItemProps {
 const TimelineItem: React.FC<TimelineItemProps> = ({ icon, data, index }) => (
   <div className="relative mb-10">
     <motion.div
-      className="absolute w-16 h-16 rounded-full -left-8 flex items-center justify-center text-white overflow-hidden border-2 border-emerald-400 bg-[#151515]"
+      className="absolute w-16 h-16 rounded-full left-[-2rem] md:left-[-2rem] flex items-center justify-center text-white overflow-hidden border-2 border-emerald-400 bg-[#151515]"
       initial={{ opacity: 0, scale: 0 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3, delay: index * 0.15 }}
@@ -44,7 +44,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ icon, data, index }) => (
     </motion.div>
 
     <motion.div
-      className="ml-12"
+      className="ml-12 md:ml-12"
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: index * 0.15 + 0.1 }}

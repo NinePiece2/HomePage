@@ -76,7 +76,13 @@ export default function Projects() {
   const paginatedData = sortedData.slice(startIndex, startIndex + pageSize);
   const totalPages = Math.ceil(sortedData.length / pageSize);
 
-  const LinkCell = ({ value, text = "Link" }: { value?: string | null; text?: string }) => {
+  const LinkCell = ({
+    value,
+    text = "Link",
+  }: {
+    value?: string | null;
+    text?: string;
+  }) => {
     if (value) {
       return (
         <a
@@ -89,7 +95,9 @@ export default function Projects() {
         </a>
       );
     }
-    return <span className="text-[color:var(--color-muted-foreground)]">N/A</span>;
+    return (
+      <span className="text-[color:var(--color-muted-foreground)]">N/A</span>
+    );
   };
 
   const SortHeader = ({
@@ -217,10 +225,18 @@ export default function Projects() {
               <ChevronLeft size={20} />
             </button>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[color:var(--color-card)]/40 border border-[color:var(--color-border)]">
-              <span className="text-sm text-[color:var(--color-muted-foreground)]">Page</span>
-              <span className="font-bold text-[color:var(--color-primary)] text-lg">{currentPage + 1}</span>
-              <span className="text-sm text-[color:var(--color-muted-foreground)]">of</span>
-              <span className="font-bold text-[color:var(--color-primary)] text-lg">{totalPages}</span>
+              <span className="text-sm text-[color:var(--color-muted-foreground)]">
+                Page
+              </span>
+              <span className="font-bold text-[color:var(--color-primary)] text-lg">
+                {currentPage + 1}
+              </span>
+              <span className="text-sm text-[color:var(--color-muted-foreground)]">
+                of
+              </span>
+              <span className="font-bold text-[color:var(--color-primary)] text-lg">
+                {totalPages}
+              </span>
             </div>
             <button
               onClick={() =>

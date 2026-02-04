@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import type { ISourceOptions } from "@tsparticles/engine";
-// import type { Container } from "@tsparticles/engine";
 
 let particlesEngineInitialized = false;
 
@@ -52,10 +51,6 @@ const HeroParticlesComponent: React.FC = () => {
     }
   }, []);
 
-  //   const particlesLoaded = async (container?: Container): Promise<void> => {
-  //     console.log(container);
-  //   };
-
   if (!engineInitialized) return null;
 
   return (
@@ -63,7 +58,6 @@ const HeroParticlesComponent: React.FC = () => {
       id="tsparticles"
       className="absolute inset-0 w-full h-full z-0"
       options={particlesOptions}
-      //   particlesLoaded={particlesLoaded}
     />
   );
 };

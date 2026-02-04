@@ -3,7 +3,12 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import UmamiAnalytics from "@/components/UmamiAnalytics";
 
-const poppins = Poppins({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap", // Prevent font swapping delay
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "Romit Sagu | Software Engineering",
@@ -21,6 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <UmamiAnalytics />
       </head>
       <body className={`${poppins.className} antialiased`}>{children}</body>

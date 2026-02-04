@@ -4,33 +4,50 @@ import { useEffect, useState } from "react";
 import { MenuIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 
-// Import all the new components
-const Navbar = dynamic(() => import("@/components/Home/Navbar"));
-const MobileNav = dynamic(() => import("@/components/Home/MobileNav"));
-const HeroSection = dynamic(() => import("@/components/Home/HeroSection"));
-const AboutSection = dynamic(() => import("@/components/Home/AboutSection"));
-const SkillsSection = dynamic(() => import("@/components/Home/SkillsSection"));
+// Critical components - load immediately
+import HeroSection from "@/components/Home/HeroSection";
+import Navbar from "@/components/Home/Navbar";
+
+// Secondary components - lazy load with ssr: false for better TBT
+const MobileNav = dynamic(() => import("@/components/Home/MobileNav"), {
+  ssr: false,
+  loading: () => null,
+});
+
+// Heavy animation components - lazy load
+const AboutSection = dynamic(() => import("@/components/Home/AboutSection"), {
+  ssr: true,
+});
+const SkillsSection = dynamic(() => import("@/components/Home/SkillsSection"), {
+  ssr: true,
+});
 const ExperienceSection = dynamic(
   () => import("@/components/Home/ExperienceSection"),
+  { ssr: true },
 );
 const CertificatesSection = dynamic(
   () => import("@/components/Home/CertificatesSection"),
+  { ssr: true },
 );
 const ProjectsSection = dynamic(
   () => import("@/components/Home/ProjectsSection"),
+  { ssr: true },
 );
 const TestimonialsSection = dynamic(
   () => import("@/components/Home/TestimonialsSection"),
+  { ssr: true },
 );
-// const BlogSection = dynamic(() => import("@/components/Home/BlogSection"));
 const SignatureProjectSection = dynamic(
   () => import("@/components/Home/SignatureProjectSection"),
+  { ssr: true },
 );
 const ContactSection = dynamic(
   () => import("@/components/Home/ContactSection"),
+  { ssr: true },
 );
 const LocationSection = dynamic(
   () => import("@/components/Home/LocationSection"),
+  { ssr: true },
 );
 
 const navLinks = [
@@ -49,22 +66,32 @@ export default function HomePage() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   useEffect(() => {
+    // Debounce observer to prevent excessive updates
+    let timeoutId: NodeJS.Timeout;
     const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
+          if (entry.isIntersecting) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+              setActiveSection(entry.target.id);
+            }, 50);
+          }
         });
       },
-      { root: null, rootMargin: "0px", threshold: 0.7 },
+      { root: null, rootMargin: "0px", threshold: 0.5 },
     );
     sections.forEach((section) => observer.observe(section));
-    return () => sections.forEach((section) => observer.unobserve(section));
+    return () => {
+      clearTimeout(timeoutId);
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, []);
 
   return (
     <>
-      <main className="min-h-screen bg-[#151515] text-gray-200 font-sans relative transition-colors duration-500">
+      <main className="w-full min-h-screen bg-[#151515] text-gray-200 font-sans relative transition-colors duration-500 overflow-x-hidden">
         <Navbar activeSection={activeSection} navLinks={navLinks} />
         <MobileNav
           isNavOpen={isNavOpen}
@@ -75,6 +102,7 @@ export default function HomePage() {
         <button
           onClick={() => setIsNavOpen(true)}
           className="fixed top-4 right-6 z-50 p-2 text-gray-400 md:hidden"
+          aria-label="Open navigation menu"
         >
           <MenuIcon size={24} />
         </button>
@@ -86,7 +114,6 @@ export default function HomePage() {
         <CertificatesSection />
         <ProjectsSection />
         <TestimonialsSection />
-        {/* <BlogSection /> */}
         <SignatureProjectSection />
         <ContactSection />
         <LocationSection />

@@ -159,95 +159,175 @@ export default function Layout({
       {/* Mobile Menu */}
       <AnimatePresence>
         {isNavOpen && (
-          <motion.div
-            className="fixed inset-0 z-[100] bg-[#151515] p-6 md:hidden"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex justify-between items-center mb-12">
-              <Link
-                href="/"
-                onClick={() => setIsNavOpen(false)}
-                className="text-2xl font-bold bg-gradient-to-r from-emerald-500 to-emerald-400 bg-clip-text text-transparent cursor-pointer"
-              >
-                Romit Sagu
-              </Link>
-              <button
-                onClick={() => setIsNavOpen(false)}
-                className="p-2 text-gray-400"
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <ul className="flex flex-col space-y-6 text-center">
-              <li>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 z-[90] bg-black/40 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsNavOpen(false)}
+            />
+
+            {/* Nav Drawer */}
+            <motion.div
+              className="fixed right-0 top-0 bottom-0 z-[100] w-full max-w-sm bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f] shadow-2xl md:hidden overflow-y-auto"
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              {/* Header */}
+              <div className="sticky top-0 z-10 flex justify-between items-center p-6 border-b border-gray-800/50 bg-gradient-to-b from-[#1a1a1a] to-transparent">
                 <Link
                   href="/"
                   onClick={() => setIsNavOpen(false)}
-                  className="text-2xl font-semibold text-gray-400 hover:text-emerald-400 transition-colors cursor-pointer"
+                  className="text-2xl font-bold bg-gradient-to-r from-emerald-500 to-emerald-400 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity"
                 >
-                  Home
+                  Romit Sagu
                 </Link>
-              </li>
-              <li>
-                <Link
-                  href="/Projects"
+                <motion.button
                   onClick={() => setIsNavOpen(false)}
-                  className={`text-2xl font-semibold transition-colors cursor-pointer ${isProjectsActive ? "bg-emerald-400 font-bold" : "text-gray-400 hover:text-emerald-400"}`}
+                  className="p-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Projects
-                </Link>
-              </li>
-              {projectLinks.map((project) => {
-                const isActive = pathname === project.link;
-                return (
-                  <li key={project.name}>
+                  <X size={24} />
+                </motion.button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="px-6 py-8">
+                <motion.ul
+                  className="flex flex-col space-y-2"
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {/* Home Link */}
+                  <motion.li
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0, duration: 0.3 }}
+                  >
                     <Link
-                      href={project.link}
+                      href="/"
                       onClick={() => setIsNavOpen(false)}
-                      className={`text-xl font-medium transition-colors cursor-pointer ml-4
-                        ${
-                          isActive
-                            ? "text-emerald-400 font-bold"
-                            : "text-gray-500 hover:text-emerald-400"
-                        }`}
+                      className="block px-4 py-3 text-lg font-semibold rounded-lg transition-all duration-200 cursor-pointer text-gray-300 hover:text-white hover:bg-emerald-500/10"
                     >
-                      {project.name}
+                      Home
                     </Link>
-                  </li>
-                );
-              })}
-              <li>
-                <Link
-                  href="/contact"
-                  onClick={() => setIsNavOpen(false)}
-                  className="text-2xl font-semibold text-gray-400 hover:text-emerald-400 transition-colors cursor-pointer"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li className="flex justify-center space-x-6 mt-8">
-                <a
+                  </motion.li>
+
+                  {/* Projects Link */}
+                  <motion.li
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05, duration: 0.3 }}
+                    className="relative group"
+                  >
+                    <Link
+                      href="/Projects"
+                      onClick={() => setIsNavOpen(false)}
+                      className={`block px-4 py-3 text-lg font-semibold rounded-lg transition-all duration-200 cursor-pointer relative group ${
+                        isProjectsActive
+                          ? "text-emerald-400"
+                          : "text-gray-300 hover:text-white"
+                      }`}
+                    >
+                      <span className="relative z-10">Projects</span>
+                      {isProjectsActive && (
+                        <motion.div
+                          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"
+                          layoutId="activeIndicator"
+                          transition={{ type: "spring", bounce: 0.2 }}
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-emerald-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 -z-10" />
+                    </Link>
+                  </motion.li>
+
+                  {/* Project Subitems */}
+                  <motion.div className="pl-2 space-y-1">
+                    {projectLinks.slice(1).map((project, index) => {
+                      const isActive = pathname === project.link;
+                      return (
+                        <motion.div
+                          key={project.name}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            delay: 0.1 + index * 0.03,
+                            duration: 0.3,
+                          }}
+                        >
+                          <Link
+                            href={project.link}
+                            onClick={() => setIsNavOpen(false)}
+                            className={`block px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
+                              isActive
+                                ? "text-emerald-400 bg-emerald-500/10"
+                                : "text-gray-400 hover:text-emerald-400 hover:bg-emerald-500/5"
+                            }`}
+                          >
+                            {project.name}
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
+                  </motion.div>
+
+                  {/* Contact Link */}
+                  <motion.li
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35, duration: 0.3 }}
+                    className="pt-4"
+                  >
+                    <Link
+                      href="/Contact"
+                      onClick={() => setIsNavOpen(false)}
+                      className="block px-4 py-3 text-lg font-semibold rounded-lg transition-all duration-200 cursor-pointer text-gray-300 hover:text-white hover:bg-emerald-500/10"
+                    >
+                      Contact
+                    </Link>
+                  </motion.li>
+                </motion.ul>
+              </nav>
+
+              {/* Divider */}
+              <div className="mx-6 h-px bg-gradient-to-r from-gray-800/0 via-gray-800 to-gray-800/0" />
+
+              {/* Social Links */}
+              <motion.div
+                className="flex justify-center items-center space-x-8 p-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.3 }}
+              >
+                <motion.a
                   href="https://github.com/NinePiece2"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-emerald-400 transition-colors"
+                  className="text-gray-400 hover:text-emerald-400 transition-colors p-2 rounded-lg hover:bg-gray-800/50"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <GithubIcon className="w-8 h-8" />
-                </a>
-                <a
+                  <GithubIcon className="w-6 h-6" />
+                </motion.a>
+                <motion.a
                   href="https://linkedin.com/in/romit-sagu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-emerald-400 transition-colors"
+                  className="text-gray-400 hover:text-emerald-400 transition-colors p-2 rounded-lg hover:bg-gray-800/50"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <LinkedinIcon className="w-8 h-8" />
-                </a>
-              </li>
-            </ul>
-          </motion.div>
+                  <LinkedinIcon className="w-6 h-6" />
+                </motion.a>
+              </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
       <main className="pt-13">{children}</main>
