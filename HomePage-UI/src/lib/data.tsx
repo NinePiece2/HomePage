@@ -116,7 +116,7 @@ export const experience = [
     ],
   },
   {
-    role: "Avionics Specialist",
+    role: "Software Engineering Lead & Avionics Specialist",
     company: "Toronto Metropolitan Aero Design (TMAD)",
     duration: "May 2024 - Sept 2025",
     logo: "/companyLogos/tmad.png",
