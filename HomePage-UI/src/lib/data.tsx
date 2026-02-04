@@ -97,7 +97,7 @@ export const projects = [
 
 export const experience = [
   {
-    role: "Senior Backend Devloper",
+    role: "Senior Backend Developer",
     company: "CIBC",
     duration: "Feb 2026 - Present",
     logo: "/companyLogos/cibc.png",
