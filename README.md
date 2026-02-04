@@ -124,7 +124,7 @@ The application follows a modern microservices architecture with:
 - **Styling**: Tailwind CSS 3.4+
 - **Animations**: Framer Motion 12.23+
 - **UI Components**: Custom components with Lucide React icons
-- **Data Grid**: Syncfusion EJ2 React Grids
+- **Data Grid**: ShadcnUI Table
 - **Maps**: React Leaflet for interactive maps
 - **Particles**: TSParticles for background effects
 - **Build Tool**: Turbopack for fast development
@@ -302,9 +302,6 @@ Create **HomePage-UI/.env.local**:
 ```env
 # API Configuration
 API_BASE_URL=http://localhost:5298
-
-# Syncfusion License (required for data grid components)
-SYNCFUSION_LICENSE=your_syncfusion_license_key_here
 
 # Optional: Disable Next.js telemetry
 NEXT_TELEMETRY_DISABLED=1
