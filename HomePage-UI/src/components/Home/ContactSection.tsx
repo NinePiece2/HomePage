@@ -1,11 +1,12 @@
 const contactData = {
-  "title": "Get in Touch",
-  "subtitle": "I'm currently seeking new opportunities and am open to collaboration. Feel free to reach out!",
-  "button": {
-    "text": "Say Hello 👋",
-    "href": "/Contact"
-  }
-}
+  title: "Get in Touch",
+  subtitle:
+    "I'm currently seeking new opportunities and am open to collaboration. Feel free to reach out!",
+  button: {
+    text: "Say Hello 👋",
+    href: "/Contact",
+  },
+};
 
 const ContactSection: React.FC = () => (
   <section id="contact" className="py-24 max-w-3xl mx-auto text-center px-6">

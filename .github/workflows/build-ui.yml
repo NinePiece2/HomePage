@@ -34,7 +34,6 @@ jobs:
             push: true
             tags: ${{ secrets.DOCKER_USERNAME }}/homepage:ui
             build-args: |
-              SYNCFUSION_LICENSE=${{ secrets.SyncfusionLicense }}
               NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
               NEXT_PUBLIC_UMAMI_URL=${{ secrets.NEXT_PUBLIC_UMAMI_URL }}
             # cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/homepage:ui-cache

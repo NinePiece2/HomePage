@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const MapComponent = dynamic(() => import('@/components/MapComponent'), {
+const MapComponent = dynamic(() => import("@/components/MapComponent"), {
   ssr: false,
 });
 
@@ -25,7 +25,8 @@ const LocationSection: React.FC = () => {
           <MapComponent position={position} />
         </motion.div>
         <p className="mt-4 text-gray-400">
-          Currently based in Toronto, Ontario, Canada. Open to remote, hybrid and on-site opportunities.
+          Currently based in Toronto, Ontario, Canada. Open to remote, hybrid
+          and on-site opportunities.
         </p>
       </div>
     </section>

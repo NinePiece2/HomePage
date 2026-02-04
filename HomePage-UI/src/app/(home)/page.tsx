@@ -10,14 +10,28 @@ const MobileNav = dynamic(() => import("@/components/Home/MobileNav"));
 const HeroSection = dynamic(() => import("@/components/Home/HeroSection"));
 const AboutSection = dynamic(() => import("@/components/Home/AboutSection"));
 const SkillsSection = dynamic(() => import("@/components/Home/SkillsSection"));
-const ExperienceSection = dynamic(() => import("@/components/Home/ExperienceSection"));
-const CertificatesSection = dynamic(() => import("@/components/Home/CertificatesSection"));
-const ProjectsSection = dynamic(() => import("@/components/Home/ProjectsSection"));
-const TestimonialsSection = dynamic(() => import("@/components/Home/TestimonialsSection"));
+const ExperienceSection = dynamic(
+  () => import("@/components/Home/ExperienceSection"),
+);
+const CertificatesSection = dynamic(
+  () => import("@/components/Home/CertificatesSection"),
+);
+const ProjectsSection = dynamic(
+  () => import("@/components/Home/ProjectsSection"),
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/Home/TestimonialsSection"),
+);
 // const BlogSection = dynamic(() => import("@/components/Home/BlogSection"));
-const SignatureProjectSection = dynamic(() => import("@/components/Home/SignatureProjectSection"));
-const ContactSection = dynamic(() => import("@/components/Home/ContactSection"));
-const LocationSection = dynamic(() => import("@/components/Home/LocationSection"));
+const SignatureProjectSection = dynamic(
+  () => import("@/components/Home/SignatureProjectSection"),
+);
+const ContactSection = dynamic(
+  () => import("@/components/Home/ContactSection"),
+);
+const LocationSection = dynamic(
+  () => import("@/components/Home/LocationSection"),
+);
 
 const navLinks = [
   { name: "About", to: "about", id: "about" },
@@ -42,7 +56,7 @@ export default function HomePage() {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { root: null, rootMargin: "0px", threshold: 0.7 }
+      { root: null, rootMargin: "0px", threshold: 0.7 },
     );
     sections.forEach((section) => observer.observe(section));
     return () => sections.forEach((section) => observer.unobserve(section));
@@ -52,14 +66,14 @@ export default function HomePage() {
     <>
       <main className="min-h-screen bg-[#151515] text-gray-200 font-sans relative transition-colors duration-500">
         <Navbar activeSection={activeSection} navLinks={navLinks} />
-        <MobileNav 
-          isNavOpen={isNavOpen} 
-          setIsNavOpen={setIsNavOpen} 
-          activeSection={activeSection} 
-          navLinks={navLinks} 
+        <MobileNav
+          isNavOpen={isNavOpen}
+          setIsNavOpen={setIsNavOpen}
+          activeSection={activeSection}
+          navLinks={navLinks}
         />
-        <button 
-          onClick={() => setIsNavOpen(true)} 
+        <button
+          onClick={() => setIsNavOpen(true)}
           className="fixed top-4 right-6 z-50 p-2 text-gray-400 md:hidden"
         >
           <MenuIcon size={24} />

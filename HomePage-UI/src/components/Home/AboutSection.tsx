@@ -1,6 +1,7 @@
 const aboutdata = {
-  "subtitle": "Computer Engineering graduate passionate about Software Engineering, problem-solving, and turning ideas into reliable software. I'm skilled in programming languages like Java, Python, C, C++, C#, HTML, CSS and JavaScript with an interest in Machine Learning. Highly motivated to constantly develop skills and grow professionally. Determined to learn in the workplace individually and as a team to achieve common goals and objectives."
-}
+  subtitle:
+    "Computer Engineering graduate passionate about Software Engineering, problem-solving, and turning ideas into reliable software. I'm skilled in programming languages like Java, Python, C, C++, C#, HTML, CSS and JavaScript with an interest in Machine Learning. Highly motivated to constantly develop skills and grow professionally. Determined to learn in the workplace individually and as a team to achieve common goals and objectives.",
+};
 
 const AboutSection: React.FC = () => (
   <section id="about" className="py-24 max-w-4xl mx-auto px-6 text-center">

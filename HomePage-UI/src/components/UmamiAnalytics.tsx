@@ -13,12 +13,5 @@ export default function UmamiAnalytics({
 }: UmamiAnalyticsProps) {
   if (!src || !websiteId) return null;
 
-  return (
-    <Script
-      async
-      defer
-      src={src}
-      data-website-id={websiteId}
-    />
-  );
+  return <Script async defer src={src} data-website-id={websiteId} />;
 }

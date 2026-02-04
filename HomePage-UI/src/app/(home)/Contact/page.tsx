@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SendHorizonal, CheckCircle, XCircle } from "lucide-react";
 import { ArrowLeft } from "lucide-react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 interface ContactFormData {
   name: string;
@@ -28,14 +28,16 @@ export default function ContactPage() {
   const router = useRouter();
   const [formState, setFormState] = useState<FormState>("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleTopicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ 
-      ...prev, 
+    setFormData((prev) => ({
+      ...prev,
       topic: e.target.value,
       otherTopic: e.target.value === "Other" ? "" : undefined,
     }));
@@ -46,8 +48,11 @@ export default function ContactPage() {
     setFormState("submitting");
 
     try {
-      const payload = formData.topic === "Other" ? formData : { ...formData, otherTopic: undefined };
-      
+      const payload =
+        formData.topic === "Other"
+          ? formData
+          : { ...formData, otherTopic: undefined };
+
       const response = await fetch("/api/proxy/Contact/SendContactForm", {
         method: "POST",
         headers: {
@@ -58,7 +63,13 @@ export default function ContactPage() {
 
       if (response.ok) {
         setFormState("success");
-        setFormData({ name: "", email: "", topic: "", otherTopic: "", message: "" });
+        setFormData({
+          name: "",
+          email: "",
+          topic: "",
+          otherTopic: "",
+          message: "",
+        });
       } else {
         setFormState("error");
         console.error("Failed to send form data:", response.statusText);
@@ -68,13 +79,13 @@ export default function ContactPage() {
       console.error("Submission error:", error);
     }
   };
-  
+
   useEffect(() => {
     if (formState === "success") {
       const timer = setTimeout(() => {
         router.push("/");
       }, 3000);
-      
+
       return () => clearTimeout(timer);
     }
   }, [formState, router]);
@@ -83,17 +94,17 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-[#151515] text-gray-200 font-sans relative transition-colors duration-500">
-        <nav className="absolute top-8 left-6 md:left-12 ">
-            <motion.button
-            onClick={() => router.push("/")}
-            className="flex items-center gap-2 text-gray-400 hover:text-emerald-500 transition-colors cursor-pointer"
-            aria-label="Go back to the previous page"
-            whileHover={{ x: -5 }}
-            >
-            <ArrowLeft size={20} />
-            <span className="hidden md:inline">Home</span>
-            </motion.button>
-        </nav>
+      <nav className="absolute top-8 left-6 md:left-12 ">
+        <motion.button
+          onClick={() => router.push("/")}
+          className="flex items-center gap-2 text-gray-400 hover:text-emerald-500 transition-colors cursor-pointer"
+          aria-label="Go back to the previous page"
+          whileHover={{ x: -5 }}
+        >
+          <ArrowLeft size={20} />
+          <span className="hidden md:inline">Home</span>
+        </motion.button>
+      </nav>
       <section id="contact" className="py-24 max-w-4xl mx-auto px-6">
         <div className="flex flex-col text-center w-full mb-12">
           <motion.h2
@@ -128,7 +139,10 @@ export default function ContactPage() {
           <form onSubmit={handleSubmit} className="flex flex-wrap -m-2">
             <div className="p-2 w-full md:w-1/2">
               <div className="relative">
-                <label htmlFor="name" className="leading-7 text-sm text-gray-400">
+                <label
+                  htmlFor="name"
+                  className="leading-7 text-sm text-gray-400"
+                >
                   Name
                 </label>
                 <input
@@ -145,7 +159,10 @@ export default function ContactPage() {
             </div>
             <div className="p-2 w-full md:w-1/2">
               <div className="relative">
-                <label htmlFor="email" className="leading-7 text-sm text-gray-400">
+                <label
+                  htmlFor="email"
+                  className="leading-7 text-sm text-gray-400"
+                >
                   Email
                 </label>
                 <input
@@ -165,54 +182,62 @@ export default function ContactPage() {
                 Topic
               </label>
               <div className="flex flex-wrap items-center -mx-2">
-                {["Project", "Software Engineering", "Other"].map((topic, index) => (
-                  <div key={index} className="px-2">
-                    <label className="inline-flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="topic"
-                        value={topic}
-                        checked={formData.topic === topic}
-                        onChange={handleTopicChange}
-                        disabled={isFormDisabled}
-                        className="form-radio h-5 w-5 text-emerald-600 border-gray-700/50 bg-[#111111] checked:bg-emerald-600 focus:ring-emerald-400"
-                      />
-                      <span className="ml-2 text-gray-400">{topic}</span>
-                    </label>
-                  </div>
-                ))}
+                {["Project", "Software Engineering", "Other"].map(
+                  (topic, index) => (
+                    <div key={index} className="px-2">
+                      <label className="inline-flex items-center cursor-pointer">
+                        <input
+                          type="radio"
+                          name="topic"
+                          value={topic}
+                          checked={formData.topic === topic}
+                          onChange={handleTopicChange}
+                          disabled={isFormDisabled}
+                          className="form-radio h-5 w-5 text-emerald-600 border-gray-700/50 bg-[#111111] checked:bg-emerald-600 focus:ring-emerald-400"
+                        />
+                        <span className="ml-2 text-gray-400">{topic}</span>
+                      </label>
+                    </div>
+                  ),
+                )}
               </div>
             </div>
             <AnimatePresence>
-                {formData.topic === "Other" && (
-                    <motion.div 
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="p-2 w-full overflow-hidden"
+              {formData.topic === "Other" && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="p-2 w-full overflow-hidden"
+                >
+                  <div className="relative">
+                    <label
+                      htmlFor="otherTopic"
+                      className="leading-7 text-sm text-gray-400"
                     >
-                      <div className="relative">
-                        <label htmlFor="otherTopic" className="leading-7 text-sm text-gray-400">
-                          Please specify your topic
-                        </label>
-                        <input
-                          type="text"
-                          id="otherTopic"
-                          name="otherTopic"
-                          value={formData.otherTopic}
-                          onChange={handleChange}
-                          required
-                          disabled={isFormDisabled}
-                          className="w-full bg-[#111111] bg-opacity-50 rounded border border-gray-700/50 focus:border-emerald-500 focus:bg-transparent focus:ring-2 focus:ring-emerald-400 text-base outline-none text-gray-200 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                        />
-                      </div>
-                    </motion.div>
-                )}
+                      Please specify your topic
+                    </label>
+                    <input
+                      type="text"
+                      id="otherTopic"
+                      name="otherTopic"
+                      value={formData.otherTopic}
+                      onChange={handleChange}
+                      required
+                      disabled={isFormDisabled}
+                      className="w-full bg-[#111111] bg-opacity-50 rounded border border-gray-700/50 focus:border-emerald-500 focus:bg-transparent focus:ring-2 focus:ring-emerald-400 text-base outline-none text-gray-200 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
             <div className="p-2 w-full">
               <div className="relative">
-                <label htmlFor="message" className="leading-7 text-sm text-gray-400">
+                <label
+                  htmlFor="message"
+                  className="leading-7 text-sm text-gray-400"
+                >
                   Message
                 </label>
                 <textarea
@@ -230,14 +255,34 @@ export default function ContactPage() {
             <div className="p-2 w-full text-center">
               <button
                 type="submit"
-                disabled={isFormDisabled || !formData.topic || (formData.topic === "Other" && !formData.otherTopic)}
+                disabled={
+                  isFormDisabled ||
+                  !formData.topic ||
+                  (formData.topic === "Other" && !formData.otherTopic)
+                }
                 className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mx-auto"
               >
                 {formState === "submitting" ? (
                   <>
-                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      className="animate-spin h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     Sending...
                   </>
@@ -258,7 +303,10 @@ export default function ContactPage() {
             </div>
             {formState === "error" && (
               <div className="p-2 w-full text-center text-red-400 mt-4">
-                <p>There was an error sending your message. Please try again or contact me directly.</p>
+                <p>
+                  There was an error sending your message. Please try again or
+                  contact me directly.
+                </p>
               </div>
             )}
           </form>

@@ -20,22 +20,25 @@ interface MapComponentProps {
   zoom?: number;
 }
 
-export default function MapComponent({ position, zoom = 13 }: MapComponentProps) {
-//   const [isDarkMode, setIsDarkMode] = useState(true);
+export default function MapComponent({
+  position,
+  zoom = 13,
+}: MapComponentProps) {
+  //   const [isDarkMode, setIsDarkMode] = useState(true);
 
-const isDarkMode = true;
+  const isDarkMode = true;
 
-//   useEffect(() => {
-//     // if (typeof window === "undefined") return;
+  //   useEffect(() => {
+  //     // if (typeof window === "undefined") return;
 
-//     const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-//     setIsDarkMode(darkModeQuery.matches);
+  //     const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  //     setIsDarkMode(darkModeQuery.matches);
 
-//     const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-//     darkModeQuery.addEventListener("change", handleChange);
+  //     const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+  //     darkModeQuery.addEventListener("change", handleChange);
 
-//     return () => darkModeQuery.removeEventListener("change", handleChange);
-//   }, []);
+  //     return () => darkModeQuery.removeEventListener("change", handleChange);
+  //   }, []);
 
   const tileUrl = isDarkMode
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"

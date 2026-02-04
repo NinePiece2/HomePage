@@ -9,9 +9,18 @@ const ExperienceSection: React.FC = () => (
     <h2 className="text-4xl font-bold mb-12 text-center">Career & Education</h2>
     <div className="relative border-l-2 border-emerald-400/30">
       {experience.map((exp, index) => (
-        <TimelineItem key={index} icon={<LaptopCodeIcon />} data={exp} index={index} />
+        <TimelineItem
+          key={index}
+          icon={<LaptopCodeIcon />}
+          data={exp}
+          index={index}
+        />
       ))}
-      <TimelineItem icon={<CodeIcon />} data={education} index={experience.length} />
+      <TimelineItem
+        icon={<CodeIcon />}
+        data={education}
+        index={experience.length}
+      />
     </div>
   </section>
 );

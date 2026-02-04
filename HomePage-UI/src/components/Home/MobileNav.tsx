@@ -17,7 +17,12 @@ interface MobileNavProps {
   navLinks: NavLink[];
 }
 
-const MobileNav: React.FC<MobileNavProps> = ({ isNavOpen, setIsNavOpen, activeSection, navLinks }) => (
+const MobileNav: React.FC<MobileNavProps> = ({
+  isNavOpen,
+  setIsNavOpen,
+  activeSection,
+  navLinks,
+}) => (
   <AnimatePresence>
     {isNavOpen && (
       <motion.div
@@ -28,8 +33,20 @@ const MobileNav: React.FC<MobileNavProps> = ({ isNavOpen, setIsNavOpen, activeSe
         transition={{ duration: 0.3 }}
       >
         <div className="flex justify-between items-center mb-12">
-          <Link to="hero" spy smooth duration={500} onClick={() => setIsNavOpen(false)} className="text-2xl font-bold bg-gradient-to-r from-emerald-500 to-emerald-400 bg-clip-text text-transparent cursor-pointer">Romit Sagu</Link>
-          <button onClick={() => setIsNavOpen(false)} className="p-2 text-gray-400">
+          <Link
+            to="hero"
+            spy
+            smooth
+            duration={500}
+            onClick={() => setIsNavOpen(false)}
+            className="text-2xl font-bold bg-gradient-to-r from-emerald-500 to-emerald-400 bg-clip-text text-transparent cursor-pointer"
+          >
+            Romit Sagu
+          </Link>
+          <button
+            onClick={() => setIsNavOpen(false)}
+            className="p-2 text-gray-400"
+          >
             <X size={24} />
           </button>
         </div>
@@ -49,7 +66,10 @@ const MobileNav: React.FC<MobileNavProps> = ({ isNavOpen, setIsNavOpen, activeSe
             </li>
           ))}
           <li>
-            <a href="/Resume" className="px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center gap-2 hover:scale-105 transition-transform mt-4">
+            <a
+              href="/Resume"
+              className="px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center gap-2 hover:scale-105 transition-transform mt-4"
+            >
               Resume <Download size={18} />
             </a>
           </li>

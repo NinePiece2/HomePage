@@ -5,7 +5,10 @@ import { testimonials } from "@/lib/data";
 import Image from "next/image";
 
 const TestimonialsSection: React.FC = () => (
-  <section id="testimonials" className="py-24 mx-auto px-6 text-center bg-[#111111]">
+  <section
+    id="testimonials"
+    className="py-24 mx-auto px-6 text-center bg-[#111111]"
+  >
     <div className="max-w-4xl mx-auto px-6 text-center">
       <h2 className="text-4xl font-bold mb-4">What Others Say</h2>
       <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-emerald-500 mx-auto mb-8 rounded-full"></div>

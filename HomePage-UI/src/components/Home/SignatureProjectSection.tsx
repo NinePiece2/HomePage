@@ -14,7 +14,11 @@ const MarkdownText: React.FC<{ text: string }> = ({ text }) => {
     <>
       {parts.map((part, index) => {
         if (part.startsWith("**") && part.endsWith("**")) {
-          return <span className="font-extrabold" key={index}>{part.slice(2, -2)}</span>;
+          return (
+            <span className="font-extrabold" key={index}>
+              {part.slice(2, -2)}
+            </span>
+          );
         }
         return <span key={index}>{part}</span>;
       })}
@@ -25,7 +29,8 @@ const MarkdownText: React.FC<{ text: string }> = ({ text }) => {
 const SignatureProjectSection: React.FC = () => (
   <section id="signature-project" className="py-24 max-w-7xl mx-auto px-6">
     <h2 className="text-4xl font-extrabold mb-2 pb-2 text-center bg-gradient-to-r from-emerald-400 to-emerald-500 bg-clip-text text-transparent">
-      {projectData.title}: {projectData.projectName} <Sparkles className="inline" />
+      {projectData.title}: {projectData.projectName}{" "}
+      <Sparkles className="inline" />
     </h2>
     <div className="w-32 h-1 bg-gradient-to-r from-emerald-400 to-emerald-500 mx-auto mb-8 rounded-full"></div>
 
@@ -55,7 +60,9 @@ const SignatureProjectSection: React.FC = () => (
         viewport={{ once: true }}
       >
         <h3 className="text-3xl font-bold mb-4">Project Overview</h3>
-        <p className="text-lg text-gray-400 leading-relaxed mb-6">{projectData.overview}</p>
+        <p className="text-lg text-gray-400 leading-relaxed mb-6">
+          {projectData.overview}
+        </p>
 
         <h4 className="text-2xl font-semibold mb-2">Technical Deep Dive</h4>
         <p className="text-gray-400 leading-relaxed mb-6">
@@ -72,7 +79,8 @@ const SignatureProjectSection: React.FC = () => (
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
-              View Code <GithubIcon className="w-4 h-4 transition-transform group-hover:rotate-12" />
+              View Code{" "}
+              <GithubIcon className="w-4 h-4 transition-transform group-hover:rotate-12" />
             </motion.a>
           )}
           {projectData.links.demo && (
@@ -84,7 +92,11 @@ const SignatureProjectSection: React.FC = () => (
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
-              Live Demo <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              Live Demo{" "}
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </motion.a>
           )}
           {projectData.links.portfolio && (
@@ -94,7 +106,11 @@ const SignatureProjectSection: React.FC = () => (
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
-              Portfolio Site Link <BookOpen size={16} className="transition-transform group-hover:-rotate-12" />
+              Portfolio Site Link{" "}
+              <BookOpen
+                size={16}
+                className="transition-transform group-hover:-rotate-12"
+              />
             </motion.a>
           )}
         </div>

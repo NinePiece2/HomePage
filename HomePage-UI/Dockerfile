@@ -4,12 +4,6 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Syncfusion License Activation
-ARG SYNCFUSION_LICENSE
-ENV SYNCFUSION_LICENSE=${SYNCFUSION_LICENSE}
-RUN npx syncfusion-license activate
-RUN export SYNCFUSION_LICENSE=""
-
 # Disable Next.js telemetry
 ENV NEXT_TELEMETRY_DISABLED=1
 

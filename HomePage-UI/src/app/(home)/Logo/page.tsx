@@ -1,7 +1,7 @@
-"use client"; 
+"use client";
 
-import { toPng } from 'html-to-image';
-import { useRef } from 'react';
+import { toPng } from "html-to-image";
+import { useRef } from "react";
 
 export default function RSPage() {
   const ref = useRef(null);
@@ -10,10 +10,10 @@ export default function RSPage() {
     if (ref.current === null) {
       return;
     }
-    toPng(ref.current, { cacheBust: true, })
+    toPng(ref.current, { cacheBust: true })
       .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.download = 'rs-logo.png';
+        const link = document.createElement("a");
+        link.download = "rs-logo.png";
         link.href = dataUrl;
         link.click();
       })
@@ -31,8 +31,8 @@ export default function RSPage() {
           </span>
         </h1>
       </div>
-      <button 
-        onClick={handleDownloadImage} 
+      <button
+        onClick={handleDownloadImage}
         className="mt-8 px-6 py-3 border border-gray-700 rounded-full text-white hover:border-emerald-500 transition-all"
       >
         Download as PNG

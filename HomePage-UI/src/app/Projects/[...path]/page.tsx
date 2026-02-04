@@ -69,38 +69,36 @@ export default function ProjectPage() {
     if (!hash) return;
 
     const scrollToHash = () => {
-        const el = document.getElementById(hash);
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
 
-            const yOffset = -80;
-            const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
-            window.scrollTo({ top: y, behavior: "smooth" });
+        const yOffset = -80;
+        const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
 
-            return true;
-        }
-        return false;
+        return true;
+      }
+      return false;
     };
-
 
     // try immediately
     if (scrollToHash()) return;
 
     // otherwise watch for DOM changes
     const observer = new MutationObserver(() => {
-        if (scrollToHash()) {
+      if (scrollToHash()) {
         observer.disconnect();
-        }
+      }
     });
 
     observer.observe(document.body, {
-        childList: true,
-        subtree: true,
+      childList: true,
+      subtree: true,
     });
 
     return () => observer.disconnect();
-    }, [projectData]);
-
+  }, [projectData]);
 
   const renderContent = () => {
     if (loading) {
@@ -186,7 +184,9 @@ export default function ProjectPage() {
               whileHover={{ y: -3 }}
             >
               <GithubIcon className="w-6 h-6" />
-              <span className="text-sm font-medium hidden md:inline">GitHub</span>
+              <span className="text-sm font-medium hidden md:inline">
+                GitHub
+              </span>
             </motion.a>
           )}
           {projectData.projectApplicationLink && (
@@ -199,7 +199,9 @@ export default function ProjectPage() {
               whileHover={{ y: -3 }}
             >
               <Globe size={24} />
-              <span className="text-sm font-medium hidden md:inline">Live Site</span>
+              <span className="text-sm font-medium hidden md:inline">
+                Live Site
+              </span>
             </motion.a>
           )}
         </div>

@@ -29,7 +29,8 @@ const HeroSection: React.FC = () => (
         transition={{ delay: 0.2, duration: 0.5 }}
         className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl"
       >
-        Computer Engineering Graduate specializing in building robust and scalable software solutions.
+        Computer Engineering Graduate specializing in building robust and
+        scalable software solutions.
       </motion.p>
 
       <motion.div
@@ -63,7 +64,8 @@ const HeroSection: React.FC = () => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className=" flex gap-6  mt-8 sm:mt-12 mb-20 sm:mb-0">
+        className=" flex gap-6  mt-8 sm:mt-12 mb-20 sm:mb-0"
+      >
         <a
           href="https://github.com/NinePiece2"
           target="_blank"

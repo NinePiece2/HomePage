@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -22,8 +22,13 @@ const BlogSection: React.FC = () => (
             <div className="p-6">
               <h3 className="text-xl font-bold mb-2">{post.title}</h3>
               <p className="text-sm text-gray-400 mb-3">{post.date}</p>
-              <p className="text-gray-400 mb-4 text-sm leading-relaxed">{post.excerpt}</p>
-              <a href={post.link} className="flex items-center gap-1 text-sm font-medium text-emerald-500 hover:underline transition-colors">
+              <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+                {post.excerpt}
+              </p>
+              <a
+                href={post.link}
+                className="flex items-center gap-1 text-sm font-medium text-emerald-500 hover:underline transition-colors"
+              >
                 Read more <ArrowRight size={16} />
               </a>
             </div>

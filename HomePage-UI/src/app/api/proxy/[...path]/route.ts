@@ -31,7 +31,11 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
   return proxyRequest(req, resolvedParams, "DELETE");
 }
 
-async function proxyRequest(req: NextRequest, params: { path: string[] }, method: string) {
+async function proxyRequest(
+  req: NextRequest,
+  params: { path: string[] },
+  method: string,
+) {
   const pathSegments = params.path;
 
   if (!pathSegments || pathSegments.length === 0) {
@@ -64,7 +68,10 @@ async function proxyRequest(req: NextRequest, params: { path: string[] }, method
     }
   } catch (error) {
     console.error("Proxy error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
 
@@ -79,7 +86,7 @@ function filterHeaders(headers: Headers): Record<string, string> {
   ];
   return Object.fromEntries(
     Array.from(headers.entries()).filter(
-      ([key]) => !disallowed.includes(key.toLowerCase())
-    )
+      ([key]) => !disallowed.includes(key.toLowerCase()),
+    ),
   );
 }
