@@ -18,7 +18,7 @@
     "@tsparticles/react": "^3.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.31.0",
+    "framer-motion": "^12.33.0",
     "html-to-image": "^1.11.13",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.563.0",
@@ -44,7 +44,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "prettier": "^3.8.1",
-    "shadcn": "^3.7.0",
+    "shadcn": "^3.8.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
