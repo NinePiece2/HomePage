@@ -85,12 +85,32 @@ spec:
   selector:
     run: homepage-ui
   ports:
-    - name: https
+    - name: http
       protocol: TCP
       port: 80
       targetPort: 3000
-      nodePort: 30001
-  type: LoadBalancer
+  type: ClusterIP
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage-ingress
+  namespace: homepage
+spec:
+  ingressClassName: haproxy
+  rules:
+    - host: romitsagu.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: homepage-ui-service
+                port:
+                  number: 80
 
 ---
 
