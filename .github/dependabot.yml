@@ -6,6 +6,8 @@ updates:
       interval: "daily"
       time: "11:00"
       timezone: "America/Toronto"
+    cooldown:
+      default-days: 3
     commit-message:
       prefix: "deps(npm)"
     groups:
@@ -23,6 +25,8 @@ updates:
       timezone: "America/Toronto"
     commit-message:
       prefix: "deps(nuget)"
+    cooldown:
+      default-days: 3
     groups:
       api-dependencies:
         patterns:
@@ -36,6 +40,8 @@ updates:
       interval: "daily"
       time: "11:00"
       timezone: "America/Toronto"
+    cooldown:
+      default-days: 3
     commit-message:
       prefix: "deps(actions)"
     reviewers:
