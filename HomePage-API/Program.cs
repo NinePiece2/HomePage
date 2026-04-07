@@ -16,7 +16,7 @@ namespace HomePage_API
 
             var connectionString = builder.Configuration.GetConnectionString("HomePageEntities");
             builder.Services.AddDbContext<HomePageContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseNpgsql(connectionString));
 
             builder.Services.AddDataProtection()
                 .PersistKeysToDbContext<HomePageContext>();
