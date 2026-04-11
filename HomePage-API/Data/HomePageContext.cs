@@ -71,7 +71,7 @@ public partial class HomePageContext : DbContext, IDataProtectionKeyContext
 
         modelBuilder.Entity<PowerSettings>(entity =>
         {
-            entity.ToTable("power_settings");
+            entity.ToTable("powersettings");
             entity.HasKey(e => e.Key);
             entity.Property(e => e.Key)
                 .HasColumnName("key")
