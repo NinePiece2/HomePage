@@ -14,8 +14,6 @@ updates:
       ui-dependencies:
         patterns:
           - "*"
-    reviewers:
-      - "ninepiece2"
 
   - package-ecosystem: "nuget"
     directory: "/HomePage-API"
@@ -31,8 +29,6 @@ updates:
       api-dependencies:
         patterns:
           - "*"
-    reviewers:
-      - "ninepiece2"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -44,5 +40,3 @@ updates:
       default-days: 3
     commit-message:
       prefix: "deps(actions)"
-    reviewers:
-      - "ninepiece2"
