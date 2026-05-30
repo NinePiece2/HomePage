@@ -40,3 +40,18 @@ updates:
       default-days: 3
     commit-message:
       prefix: "deps(actions)"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "11:00"
+      timezone: "America/Toronto"
+    cooldown:
+      default-days: 3
+    commit-message:
+      prefix: "deps(docker)"
+    groups:
+      docker-images:
+        patterns:
+          - "*"
