@@ -31,7 +31,9 @@ updates:
           - "*"
 
   - package-ecosystem: "github-actions"
-    directory: "/"
+    directories: 
+      - "/HomePage-UI"
+      - "/HomePage-API"
     schedule:
       interval: "daily"
       time: "11:00"
