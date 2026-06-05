@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+import React, { useEffect, useRef } from "react";
 import { loadFull } from "tsparticles";
+import { tsParticles } from "@tsparticles/engine";
 import type { ISourceOptions } from "@tsparticles/engine";
-
-let particlesEngineInitialized = false;
 
 export const particlesOptions: ISourceOptions = {
   fullScreen: { enable: false },
@@ -13,7 +11,7 @@ export const particlesOptions: ISourceOptions = {
     number: { value: 117, density: { enable: true, width: 800, height: 800 } },
     color: { value: "#1c1c1c" },
     shape: { type: "circle" },
-    opacity: { value: 0.5 },
+    opacity: { value: 0.1 },
     size: { value: { min: 1, max: 3 } },
     links: {
       enable: true,
@@ -36,28 +34,34 @@ export const particlesOptions: ISourceOptions = {
 };
 
 const HeroParticlesComponent: React.FC = () => {
-  const [engineInitialized, setEngineInitialized] = useState(
-    particlesEngineInitialized,
-  );
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!particlesEngineInitialized) {
-      initParticlesEngine(async (engine) => {
-        await loadFull(engine);
-      }).then(() => {
-        particlesEngineInitialized = true;
-        setEngineInitialized(true);
-      });
-    }
+    const initParticles = async () => {
+      if (!containerRef.current) {
+        return;
+      }
+
+      try {
+        await loadFull(tsParticles);
+        
+        await tsParticles.load({
+          id: "tsparticles",
+          options: particlesOptions,
+        });
+      } catch (error) {
+        console.error("Failed to load particles:", error);
+      }
+    };
+
+    initParticles();
   }, []);
 
-  if (!engineInitialized) return null;
-
   return (
-    <Particles
+    <div
+      ref={containerRef}
       id="tsparticles"
       className="absolute inset-0 w-full h-full z-0"
-      options={particlesOptions}
     />
   );
 };
