@@ -5,6 +5,9 @@ import { loadFull } from "tsparticles";
 import { tsParticles } from "@tsparticles/engine";
 import type { ISourceOptions } from "@tsparticles/engine";
 
+let isLoadingFull = false;
+let isFullLoaded = false;
+
 export const particlesOptions: ISourceOptions = {
   fullScreen: { enable: false },
   particles: {
@@ -43,7 +46,18 @@ const HeroParticlesComponent: React.FC = () => {
       }
 
       try {
-        await loadFull(tsParticles);
+        // Only load full plugins once globally
+        if (!isFullLoaded && !isLoadingFull) {
+          isLoadingFull = true;
+          await loadFull(tsParticles);
+          isFullLoaded = true;
+          isLoadingFull = false;
+        } else if (isLoadingFull) {
+          // Wait for loadFull to complete if it's in progress
+          while (isLoadingFull) {
+            await new Promise(resolve => setTimeout(resolve, 10));
+          }
+        }
         
         await tsParticles.load({
           id: "tsparticles",
