@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { BookOpen, Globe, ArrowLeft } from "lucide-react";
@@ -27,40 +27,41 @@ export default function ProjectPage() {
   const router = useRouter();
   const pathname = usePathname();
   const projectName = useMemo(() => pathname.split("/").pop(), [pathname]);
+  const missingProjectName = !projectName;
 
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchProjectData = useCallback(async () => {
-    if (!projectName) {
-      setError("Project name not found in URL.");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      setLoading(true);
-      const response = await fetch(`/api/proxy/Projects/${projectName}`);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data: ProjectData = await response.json();
-      setProjectData(data);
-      setError(null);
-    } catch (err) {
-      console.error("Failed to fetch project data:", err);
-      setError("Failed to load project data. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  }, [projectName]);
-
   useEffect(() => {
-    fetchProjectData();
-  }, [fetchProjectData]);
+    if (!projectName) return;
+
+    const controller = new AbortController();
+
+    const loadProjectData = async () => {
+      try {
+        const response = await fetch(`/api/proxy/Projects/${projectName}`, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data: ProjectData = await response.json();
+        setProjectData(data);
+        setError(null);
+      } catch (err) {
+        if (controller.signal.aborted) return;
+
+        console.error("Failed to fetch project data:", err);
+        setError("Failed to load project data. Please try again later.");
+      }
+    };
+
+    void loadProjectData();
+
+    return () => controller.abort();
+  }, [projectName]);
 
   useEffect(() => {
     if (!projectData) return;
@@ -101,7 +102,30 @@ export default function ProjectPage() {
   }, [projectData]);
 
   const renderContent = () => {
-    if (loading) {
+    if (missingProjectName) {
+      return (
+        <motion.div
+          key="error"
+          className="min-h-screen bg-[#151515] flex flex-col items-center justify-center text-red-400 text-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <p className="text-xl font-semibold">Error: Project name not found in URL.</p>
+          <p className="mt-2 text-sm text-red-300">
+            Could not retrieve project information.
+          </p>
+          <button
+            onClick={() => router.back()}
+            className="mt-6 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
+          >
+            Go Back
+          </button>
+        </motion.div>
+      );
+    }
+
+    if (!projectData && !error) {
       return (
         <motion.div
           key="loading"
