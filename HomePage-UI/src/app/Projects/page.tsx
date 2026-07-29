@@ -13,6 +13,60 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+function LinkCell({
+  value,
+  text = "Link",
+}: {
+  value?: string | null;
+  text?: string;
+}) {
+  if (value) {
+    return (
+      <a
+        href={value}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-emerald-400 hover:underline hover:opacity-80 transition-opacity"
+      >
+        {text}
+      </a>
+    );
+  }
+
+  return <span className="text-[color:var(--color-muted-foreground)]">N/A</span>;
+}
+
+function SortHeader({
+  label,
+  sortKey,
+  isActive,
+  direction,
+  onSort,
+}: {
+  label: string;
+  sortKey: string;
+  isActive: boolean;
+  direction?: "asc" | "desc";
+  onSort: (key: string) => void;
+}) {
+  return (
+    <button
+      onClick={() => onSort(sortKey)}
+      className="flex items-center gap-2 hover:text-[color:var(--color-primary)] transition-colors duration-200 font-semibold text-sm uppercase tracking-wide"
+    >
+      {label}
+      <ArrowUpDown
+        size={16}
+        className={`transition-all duration-200 ${
+          isActive
+            ? "text-[color:var(--color-primary)]"
+            : "text-[color:var(--color-muted-foreground)]"
+        } ${direction === "desc" ? "rotate-180" : ""}`}
+      />
+    </button>
+  );
+}
+
 export default function Projects() {
   const [projectsData, setProjectsData] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
@@ -76,53 +130,6 @@ export default function Projects() {
   const paginatedData = sortedData.slice(startIndex, startIndex + pageSize);
   const totalPages = Math.ceil(sortedData.length / pageSize);
 
-  const LinkCell = ({
-    value,
-    text = "Link",
-  }: {
-    value?: string | null;
-    text?: string;
-  }) => {
-    if (value) {
-      return (
-        <a
-          href={value}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-emerald-400 hover:underline hover:opacity-80 transition-opacity"
-        >
-          {text}
-        </a>
-      );
-    }
-    return (
-      <span className="text-[color:var(--color-muted-foreground)]">N/A</span>
-    );
-  };
-
-  const SortHeader = ({
-    label,
-    sortKey,
-  }: {
-    label: string;
-    sortKey: string;
-  }) => (
-    <button
-      onClick={() => handleSort(sortKey)}
-      className="flex items-center gap-2 hover:text-[color:var(--color-primary)] transition-colors duration-200 font-semibold text-sm uppercase tracking-wide"
-    >
-      {label}
-      <ArrowUpDown
-        size={16}
-        className={`transition-all duration-200 ${
-          sortConfig?.key === sortKey
-            ? "text-[color:var(--color-primary)]"
-            : "text-[color:var(--color-muted-foreground)]"
-        }`}
-      />
-    </button>
-  );
-
   if (loading) {
     return (
       <motion.div
@@ -172,7 +179,13 @@ export default function Projects() {
               <TableHeader>
                 <TableRow className="border-b border-[color:var(--color-border)] bg-[color:var(--color-card)]/20 hover:bg-[color:var(--color-card)]/30">
                   <TableHead className="text-[color:var(--color-primary)] py-2 px-4 text-center">
-                    <SortHeader label="Name" sortKey="name" />
+                    <SortHeader
+                      label="Name"
+                      sortKey="name"
+                      isActive={sortConfig?.key === "name"}
+                      direction={sortConfig?.key === "name" ? sortConfig.direction : undefined}
+                      onSort={handleSort}
+                    />
                   </TableHead>
                   <TableHead className="text-[color:var(--color-primary)] py-2 px-4 text-center">
                     GitHub
