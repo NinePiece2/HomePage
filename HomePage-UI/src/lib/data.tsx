@@ -103,7 +103,7 @@ export const experience = [
     logo: "/companyLogos/cibc.png",
     logoZoom: 1,
     description: [
-      "Administered a Solace Colo appliance as well as multiple PubSub Plus Virtual Machines, configuring VPNs, message queues, bridges, and user access to support reliable event-driven messaging across internal teams.",
+      "Administered multiple Solace appliance as well as multiple PubSub Plus Virtual Machines, configuring VPNs, message queues, bridges, and user access to support reliable event-driven messaging across hundreds of internal teams.",
       "Provisioned and managed namespaces across multiple RedHat OpenShift clusters, handling resource allocation and access control to support teams across varying environment requirements.",
       "Built load testing applications from scratch using Spring Boot and Quarkus to benchmark system performance, and extended existing tools to accommodate the growing integration needs of internal development teams."
     ],
