@@ -1,6 +1,6 @@
 "use client";
 
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import type { LatLngTuple } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -22,27 +22,26 @@ interface MapComponentProps {
 
 export default function MapComponent({
   position,
-  zoom = 13,
+  zoom = 14.5,
 }: MapComponentProps) {
-  //   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+      : true
+  );
 
-  const isDarkMode = true;
+  useEffect(() => {
+    const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-  //   useEffect(() => {
-  //     // if (typeof window === "undefined") return;
+    const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+    darkModeQuery.addEventListener("change", handleChange);
 
-  //     const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  //     setIsDarkMode(darkModeQuery.matches);
-
-  //     const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-  //     darkModeQuery.addEventListener("change", handleChange);
-
-  //     return () => darkModeQuery.removeEventListener("change", handleChange);
-  //   }, []);
+    return () => darkModeQuery.removeEventListener("change", handleChange);
+  }, []);
 
   const tileUrl = isDarkMode
-    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-    : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+    ? "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+    : "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}";
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
@@ -55,20 +54,24 @@ export default function MapComponent({
         zoomControl={false}
         className="z-1"
       >
-        <TileLayer url={tileUrl} />
+        <TileLayer
+          url={tileUrl}
+          maxZoom={16}
+          attribution="Esri, HERE, Garmin, FAO, NOAA, USGS"
+        />
         <Marker position={position}>
           <Popup>Current Position</Popup>
         </Marker>
       </MapContainer>
 
-      <style jsx global>{`
+      {/* <style jsx global>{`
         .leaflet-control-attribution {
           display: none !important;
         }
         .leaflet-control-zoom {
           display: none !important;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 }
