@@ -8,11 +8,18 @@ import {
   LoaderCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { OssContribution } from "@/types/types";
 
 function ContributionCard({ contribution }: { contribution: OssContribution }) {
   return (
-    <article className="flex flex-col rounded-2xl border border-white/10 bg-neutral-950/50 p-6 transition-all duration-300 hover:border-emerald-500">
+    <motion.article
+      className="flex flex-col rounded-2xl border border-white/10 bg-neutral-950/50 p-6 transition-all duration-300 hover:border-emerald-500"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-emerald-400">
@@ -53,7 +60,7 @@ function ContributionCard({ contribution }: { contribution: OssContribution }) {
           <ExternalLink size={14} />
         </a>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -75,7 +82,13 @@ export default function ContributionsSection() {
   return (
     <section id="contributions" className="bg-[#111111] py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-12 flex flex-col items-center justify-between gap-5 text-center md:flex-row md:text-left">
+        <motion.div
+          className="mb-12 flex flex-col items-center justify-between gap-5 text-center md:flex-row md:text-left"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <div>
             <h2 className="mb-3 text-4xl font-bold">Open Source Contributions</h2>
             <p className="text-gray-400">
@@ -89,12 +102,16 @@ export default function ContributionsSection() {
             View all contributions
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
-        </div>
+        </motion.div>
         {loading ? (
-          <div className="flex items-center justify-center rounded-2xl border border-white/10 p-8 text-gray-400">
+          <motion.div
+            className="flex items-center justify-center rounded-2xl border border-white/10 p-8 text-gray-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
             <LoaderCircle className="mr-3 animate-spin text-emerald-400" size={24} />
             Loading contributions...
-          </div>
+          </motion.div>
         ) : contributions.length > 0 ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {contributions.map((contribution) => (
@@ -102,9 +119,13 @@ export default function ContributionsSection() {
             ))}
           </div>
         ) : (
-          <p className="rounded-2xl border border-white/10 p-8 text-center text-gray-400">
+          <motion.p
+            className="rounded-2xl border border-white/10 p-8 text-center text-gray-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
             Contributions will appear here soon.
-          </p>
+          </motion.p>
         )}
       </div>
     </section>

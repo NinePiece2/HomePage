@@ -8,6 +8,7 @@ import {
   LoaderCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { OssContribution } from "@/types/types";
 
 export default function ContributionsPage() {
@@ -32,13 +33,24 @@ export default function ContributionsPage() {
   return (
     <main className="min-h-screen bg-[#151515] px-6 py-24 text-gray-200">
       <div className="mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+        >
         <Link
           href="/"
           className="mb-10 inline-flex items-center gap-2 text-gray-400 transition-colors hover:text-emerald-400"
         >
           <ArrowLeft size={18} /> Back home
         </Link>
-        <div className="mb-12">
+        </motion.div>
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <h1 className="mb-3 flex items-center gap-3 text-4xl font-bold text-emerald-400">
             <GitPullRequest size={34} />
             Open Source Contributions
@@ -47,29 +59,40 @@ export default function ContributionsPage() {
             Contributions to open source projects, including the repository,
             contribution type, technologies, and links to the relevant commit.
           </p>
-        </div>
+        </motion.div>
 
         {loading && (
-          <div className="flex items-center justify-center rounded-2xl border border-white/10 p-8 text-gray-400">
+          <motion.div
+            className="flex items-center justify-center rounded-2xl border border-white/10 p-8 text-gray-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
             <LoaderCircle
               className="mr-3 animate-spin text-emerald-400"
               size={24}
             />
             Loading contributions...
-          </div>
+          </motion.div>
         )}
         {error && <p className="text-red-400">{error}</p>}
         {!loading && !error && contributions.length === 0 && (
-          <p className="rounded-2xl border border-white/10 p-8 text-center text-gray-400">
+          <motion.p
+            className="rounded-2xl border border-white/10 p-8 text-center text-gray-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
             No contributions have been added yet.
-          </p>
+          </motion.p>
         )}
         {!loading && !error && contributions.length > 0 && (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {contributions.map((contribution) => (
-              <article
+            {contributions.map((contribution, index) => (
+              <motion.article
                 key={contribution.id}
                 className="flex flex-col rounded-2xl border border-white/10 bg-neutral-950/50 p-6 transition-colors hover:border-emerald-500"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.1 }}
               >
                 <div className="mb-5 flex items-start justify-between gap-4">
                   <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-400">
@@ -118,7 +141,7 @@ export default function ContributionsPage() {
                     </a>
                   )}
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         )}
