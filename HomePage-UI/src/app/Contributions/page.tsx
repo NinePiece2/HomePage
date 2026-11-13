@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowLeft, ExternalLink, GitPullRequest } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  GitPullRequest,
+  LoaderCircle,
+} from "lucide-react";
 import Link from "next/link";
 import { OssContribution } from "@/types/types";
 
@@ -44,7 +49,15 @@ export default function ContributionsPage() {
           </p>
         </div>
 
-        {loading && <p className="text-gray-400">Loading contributions...</p>}
+        {loading && (
+          <div className="flex items-center justify-center rounded-2xl border border-white/10 p-8 text-gray-400">
+            <LoaderCircle
+              className="mr-3 animate-spin text-emerald-400"
+              size={24}
+            />
+            Loading contributions...
+          </div>
+        )}
         {error && <p className="text-red-400">{error}</p>}
         {!loading && !error && contributions.length === 0 && (
           <p className="rounded-2xl border border-white/10 p-8 text-center text-gray-400">
