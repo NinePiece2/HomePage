@@ -20,6 +20,7 @@ public partial class HomePageContext : DbContext, IDataProtectionKeyContext
     public virtual DbSet<Application> Applications { get; set; }
     public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;
     public DbSet<PowerSettings> PowerSettings { get; set; } = null!;
+    public DbSet<OssContribution> OssContributions { get; set; } = null!;
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -78,6 +79,22 @@ public partial class HomePageContext : DbContext, IDataProtectionKeyContext
                 .HasMaxLength(255);
             entity.Property(e => e.Value)
                 .HasColumnName("value");
+        });
+
+        modelBuilder.Entity<OssContribution>(entity =>
+        {
+            entity.ToTable("oss_contributions");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            entity.Property(e => e.Title).HasColumnName("title").HasMaxLength(200).IsRequired();
+            entity.Property(e => e.Description).HasColumnName("description").HasMaxLength(2000).IsRequired();
+            entity.Property(e => e.RepositoryName).HasColumnName("repository_name").HasMaxLength(200).IsRequired();
+            entity.Property(e => e.RepositoryUrl).HasColumnName("repository_url").HasMaxLength(500).IsRequired();
+            entity.Property(e => e.CommitUrl).HasColumnName("commit_url").HasMaxLength(500);
+            entity.Property(e => e.ContributionType).HasColumnName("contribution_type").HasMaxLength(100).IsRequired();
+            entity.Property(e => e.Technologies).HasColumnName("technologies").HasMaxLength(500);
+            entity.Property(e => e.ContributedAt).HasColumnName("contributed_at").IsRequired();
+            entity.HasIndex(e => e.ContributedAt);
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -19,3 +19,15 @@ export interface Application {
   applicationLink: string | null;
   homePageLink: string | null;
 }
+
+export interface OssContribution {
+  id: number;
+  title: string;
+  description: string;
+  repositoryName: string;
+  repositoryUrl: string;
+  commitUrl: string | null;
+  contributionType: string;
+  technologies: string | null;
+  contributedAt: string;
+}

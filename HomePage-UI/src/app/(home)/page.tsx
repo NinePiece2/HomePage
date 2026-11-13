@@ -41,6 +41,10 @@ const SignatureProjectSection = dynamic(
   () => import("@/components/Home/SignatureProjectSection"),
   { ssr: true },
 );
+const ContributionsSection = dynamic(
+  () => import("@/components/Home/ContributionsSection"),
+  { ssr: true },
+);
 const ContactSection = dynamic(
   () => import("@/components/Home/ContactSection"),
   { ssr: true },
@@ -57,6 +61,7 @@ const navLinks = [
   { name: "Certificates", to: "certificates", id: "certificates" },
   { name: "Projects", to: "projects", id: "projects" },
   { name: "Testimonials", to: "testimonials", id: "testimonials" },
+  { name: "Contributions", to: "contributions", id: "contributions" },
   // { name: "Blog", to: "blog", id: "blog" },
   { name: "Contact", to: "contact", id: "contact" },
 ];
@@ -115,6 +120,7 @@ export default function HomePage() {
         <ProjectsSection />
         <TestimonialsSection />
         <SignatureProjectSection />
+        <ContributionsSection />
         <ContactSection />
         <LocationSection />
       </main>
