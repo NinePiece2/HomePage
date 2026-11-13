@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, ExternalLink, GitPullRequest } from "lucide-react";
+import {
+  ArrowRight,
+  ExternalLink,
+  GitPullRequest,
+  LoaderCircle,
+} from "lucide-react";
 import Link from "next/link";
 import { OssContribution } from "@/types/types";
 
@@ -54,6 +59,7 @@ function ContributionCard({ contribution }: { contribution: OssContribution }) {
 
 export default function ContributionsSection() {
   const [contributions, setContributions] = useState<OssContribution[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/proxy/Contributions/Latest?limit=3")
@@ -62,7 +68,8 @@ export default function ContributionsSection() {
         return response.json();
       })
       .then(setContributions)
-      .catch((error) => console.error("Failed to fetch contributions:", error));
+      .catch((error) => console.error("Failed to fetch contributions:", error))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -83,7 +90,12 @@ export default function ContributionsSection() {
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
-        {contributions.length > 0 ? (
+        {loading ? (
+          <div className="flex items-center justify-center rounded-2xl border border-white/10 p-8 text-gray-400">
+            <LoaderCircle className="mr-3 animate-spin text-emerald-400" size={24} />
+            Loading contributions...
+          </div>
+        ) : contributions.length > 0 ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {contributions.map((contribution) => (
               <ContributionCard key={contribution.id} contribution={contribution} />
